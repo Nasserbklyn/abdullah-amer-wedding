@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أفراح آل عامر — زفاف المهندس عبداللّه فضل عامر</title>
+<meta name="description" content="دعوة عامة: يتشرف الأخ عبداللّه صالح عامر وولده الأخ فضل عبداللّه عامر بدعوتكم لحضور المقيل والزفة والسمرة — الخميس 23 يوليو 2026، قاعة بيت معياد، شارع 16.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12100C;         /* published site's near-black ground */
+    --panel:#1C1810;      /* raised dark panel */
+    --ivory:#F5EFE0;      /* primary text */
+    --sand:#C9B48A;       /* muted text */
+    --gold:#D4AF37;       /* metallic gold */
+    --gold-2:#E9C46A;     /* light gold */
+    --gold-deep:#A8842C;  /* deep gold */
+    --red:#8C1F28;        /* deep red accent */
+    --font-d:'Aref Ruqaa',serif;
+    --font-q:'Amiri',serif;
+    --font-b:'Tajawal',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    background:
+      radial-gradient(60% 40% at 50% 0%, rgba(212,175,55,.08), transparent 70%),
+      radial-gradient(90% 70% at 50% 55%, rgba(58,42,24,.35), transparent 100%),
+      linear-gradient(155deg, #15120D 0%, #12100C 45%, #171310 100%);
+    background-color:var(--bg);
+    color:var(--ivory);font-family:var(--font-b);
+    font-weight:400;line-height:1.95;overflow-x:hidden;
+  }
+  ::selection{background:var(--gold);color:var(--bg)}
+  a{color:inherit}
+  img,video{display:block;max-width:100%}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+  /* ---- shared ---- */
+  .wrap{width:min(1060px,92vw);margin-inline:auto}
+  .eyebrow{
+    font-size:.78rem;letter-spacing:.35em;color:var(--gold);
+    font-weight:500;margin-bottom:1rem;
+  }
+  .sec{padding:6.5rem 0}
+  h2{font-family:var(--font-d);font-weight:700;font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.7;margin-bottom:1.2rem;color:var(--gold)}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    padding:.85rem 1.9rem;border-radius:999px;text-decoration:none;
+    font-family:var(--font-b);font-weight:700;font-size:.95rem;
+    border:1px solid transparent;transition:transform .25s ease,box-shadow .25s ease;
+    cursor:pointer;background:none;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-gold{background:linear-gradient(160deg,var(--gold-2),var(--gold) 55%,var(--gold-deep));color:#241B08;box-shadow:0 10px 28px rgba(212,175,55,.25)}
+  .btn-line{border-color:rgba(245,239,224,.35);color:var(--ivory)}
+  .btn-line:hover{border-color:var(--gold);color:var(--gold-2)}
+
+  /* ---- ribbon (دعوة عامة) ---- */
+  .ribbon{
+    display:inline-block;background:var(--red);color:var(--ivory);
+    font-weight:700;font-size:.8rem;letter-spacing:.25em;
+    padding:.4rem 1.6rem;border-radius:0 0 14px 14px;
+    box-shadow:0 6px 18px rgba(140,31,40,.35);
+  }
+
+  /* ---- topbar ---- */
+  .top{
+    position:fixed;inset-inline:0;top:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:.9rem clamp(1rem,4vw,2.4rem);
+    background:linear-gradient(rgba(18,16,12,.92),rgba(18,16,12,0));
+  }
+  .top .name{font-family:var(--font-d);font-size:1.15rem;color:var(--gold)}
+  .top .date{font-size:.8rem;letter-spacing:.12em;color:var(--sand)}
+
+  /* ---- hero ---- */
+  .hero{
+    min-height:100svh;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;
+    text-align:center;position:relative;padding:0 1rem;
+  }
+  /* floating gold specks across the hero, like the published page */
+  .sparks{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+  .sparks i{
+    position:absolute;border-radius:50%;background:var(--gold);
+    box-shadow:0 0 10px 2px rgba(212,175,55,.35);
+    animation:spark-drift var(--dur,9s) ease-in-out var(--delay,0s) infinite alternate;
+  }
+  @keyframes spark-drift{
+    from{transform:translateY(0);opacity:.15}
+    50%{opacity:.75}
+    to{transform:translateY(-18px);opacity:.25}
+  }
+  .hero>*:not(.sparks){position:relative;z-index:1}
+  @media (prefers-reduced-motion:reduce){.sparks i{animation:none;opacity:.35}}
+  .hero .kicker{
+    font-family:var(--font-q);font-size:1.15rem;color:var(--gold-2);margin-top:1.6rem;letter-spacing:.05em;
+  }
+  /* circular gold-ring portrait, as on the live site */
+  .medallion{
+    margin-top:1.8rem;width:min(230px,58vw);aspect-ratio:1/1;position:relative;
+    border-radius:50%;padding:8px;
+    background:linear-gradient(160deg,var(--gold-2),var(--gold-deep));
+    box-shadow:0 24px 60px rgba(0,0,0,.55), 0 0 40px rgba(212,175,55,.15);
+  }
+  .medallion::before{
+    content:"";position:absolute;inset:4px;border:1px solid rgba(245,239,224,.5);
+    border-radius:50%;pointer-events:none;z-index:2;
+  }
+  .medallion img{
+    width:100%;aspect-ratio:1/1;height:auto;object-fit:cover;object-position:50% 12%;
+    border-radius:50%;
+  }
+  .hero .title-sm{font-family:var(--font-d);font-size:clamp(1.1rem,2.6vw,1.5rem);color:var(--ivory);margin-top:1.8rem}
+  .hero h1{
+    font-family:var(--font-d);font-weight:700;color:var(--gold);
+    font-size:clamp(3rem,10vw,5.6rem);line-height:1.5;
+    text-shadow:0 3px 18px rgba(212,175,55,.25);
+  }
+  .hero .invite-line{
+    max-width:36rem;color:var(--sand);font-size:1rem;margin:1rem auto 0;
+  }
+  .hero .invite-line b{color:var(--gold-2);font-weight:700}
+  /* dark gold-edged date panel, as on the live site */
+  .date-pill{
+    display:inline-flex;flex-direction:column;gap:.1rem;margin-top:1.9rem;
+    background:var(--panel);border:1px solid rgba(212,175,55,.35);
+    padding:.9rem 2.4rem;border-radius:16px;
+    font-family:var(--font-d);color:var(--gold);
+    box-shadow:0 14px 34px rgba(0,0,0,.4);
+  }
+  .date-pill .d1{font-family:var(--font-q);font-weight:700;font-size:1.3rem}
+  .date-pill .d2{font-family:var(--font-b);font-size:.85rem;color:var(--sand);letter-spacing:.06em}
+  /* countdown */
+  .count{display:flex;gap:clamp(.7rem,3vw,1.4rem);margin-top:2rem;direction:rtl}
+  .count .cell{
+    min-width:4.4rem;padding:.85rem .6rem .6rem;
+    background:var(--panel);border:1px solid rgba(212,175,55,.25);
+    border-radius:16px;box-shadow:0 10px 26px rgba(0,0,0,.35);
+  }
+  .count b{display:block;font-family:var(--font-q);font-size:1.75rem;font-weight:700;color:var(--gold-2);line-height:1.3}
+  .count span{font-size:.72rem;letter-spacing:.18em;color:var(--sand)}
+  .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:2.2rem}
+
+  /* video frame: dark mat + gold keyline */
+  .stage{margin-top:3.6rem;width:min(780px,94vw);position:relative;padding-bottom:2rem}
+  .frame{
+    position:relative;border-radius:22px;overflow:hidden;background:var(--panel);
+    padding:12px;box-shadow:0 30px 70px rgba(0,0,0,.6);
+    border:1px solid rgba(212,175,55,.25);
+  }
+  .frame::before{
+    content:"";position:absolute;inset:12px;border:2px solid var(--gold);
+    border-radius:12px;pointer-events:none;z-index:2;opacity:.85;
+  }
+  .frame video{width:100%;border-radius:10px;aspect-ratio:16/9;object-fit:cover}
+  .stage .cap{margin-top:1rem;text-align:center;color:var(--sand);font-size:.85rem;letter-spacing:.08em}
+
+  /* sana'a skyline band — gold on dark */
+  .skyline{
+    position:absolute;inset-inline:0;bottom:0;height:220px;z-index:-1;
+    opacity:.45;pointer-events:none;
+  }
+  .skyline svg{width:100%;height:100%}
+
+  /* ---- blessing ---- */
+  .blessing{text-align:center;background:linear-gradient(180deg,transparent,var(--panel) 30%,var(--panel) 70%,transparent)}
+  .blessing p.dua{
+    font-family:var(--font-q);font-size:clamp(1.5rem,3.4vw,2.3rem);line-height:2.3;color:var(--gold-2);
+    max-width:46rem;margin-inline:auto;
+  }
+  .blessing .marks{color:var(--gold-deep)}
+  .ornament{color:var(--gold);font-size:1.3rem;letter-spacing:.6em;margin-top:1.2rem}
+
+  /* ---- hosts ---- */
+  .hosts{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.6rem,5vw,4rem);align-items:center}
+  .hosts figure{position:relative}
+  .hosts img{border-radius:18px;box-shadow:0 30px 70px rgba(0,0,0,.55);border:1px solid rgba(212,175,55,.2)}
+  .hosts figcaption{
+    position:absolute;bottom:1rem;inset-inline:1rem;text-align:center;
+    font-size:.82rem;color:var(--ivory);background:rgba(18,16,12,.72);backdrop-filter:blur(4px);
+    padding:.5rem;border-radius:10px;
+  }
+  .hosts .txt p{color:var(--sand);max-width:30rem}
+  .hosts .txt .names{
+    font-family:var(--font-d);font-size:1.25rem;color:var(--ivory);
+    margin-top:1.4rem;line-height:2.4;
+  }
+  .hosts .txt .names b{color:var(--gold);font-weight:700}
+
+  /* ---- day timeline ---- */
+  .day{background:
+    radial-gradient(50% 60% at 15% 10%, rgba(212,175,55,.08), transparent 70%),
+    var(--panel)}
+  .day-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.6rem}
+  .stop{
+    border-radius:20px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;
+    box-shadow:0 18px 48px rgba(0,0,0,.45);border:1px solid rgba(212,175,55,.2);
+  }
+  .stop .media{aspect-ratio:1/0.9;overflow:hidden;position:relative}
+  .stop .media>*{width:100%;height:100%;object-fit:cover}
+  .stop .media::after{content:"";position:absolute;inset-inline:0;bottom:0;height:40%;
+    background:linear-gradient(transparent,rgba(18,16,12,.55))}
+  .stop .body{padding:1.2rem 1.4rem 1.5rem;text-align:center}
+  .stop .time{
+    display:inline-block;font-size:.72rem;letter-spacing:.22em;color:#241B08;font-weight:700;
+    background:linear-gradient(160deg,var(--gold-2),var(--gold));border-radius:999px;padding:.22rem 1rem;margin-bottom:.7rem;
+  }
+  .stop h3{font-family:var(--font-d);font-size:1.35rem;color:var(--gold-2);margin-bottom:.3rem}
+  .stop p{font-size:.88rem;color:var(--sand)}
+
+  /* ---- gallery ---- */
+  .gal{columns:3;column-gap:1.1rem;margin-top:2.6rem}
+  .gal figure{
+    break-inside:avoid;margin-bottom:1.1rem;position:relative;overflow:hidden;
+    border-radius:14px;background:var(--panel);padding:8px;
+    box-shadow:0 14px 34px rgba(0,0,0,.45);border:1px solid rgba(212,175,55,.18);
+  }
+  .gal img{border-radius:8px;transition:transform .8s cubic-bezier(.2,.7,.2,1);width:100%}
+  .gal figure:hover img{transform:scale(1.04)}
+  @media (prefers-reduced-motion:reduce){.gal img,.gal figure:hover img{transition:none;transform:none}}
+
+  /* ---- venue ---- */
+  .venue{background:var(--panel)}
+  .venue-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,5vw,4rem);align-items:center}
+  .venue img{border-radius:18px;box-shadow:0 22px 55px rgba(0,0,0,.5);border:1px solid rgba(212,175,55,.2)}
+  .venue .addr{font-family:var(--font-d);font-size:1.5rem;line-height:2.1;color:var(--ivory)}
+  .venue .sub{color:var(--sand);margin-top:.4rem}
+  .venue .btns{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+
+  /* ---- rsvp / footer ---- */
+  .rsvp{text-align:center;padding-bottom:4rem}
+  .rsvp .dua-sm{font-family:var(--font-q);color:var(--sand);font-size:1.1rem;max-width:36rem;margin:1.2rem auto 2rem}
+  footer{
+    border-top:1px solid rgba(212,175,55,.2);padding:2.2rem 1rem 3.4rem;text-align:center;
+    color:var(--sand);font-size:.82rem;letter-spacing:.08em;background:var(--bg);
+  }
+  footer .fam{font-family:var(--font-d);font-size:1.2rem;color:var(--gold);margin-bottom:.3rem}
+
+  /* ---- responsive ---- */
+  @media (max-width:860px){
+    .hosts,.venue-grid{grid-template-columns:1fr}
+    .day-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+    .gal{columns:2}
+    .sec{padding:4.5rem 0}
+  }
+  @media (max-width:520px){
+    .gal{columns:1}
+    .count .cell{min-width:3.6rem}
+    .top .date{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <span class="name">أفراح آل عامر</span>
+  <span class="date">الخميس 23 يوليو 2026 — صنعاء</span>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="sparks" aria-hidden="true"></div>
+    <p class="reveal" style="margin-top:0"><span class="ribbon">دعوة عامة</span></p>
+    <p class="kicker reveal">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+    <figure class="medallion reveal">
+      <img src="assets/groom-smile.webp" alt="المهندس عبداللّه فضل عامر بالزي اليمني" fetchpriority="high">
+    </figure>
+
+    <p class="title-sm reveal">أفراح آل عامر — زفاف المهندس</p>
+    <h1 class="reveal">عبداللّه فضل عامر</h1>
+    <p class="invite-line reveal">
+      يتشرف الأخ <b>عبداللّه صالح عامر</b> وولده الأخ <b>فضل عبداللّه عامر</b>
+      بدعوتكم لحضور المقيل والزفة والسمرة، وبحضوركم تكتمل الفرحة.
+    </p>
+    <div class="date-pill reveal">
+      <span class="d1">الخميس 23 يوليو 2026م</span>
+      <span class="d2">صنعاء — قاعة بيت معياد، شارع 16</span>
+    </div>
+
+    <div class="count reveal" id="count" role="timer" aria-label="الوقت المتبقي حتى الزفاف">
+      <div class="cell"><b id="c-d">0</b><span>يوم</span></div>
+      <div class="cell"><b id="c-h">0</b><span>ساعة</span></div>
+      <div class="cell"><b id="c-m">0</b><span>دقيقة</span></div>
+      <div class="cell"><b id="c-s">0</b><span>ثانية</span></div>
+    </div>
+
+    <div class="hero-ctas reveal">
+      <a class="btn btn-gold" href="#rsvp">تأكيد الحضور</a>
+      <a class="btn btn-line" href="#venue">مكان الحفل</a>
+    </div>
+
+    <div class="stage reveal">
+      <div class="frame">
+        <video src="assets/hero.mp4" poster="assets/hero-poster.jpg"
+               autoplay muted loop playsinline aria-label="العريس أثناء الاستعداد ليوم الزفاف"></video>
+      </div>
+      <p class="cap">من كواليس الاستعداد — صنعاء 2026</p>
+      <div class="skyline" aria-hidden="true">
+        <svg viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" fill="none">
+          <g fill="#A8842C" opacity=".3">
+            <rect x="40"  y="90"  width="90"  height="130" rx="4"/>
+            <rect x="150" y="50"  width="110" height="170" rx="4"/>
+            <rect x="280" y="110" width="80"  height="110" rx="4"/>
+            <rect x="380" y="70"  width="100" height="150" rx="4"/>
+            <rect x="720" y="80"  width="100" height="140" rx="4"/>
+            <rect x="840" y="45"  width="115" height="175" rx="4"/>
+            <rect x="975" y="100" width="85"  height="120" rx="4"/>
+            <rect x="1080" y="65" width="95"  height="155" rx="4"/>
+          </g>
+          <g fill="#E9C46A" opacity=".8">
+            <rect x="62" y="110" width="12" height="16" rx="6"/><rect x="94" y="110" width="12" height="16" rx="6"/>
+            <rect x="62" y="145" width="12" height="16" rx="6"/><rect x="94" y="145" width="12" height="16" rx="6"/>
+            <rect x="175" y="75" width="13" height="18" rx="6"/><rect x="210" y="75" width="13" height="18" rx="6"/>
+            <rect x="175" y="115" width="13" height="18" rx="6"/><rect x="210" y="115" width="13" height="18" rx="6"/>
+            <rect x="175" y="155" width="13" height="18" rx="6"/><rect x="210" y="155" width="13" height="18" rx="6"/>
+            <rect x="300" y="130" width="11" height="15" rx="5"/><rect x="328" y="130" width="11" height="15" rx="5"/>
+            <rect x="402" y="92" width="12" height="16" rx="6"/><rect x="436" y="92" width="12" height="16" rx="6"/>
+            <rect x="402" y="130" width="12" height="16" rx="6"/><rect x="436" y="130" width="12" height="16" rx="6"/>
+            <rect x="742" y="100" width="12" height="16" rx="6"/><rect x="776" y="100" width="12" height="16" rx="6"/>
+            <rect x="742" y="138" width="12" height="16" rx="6"/><rect x="776" y="138" width="12" height="16" rx="6"/>
+            <rect x="864" y="68" width="13" height="18" rx="6"/><rect x="900" y="68" width="13" height="18" rx="6"/>
+            <rect x="864" y="108" width="13" height="18" rx="6"/><rect x="900" y="108" width="13" height="18" rx="6"/>
+            <rect x="864" y="148" width="13" height="18" rx="6"/><rect x="900" y="148" width="13" height="18" rx="6"/>
+            <rect x="997" y="120" width="11" height="15" rx="5"/><rect x="1025" y="120" width="11" height="15" rx="5"/>
+            <rect x="1102" y="85" width="12" height="16" rx="6"/><rect x="1136" y="85" width="12" height="16" rx="6"/>
+            <rect x="1102" y="125" width="12" height="16" rx="6"/><rect x="1136" y="125" width="12" height="16" rx="6"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLESSING -->
+  <section class="sec blessing">
+    <div class="wrap reveal">
+      <p class="dua"><span class="marks">﴿</span> بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ <span class="marks">﴾</span></p>
+      <p class="ornament" aria-hidden="true">✻ ✻ ✻</p>
+    </div>
+  </section>
+
+  <!-- HOSTS -->
+  <section class="sec">
+    <div class="wrap hosts">
+      <figure class="reveal">
+        <img src="assets/father-kiss.webp" alt="جدّ العريس يقبّل جبينه مباركاً" loading="lazy">
+      </figure>
+      <div class="txt reveal">
+        <p class="eyebrow">أهل الدعوة</p>
+        <h2>آل عامر يرحبون بالجميع …أهلاً وسهلاً بكم</h2>
+        <p>
+          على العادة اليمانية، تكتمل الفرحة بوجوه الأهل والأحباب.
+          دعوة عامة لكل من يشاركنا الود — حضوركم وسام الفرح الأول.
+        </p>
+        <p class="names">
+          يتشرف بالدعوة: الأخ <b>عبداللّه صالح عامر</b><br>
+          وولده الأخ <b>فضل عبداللّه عامر</b><br>
+          احتفاءً بزفاف المهندس <b>عبداللّه فضل عامر</b>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAY -->
+  <section class="sec day">
+    <div class="wrap">
+      <p class="eyebrow reveal">برنامج اليوم</p>
+      <h2 class="reveal">المقيل والزفة والسمرة — الخميس 23 يوليو</h2>
+      <div class="day-grid">
+        <article class="stop reveal">
+          <div class="media">
+            <video src="assets/prep-belt.mp4" muted loop playsinline preload="none" aria-label="شدّ حزام الجنبية استعداداً للزفة"></video>
+          </div>
+          <div class="body">
+            <span class="time">صباحاً</span>
+            <h3>الزفّة وجلسة التصوير</h3>
+            <p>استوديو ريتش — شارع الستين الجنوبي</p>
+          </div>
+        </article>
+        <article class="stop reveal">
+          <div class="media">
+            <img src="assets/majlis.webp" alt="مجلس المقيل في القاعة" loading="lazy">
+          </div>
+          <div class="body">
+            <span class="time">ظهراً</span>
+            <h3>المقيل واستقبال الضيوف</h3>
+            <p>قاعة بيت معياد — شارع 16</p>
+          </div>
+        </article>
+        <article class="stop reveal">
+          <div class="media">
+            <video src="assets/regalia.mp4" muted loop playsinline preload="none" aria-label="الجنبية والحزام المذهّب على أريكة المجلس"></video>
+          </div>
+          <div class="body">
+            <span class="time">مساءً</span>
+            <h3>السمرة</h3>
+            <p>سهرة على العادة اليمانية حتى تكتمل الفرحة</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="sec">
+    <div class="wrap">
+      <p class="eyebrow reveal">الفرحة بعيون العدسة</p>
+      <h2 class="reveal">المهندس عبداللّه فضل عامر… بالزيّ اليمني</h2>
+      <div class="gal">
+        <figure class="reveal"><img src="assets/groom-glass.webp" alt="العريس أمام نوافذ القمرية الملوّنة" loading="lazy"></figure>
+        <figure class="reveal"><img src="assets/groom-chair.webp" alt="العريس على الكرسي الذهبي" loading="lazy"></figure>
+        <figure class="reveal"><img src="assets/brothers.webp" alt="العريس مع إخوته بالزي التقليدي" loading="lazy"></figure>
+        <figure class="reveal"><img src="assets/groom-smile.webp" alt="ابتسامة العريس بالزي اليمني" loading="lazy"></figure>
+        <figure class="reveal"><img src="assets/family.webp" alt="العريس مع الوالد والإخوة" loading="lazy"></figure>
+        <figure class="reveal"><img src="assets/groom-seated.webp" alt="العريس في جلسة التصوير" loading="lazy"></figure>
+        <figure class="reveal"><img src="assets/groom-hall.webp" alt="العريس في قاعة التصوير" loading="lazy"></figure>
+        <figure class="reveal"><img src="assets/group-hall.webp" alt="الأهل والأصحاب في القاعة" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUE -->
+  <section class="sec venue" id="venue">
+    <div class="wrap venue-grid">
+      <div class="reveal">
+        <p class="eyebrow">المكان</p>
+        <h2>قاعة بيت معياد</h2>
+        <p class="addr">الكائنة في بيت معياد — شارع 16</p>
+        <p class="sub">صنعاء</p>
+        <div class="btns">
+          <a class="btn btn-gold" href="https://maps.app.goo.gl/BrYdpYDpBPE3FdA18" target="_blank" rel="noopener">الاتجاهات على الخريطة</a>
+          <a class="btn btn-line" href="assets/wedding.ics" download>أضِف الموعد إلى تقويمك</a>
+        </div>
+      </div>
+      <figure class="reveal">
+        <img src="assets/group-hall.webp" alt="قاعة الاحتفال مكتملة بالضيوف" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="sec rsvp" id="rsvp">
+    <div class="wrap reveal">
+      <p class="eyebrow">تأكيد الحضور</p>
+      <h2>بحضوركم تكتمل الفرحة</h2>
+      <p class="dua-sm">أسعدونا بتأكيد حضوركم، وشاركوا الدعوة مع من تحبون من الأهل والأصحاب.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" id="rsvp-btn" href="#" rel="noopener">تأكيد الحضور</a>
+        <button class="btn btn-line" id="share-btn" type="button">مشاركة الدعوة</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p class="fam">أفراح آل عامر — صنعاء</p>
+  <p>بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
+</footer>
+
+<script>
+  // ---- config: set the host's WhatsApp number (e.g. '9677xxxxxxx') to route RSVP there.
+  const RSVP_PHONE = '19498808501';
+
+  const WEDDING = new Date('2026-07-23T12:00:00+03:00');
+  const AR = n => String(n); // standard 0-9 digits
+
+  // countdown
+  const ids = ['c-d','c-h','c-m','c-s'];
+  function tick(){
+    let ms = Math.max(0, WEDDING - Date.now());
+    const d = Math.floor(ms/864e5), h = Math.floor(ms/36e5)%24,
+          m = Math.floor(ms/6e4)%60, s = Math.floor(ms/1e3)%60;
+    [d,h,m,s].forEach((v,i)=>{ document.getElementById(ids[i]).textContent = AR(v); });
+  }
+  tick(); setInterval(tick, 1000);
+
+  // gold specks drifting over the hero, like the published page
+  const sparks = document.querySelector('.sparks');
+  for (let i = 0; i < 26; i++){
+    const s = document.createElement('i');
+    const sz = 3 + Math.random()*4;
+    s.style.cssText = `left:${2+Math.random()*96}%;top:${4+Math.random()*88}%;`+
+      `width:${sz}px;height:${sz}px;--dur:${6+Math.random()*7}s;--delay:${-Math.random()*9}s;`;
+    sparks.appendChild(s);
+  }
+
+  // scroll reveal
+  const io = new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay = (i<9 ? i*90 : 0)+'ms'; // orchestrated hero stagger only
+    io.observe(el);
+  });
+
+  // play looping video chips only when visible (battery/perf)
+  const vio = new IntersectionObserver(es=>{
+    es.forEach(e=>{ const v=e.target; if(e.isIntersecting){ v.play().catch(()=>{}); } else v.pause(); });
+  },{threshold:.3});
+  document.querySelectorAll('.stop video, .frame video').forEach(v=>vio.observe(v));
+
+  // reduced motion: no autoplaying ambience
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.querySelectorAll('video').forEach(v=>{ v.removeAttribute('autoplay'); v.pause(); });
+  }
+
+  // RSVP + share
+  const msg = 'يسعدنا تأكيد حضورنا أفراح آل عامر — زفاف المهندس عبداللّه فضل عامر، الخميس 23 يوليو 2026، قاعة بيت معياد، شارع 16، صنعاء. بارك الله لكما وبارك عليكما.';
+  const rsvp = document.getElementById('rsvp-btn');
+  rsvp.href = RSVP_PHONE
+    ? `https://wa.me/${RSVP_PHONE}?text=${encodeURIComponent(msg)}`
+    : `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+  rsvp.target = '_blank';
+  document.getElementById('share-btn').addEventListener('click', async ()=>{
+    const data = { title:'أفراح آل عامر — زفاف المهندس عبداللّه فضل عامر', text:msg, url:location.href };
+    if (navigator.share) { try{ await navigator.share(data); }catch(_){} }
+    else { await navigator.clipboard.writeText(location.href); alert('تم نسخ رابط الدعوة'); }
+  });
+</script>
+</body>
+</html>
