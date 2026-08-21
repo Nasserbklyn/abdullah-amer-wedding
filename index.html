@@ -1,529 +1,576 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>أفراح آل عامر — زفاف المهندس عبداللّه فضل عامر</title>
-<meta name="description" content="دعوة عامة: يتشرف الأخ عبداللّه صالح عامر وولده الأخ فضل عبداللّه عامر بدعوتكم لحضور المقيل والزفة والسمرة — الخميس 23 يوليو 2026، قاعة بيت معياد، شارع 16.">
+<title>Cuse Clouds Cannabis — Licensed Adult-Use Cannabis Retail Dispensary | Syracuse, NY</title>
+<meta name="description" content="Cuse Clouds Cannabis is a New York State licensed adult-use cannabis retail dispensary in Syracuse, NY. For use only by persons 21 years of age and older.">
+<meta name="rating" content="adult">
+<link rel="canonical" href="https://cuseclouds.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cuse Clouds Cannabis — Licensed Adult-Use Dispensary, Syracuse NY">
+<meta property="og:description" content="New York State licensed adult-use cannabis retail dispensary in Syracuse, NY. 21+ only.">
+<meta property="og:url" content="https://cuseclouds.com/">
+<meta property="og:image" content="https://cuseclouds.com/assets/og-image.png">
+<meta name="theme-color" content="#05080d">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,500;0,600;0,700;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+  BEFORE GOING LIVE — REQUIRED VALUES TO FILL IN (find & replace):
+
+  1. "OCM-XXXX-XXXXXX"  →  your OCM license number, exactly as issued.
+     (Appears 4×: age gate, hero, licensed section, footer.
+      A single find-and-replace-all updates every spot.)
+
+  2. Search for "TODO" comments below to add, when ready:
+     - street address (Visit section + footer)
+     - phone number  (Visit section + footer)
+     - store hours   (Visit section)
+     - confirm the contact email address
+
+  NY OCM website compliance implemented on this page:
+     • Age gate confirming visitors are 21+          (#age-gate)
+     • OCM license number displayed                  (4 locations)
+     • NYS HOPEline phone, text number, and website  (gate, Responsible Use, footer)
+     • Consumer warning in a bright yellow (#FFFF00)
+       text box, conspicuously at the top of page    (.warning-band)
+     • The 4 required warnings shown in a rotating
+       manner, one at a time                         (#rotating-warning)
+============================================================ -->
+
 <style>
   :root{
-    --bg:#12100C;         /* published site's near-black ground */
-    --panel:#1C1810;      /* raised dark panel */
-    --ivory:#F5EFE0;      /* primary text */
-    --sand:#C9B48A;       /* muted text */
-    --gold:#D4AF37;       /* metallic gold */
-    --gold-2:#E9C46A;     /* light gold */
-    --gold-deep:#A8842C;  /* deep gold */
-    --red:#8C1F28;        /* deep red accent */
-    --font-d:'Aref Ruqaa',serif;
-    --font-q:'Amiri',serif;
-    --font-b:'Tajawal',system-ui,sans-serif;
+    --bg:#05080d;
+    --bg-2:#070c14;
+    --panel:#0b1526;
+    --panel-2:#0e1a2e;
+    --line:rgba(94,193,255,.16);
+    --ink:#eef4fa;
+    --ink-mute:#9db2c7;
+    --blue:#2196f3;
+    --blue-light:#5ec1ff;
+    --blue-deep:#0b4e9c;
+    --silver:#c9d3dc;
+    --warn-yellow:#FFFF00;   /* OCM-required bright yellow — do not change */
+    --font-d:'Exo 2',system-ui,sans-serif;
+    --font-b:'Inter',system-ui,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   body{
     background:
-      radial-gradient(60% 40% at 50% 0%, rgba(212,175,55,.08), transparent 70%),
-      radial-gradient(90% 70% at 50% 55%, rgba(58,42,24,.35), transparent 100%),
-      linear-gradient(155deg, #15120D 0%, #12100C 45%, #171310 100%);
+      radial-gradient(55% 38% at 50% 0%, rgba(33,150,243,.10), transparent 70%),
+      radial-gradient(80% 60% at 50% 100%, rgba(11,78,156,.12), transparent 75%),
+      linear-gradient(160deg,#060a11 0%, var(--bg) 55%, #040609 100%);
     background-color:var(--bg);
-    color:var(--ivory);font-family:var(--font-b);
-    font-weight:400;line-height:1.95;overflow-x:hidden;
+    color:var(--ink);font-family:var(--font-b);
+    line-height:1.7;overflow-x:hidden;
   }
-  ::selection{background:var(--gold);color:var(--bg)}
-  a{color:inherit}
-  img,video{display:block;max-width:100%}
-  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
-
-  /* ---- shared ---- */
-  .wrap{width:min(1060px,92vw);margin-inline:auto}
-  .eyebrow{
-    font-size:.78rem;letter-spacing:.35em;color:var(--gold);
-    font-weight:500;margin-bottom:1rem;
+  ::selection{background:var(--blue);color:#fff}
+  a{color:var(--blue-light)}
+  a:hover{color:#8ed4ff}
+  img,svg{display:block;max-width:100%}
+  :focus-visible{outline:3px solid var(--blue-light);outline-offset:3px;border-radius:4px}
+  .wrap{width:min(1080px,92vw);margin-inline:auto}
+  .skip{
+    position:absolute;left:-9999px;top:0;z-index:200;
+    background:var(--blue);color:#fff;padding:.6rem 1.2rem;border-radius:0 0 10px 0;font-weight:600;
   }
-  .sec{padding:6.5rem 0}
-  h2{font-family:var(--font-d);font-weight:700;font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.7;margin-bottom:1.2rem;color:var(--gold)}
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
-  .reveal.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+  .skip:focus{left:0}
 
+  /* ============ OCM CONSUMER WARNING — BRIGHT YELLOW BOX ============ */
+  .warning-band{
+    background:var(--warn-yellow);
+    color:#000;
+    border-bottom:3px solid #000;
+    padding:.9rem clamp(1rem,4vw,2.2rem);
+    text-align:center;
+  }
+  .warning-band .w-main{
+    font-weight:700;font-size:.98rem;line-height:1.55;letter-spacing:.01em;color:#000;
+  }
+  .warning-band .w-rotating{
+    margin-top:.35rem;font-weight:600;font-size:.95rem;line-height:1.5;color:#000;
+  }
+  .warning-band .w-rotating .w-label{
+    font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;
+    border:2px solid #000;border-radius:6px;padding:.05rem .45rem;margin-inline-end:.5rem;
+    display:inline-block;vertical-align:middle;
+  }
+  #rotating-warning{transition:opacity .45s ease}
+  #rotating-warning.fading{opacity:0}
+  @media (prefers-reduced-motion:reduce){#rotating-warning{transition:none}}
+
+  /* ============ HEADER ============ */
+  header.site{
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:.85rem clamp(1rem,4vw,2.2rem);
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(rgba(5,8,13,.6),rgba(5,8,13,.2));
+  }
+  .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--ink)}
+  .brand svg{width:64px;height:auto;aspect-ratio:3/2}
+  .brand .b-name{font-family:var(--font-d);font-style:italic;font-weight:800;font-size:1.05rem;line-height:1.2;letter-spacing:.02em}
+  .brand .b-name .blue{color:var(--blue-light)}
+  .lic-chip{
+    font-size:.78rem;color:var(--ink-mute);letter-spacing:.06em;text-align:right;line-height:1.4;
+  }
+  .lic-chip strong{color:var(--silver);font-weight:600}
+  nav.main{display:flex;gap:1.4rem;flex-wrap:wrap}
+  nav.main a{color:var(--ink-mute);text-decoration:none;font-weight:500;font-size:.92rem;letter-spacing:.04em}
+  nav.main a:hover{color:var(--blue-light)}
+  @media (max-width:760px){nav.main{display:none}}
+
+  /* ============ HERO ============ */
+  .hero{text-align:center;padding:clamp(2.5rem,7vw,5rem) 1rem 3rem;position:relative}
+  .hero .logo-lg{width:min(620px,88vw);margin-inline:auto;aspect-ratio:3/2;height:auto}
+  .hero h1{
+    font-family:var(--font-d);font-style:italic;font-weight:900;
+    font-size:clamp(1.6rem,4.5vw,2.6rem);letter-spacing:.02em;margin-top:1.6rem;
+  }
+  .hero h1 .blue{color:var(--blue-light)}
+  .hero .sub{
+    color:var(--ink-mute);font-size:clamp(1rem,2.2vw,1.15rem);max-width:46rem;margin:0.9rem auto 0;
+  }
+  .hero .act{
+    font-family:var(--font-d);font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--blue-light);font-size:clamp(.8rem,1.8vw,.95rem);margin-top:1.4rem;
+  }
+  .hero .lic-line{
+    display:inline-block;margin-top:1.1rem;padding:.5rem 1.2rem;border:1px solid var(--line);
+    border-radius:999px;background:var(--panel);color:var(--silver);
+    font-size:.9rem;letter-spacing:.05em;
+  }
+  .cta-row{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:1.8rem}
   .btn{
-    display:inline-flex;align-items:center;gap:.6rem;
-    padding:.85rem 1.9rem;border-radius:999px;text-decoration:none;
-    font-family:var(--font-b);font-weight:700;font-size:.95rem;
-    border:1px solid transparent;transition:transform .25s ease,box-shadow .25s ease;
-    cursor:pointer;background:none;
+    display:inline-flex;align-items:center;gap:.55rem;
+    padding:.8rem 1.7rem;border-radius:999px;text-decoration:none;
+    font-weight:600;font-size:.95rem;border:1px solid transparent;
+    transition:transform .2s ease,box-shadow .2s ease;cursor:pointer;background:none;color:var(--ink);
+    font-family:var(--font-b);
   }
   .btn:hover{transform:translateY(-2px)}
-  .btn-gold{background:linear-gradient(160deg,var(--gold-2),var(--gold) 55%,var(--gold-deep));color:#241B08;box-shadow:0 10px 28px rgba(212,175,55,.25)}
-  .btn-line{border-color:rgba(245,239,224,.35);color:var(--ivory)}
-  .btn-line:hover{border-color:var(--gold);color:var(--gold-2)}
+  @media (prefers-reduced-motion:reduce){.btn,.btn:hover{transform:none;transition:none}}
+  .btn-blue{background:linear-gradient(160deg,var(--blue-light),var(--blue) 55%,var(--blue-deep));color:#fff;box-shadow:0 10px 26px rgba(33,150,243,.28)}
+  .btn-line{border-color:rgba(94,193,255,.4)}
+  .btn-line:hover{border-color:var(--blue-light);color:var(--blue-light)}
 
-  /* ---- ribbon (دعوة عامة) ---- */
-  .ribbon{
-    display:inline-block;background:var(--red);color:var(--ivory);
-    font-weight:700;font-size:.8rem;letter-spacing:.25em;
-    padding:.4rem 1.6rem;border-radius:0 0 14px 14px;
-    box-shadow:0 6px 18px rgba(140,31,40,.35);
+  /* ============ SECTIONS ============ */
+  .sec{padding:4.2rem 0}
+  .sec h2{
+    font-family:var(--font-d);font-style:italic;font-weight:800;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);margin-bottom:.6rem;
   }
+  .sec .lead{color:var(--ink-mute);max-width:46rem;margin-bottom:2rem}
+  .eyebrow{
+    font-family:var(--font-d);font-size:.78rem;letter-spacing:.3em;color:var(--blue-light);
+    font-weight:600;text-transform:uppercase;margin-bottom:.8rem;
+  }
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem}
+  .card{
+    background:linear-gradient(170deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line);border-radius:16px;padding:1.5rem 1.4rem;
+  }
+  .card h3{
+    font-family:var(--font-d);font-weight:700;font-size:1.05rem;letter-spacing:.04em;
+    margin-bottom:.6rem;color:var(--blue-light);
+  }
+  .card p{color:var(--ink-mute);font-size:.95rem}
+  .card p+p{margin-top:.5rem}
+  .card .big{color:var(--ink);font-size:1.05rem;font-weight:600}
 
-  /* ---- topbar ---- */
-  .top{
-    position:fixed;inset-inline:0;top:0;z-index:50;
-    display:flex;justify-content:space-between;align-items:center;
-    padding:.9rem clamp(1rem,4vw,2.4rem);
-    background:linear-gradient(rgba(18,16,12,.92),rgba(18,16,12,0));
+  /* licensed section */
+  .licensed{
+    background:linear-gradient(170deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line);border-radius:20px;padding:clamp(1.6rem,4vw,2.6rem);
+    display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center;
   }
-  .top .name{font-family:var(--font-d);font-size:1.15rem;color:var(--gold)}
-  .top .date{font-size:.8rem;letter-spacing:.12em;color:var(--sand)}
+  @media (max-width:760px){.licensed{grid-template-columns:1fr}}
+  .lic-num{
+    font-family:var(--font-d);font-weight:700;font-size:clamp(1.2rem,3vw,1.7rem);
+    letter-spacing:.08em;color:var(--ink);margin:.4rem 0 .8rem;
+  }
+  .licensed .note{color:var(--ink-mute);font-size:.92rem}
+  .nys-seal{
+    text-align:center;border:1px dashed rgba(94,193,255,.35);border-radius:16px;padding:1.4rem;
+    color:var(--ink-mute);font-size:.9rem;line-height:1.6;
+  }
+  .nys-seal .t{font-family:var(--font-d);font-weight:700;color:var(--silver);letter-spacing:.14em;text-transform:uppercase;font-size:.86rem}
 
-  /* ---- hero ---- */
-  .hero{
-    min-height:100svh;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;
-    text-align:center;position:relative;padding:0 1rem;
+  /* responsible use */
+  .hopeline{
+    background:linear-gradient(170deg,#0e2036,#0b1830);
+    border:1px solid rgba(94,193,255,.3);border-radius:20px;
+    padding:clamp(1.6rem,4vw,2.4rem);
   }
-  /* floating gold specks across the hero, like the published page */
-  .sparks{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-  .sparks i{
-    position:absolute;border-radius:50%;background:var(--gold);
-    box-shadow:0 0 10px 2px rgba(212,175,55,.35);
-    animation:spark-drift var(--dur,9s) ease-in-out var(--delay,0s) infinite alternate;
-  }
-  @keyframes spark-drift{
-    from{transform:translateY(0);opacity:.15}
-    50%{opacity:.75}
-    to{transform:translateY(-18px);opacity:.25}
-  }
-  .hero>*:not(.sparks){position:relative;z-index:1}
-  @media (prefers-reduced-motion:reduce){.sparks i{animation:none;opacity:.35}}
-  .hero .kicker{
-    font-family:var(--font-q);font-size:1.15rem;color:var(--gold-2);margin-top:1.6rem;letter-spacing:.05em;
-  }
-  /* circular gold-ring portrait, as on the live site */
-  .medallion{
-    margin-top:1.8rem;width:min(230px,58vw);aspect-ratio:1/1;position:relative;
-    border-radius:50%;padding:8px;
-    background:linear-gradient(160deg,var(--gold-2),var(--gold-deep));
-    box-shadow:0 24px 60px rgba(0,0,0,.55), 0 0 40px rgba(212,175,55,.15);
-  }
-  .medallion::before{
-    content:"";position:absolute;inset:4px;border:1px solid rgba(245,239,224,.5);
-    border-radius:50%;pointer-events:none;z-index:2;
-  }
-  .medallion img{
-    width:100%;aspect-ratio:1/1;height:auto;object-fit:cover;object-position:50% 12%;
-    border-radius:50%;
-  }
-  .hero .title-sm{font-family:var(--font-d);font-size:clamp(1.1rem,2.6vw,1.5rem);color:var(--ivory);margin-top:1.8rem}
-  .hero h1{
-    font-family:var(--font-d);font-weight:700;color:var(--gold);
-    font-size:clamp(3rem,10vw,5.6rem);line-height:1.5;
-    text-shadow:0 3px 18px rgba(212,175,55,.25);
-  }
-  .hero .invite-line{
-    max-width:36rem;color:var(--sand);font-size:1rem;margin:1rem auto 0;
-  }
-  .hero .invite-line b{color:var(--gold-2);font-weight:700}
-  /* dark gold-edged date panel, as on the live site */
-  .date-pill{
-    display:inline-flex;flex-direction:column;gap:.1rem;margin-top:1.9rem;
-    background:var(--panel);border:1px solid rgba(212,175,55,.35);
-    padding:.9rem 2.4rem;border-radius:16px;
-    font-family:var(--font-d);color:var(--gold);
-    box-shadow:0 14px 34px rgba(0,0,0,.4);
-  }
-  .date-pill .d1{font-family:var(--font-q);font-weight:700;font-size:1.3rem}
-  .date-pill .d2{font-family:var(--font-b);font-size:.85rem;color:var(--sand);letter-spacing:.06em}
-  /* countdown */
-  .count{display:flex;gap:clamp(.7rem,3vw,1.4rem);margin-top:2rem;direction:rtl}
-  .count .cell{
-    min-width:4.4rem;padding:.85rem .6rem .6rem;
-    background:var(--panel);border:1px solid rgba(212,175,55,.25);
-    border-radius:16px;box-shadow:0 10px 26px rgba(0,0,0,.35);
-  }
-  .count b{display:block;font-family:var(--font-q);font-size:1.75rem;font-weight:700;color:var(--gold-2);line-height:1.3}
-  .count span{font-size:.72rem;letter-spacing:.18em;color:var(--sand)}
-  .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:2.2rem}
+  .hopeline h3{font-family:var(--font-d);font-weight:800;font-style:italic;font-size:1.35rem;margin-bottom:.4rem}
+  .hopeline .hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.2rem}
+  .hl-item{background:rgba(5,8,13,.45);border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem}
+  .hl-item .k{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);font-weight:600}
+  .hl-item .v{font-size:1.15rem;font-weight:700;color:var(--ink);margin-top:.25rem}
+  .hl-item .v a{color:var(--blue-light);text-decoration:none}
+  .hl-item .v a:hover{text-decoration:underline}
+  .poison{margin-top:1.1rem;color:var(--ink-mute);font-size:.95rem}
+  .poison strong{color:var(--ink)}
 
-  /* video frame: dark mat + gold keyline */
-  .stage{margin-top:3.6rem;width:min(780px,94vw);position:relative;padding-bottom:2rem}
-  .frame{
-    position:relative;border-radius:22px;overflow:hidden;background:var(--panel);
-    padding:12px;box-shadow:0 30px 70px rgba(0,0,0,.6);
-    border:1px solid rgba(212,175,55,.25);
+  /* ============ FOOTER ============ */
+  footer.site{
+    border-top:1px solid var(--line);
+    padding:2.6rem clamp(1rem,4vw,2.2rem) 2.2rem;
+    background:linear-gradient(rgba(7,12,20,.4),rgba(5,8,13,.9));
+    text-align:center;
   }
-  .frame::before{
-    content:"";position:absolute;inset:12px;border:2px solid var(--gold);
-    border-radius:12px;pointer-events:none;z-index:2;opacity:.85;
+  footer .f-brand{font-family:var(--font-d);font-style:italic;font-weight:800;font-size:1.2rem}
+  footer .f-brand .blue{color:var(--blue-light)}
+  footer p{color:var(--ink-mute);font-size:.88rem;max-width:56rem;margin:.5rem auto 0}
+  footer .f-lic{color:var(--silver);font-weight:600;letter-spacing:.05em}
+  footer .f-warn{
+    background:var(--warn-yellow);color:#000;border-radius:10px;
+    padding:.7rem 1rem;margin:1.2rem auto .4rem;max-width:56rem;
+    font-size:.85rem;font-weight:600;line-height:1.55;
   }
-  .frame video{width:100%;border-radius:10px;aspect-ratio:16/9;object-fit:cover}
-  .stage .cap{margin-top:1rem;text-align:center;color:var(--sand);font-size:.85rem;letter-spacing:.08em}
+  footer .f-hope{font-size:.86rem}
+  footer .f-copy{margin-top:1.4rem;font-size:.8rem;color:#6d8199}
 
-  /* sana'a skyline band — gold on dark */
-  .skyline{
-    position:absolute;inset-inline:0;bottom:0;height:220px;z-index:-1;
-    opacity:.45;pointer-events:none;
+  /* ============ AGE GATE ============ */
+  #age-gate{
+    position:fixed;inset:0;z-index:100;
+    background:
+      radial-gradient(60% 45% at 50% 0%, rgba(33,150,243,.14), transparent 70%),
+      linear-gradient(165deg,#060a11,#05080d 60%,#040609);
+    display:flex;align-items:center;justify-content:center;
+    padding:1.2rem;overflow-y:auto;
   }
-  .skyline svg{width:100%;height:100%}
-
-  /* ---- blessing ---- */
-  .blessing{text-align:center;background:linear-gradient(180deg,transparent,var(--panel) 30%,var(--panel) 70%,transparent)}
-  .blessing p.dua{
-    font-family:var(--font-q);font-size:clamp(1.5rem,3.4vw,2.3rem);line-height:2.3;color:var(--gold-2);
-    max-width:46rem;margin-inline:auto;
+  body.gate-closed #age-gate{display:none}
+  body.gate-open{overflow:hidden}
+  .gate-card{
+    width:min(560px,94vw);text-align:center;
+    background:linear-gradient(170deg,var(--panel-2),var(--panel));
+    border:1px solid rgba(94,193,255,.25);border-radius:22px;
+    padding:clamp(1.4rem,4vw,2.2rem);
+    box-shadow:0 30px 80px rgba(0,0,0,.6);
+    margin:auto;
   }
-  .blessing .marks{color:var(--gold-deep)}
-  .ornament{color:var(--gold);font-size:1.3rem;letter-spacing:.6em;margin-top:1.2rem}
-
-  /* ---- hosts ---- */
-  .hosts{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.6rem,5vw,4rem);align-items:center}
-  .hosts figure{position:relative}
-  .hosts img{border-radius:18px;box-shadow:0 30px 70px rgba(0,0,0,.55);border:1px solid rgba(212,175,55,.2)}
-  .hosts figcaption{
-    position:absolute;bottom:1rem;inset-inline:1rem;text-align:center;
-    font-size:.82rem;color:var(--ivory);background:rgba(18,16,12,.72);backdrop-filter:blur(4px);
-    padding:.5rem;border-radius:10px;
+  .gate-card .logo-gate{width:min(320px,72vw);margin:0 auto .9rem;aspect-ratio:3/2;height:auto}
+  .gate-card h2{font-family:var(--font-d);font-style:italic;font-weight:800;font-size:1.35rem;line-height:1.4}
+  .gate-card .g-sub{color:var(--ink-mute);font-size:.95rem;margin-top:.5rem}
+  .gate-card .g-lic{color:var(--silver);font-size:.82rem;letter-spacing:.05em;margin-top:.6rem}
+  .gate-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.3rem}
+  .gate-warn{
+    background:var(--warn-yellow);color:#000;border-radius:12px;
+    padding:.75rem .9rem;margin-top:1.3rem;
+    font-size:.8rem;font-weight:600;line-height:1.55;text-align:center;
   }
-  .hosts .txt p{color:var(--sand);max-width:30rem}
-  .hosts .txt .names{
-    font-family:var(--font-d);font-size:1.25rem;color:var(--ivory);
-    margin-top:1.4rem;line-height:2.4;
-  }
-  .hosts .txt .names b{color:var(--gold);font-weight:700}
-
-  /* ---- day timeline ---- */
-  .day{background:
-    radial-gradient(50% 60% at 15% 10%, rgba(212,175,55,.08), transparent 70%),
-    var(--panel)}
-  .day-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.6rem}
-  .stop{
-    border-radius:20px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;
-    box-shadow:0 18px 48px rgba(0,0,0,.45);border:1px solid rgba(212,175,55,.2);
-  }
-  .stop .media{aspect-ratio:1/0.9;overflow:hidden;position:relative}
-  .stop .media>*{width:100%;height:100%;object-fit:cover}
-  .stop .media::after{content:"";position:absolute;inset-inline:0;bottom:0;height:40%;
-    background:linear-gradient(transparent,rgba(18,16,12,.55))}
-  .stop .body{padding:1.2rem 1.4rem 1.5rem;text-align:center}
-  .stop .time{
-    display:inline-block;font-size:.72rem;letter-spacing:.22em;color:#241B08;font-weight:700;
-    background:linear-gradient(160deg,var(--gold-2),var(--gold));border-radius:999px;padding:.22rem 1rem;margin-bottom:.7rem;
-  }
-  .stop h3{font-family:var(--font-d);font-size:1.35rem;color:var(--gold-2);margin-bottom:.3rem}
-  .stop p{font-size:.88rem;color:var(--sand)}
-
-  /* ---- gallery ---- */
-  .gal{columns:3;column-gap:1.1rem;margin-top:2.6rem}
-  .gal figure{
-    break-inside:avoid;margin-bottom:1.1rem;position:relative;overflow:hidden;
-    border-radius:14px;background:var(--panel);padding:8px;
-    box-shadow:0 14px 34px rgba(0,0,0,.45);border:1px solid rgba(212,175,55,.18);
-  }
-  .gal img{border-radius:8px;transition:transform .8s cubic-bezier(.2,.7,.2,1);width:100%}
-  .gal figure:hover img{transform:scale(1.04)}
-  @media (prefers-reduced-motion:reduce){.gal img,.gal figure:hover img{transition:none;transform:none}}
-
-  /* ---- venue ---- */
-  .venue{background:var(--panel)}
-  .venue-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,5vw,4rem);align-items:center}
-  .venue img{border-radius:18px;box-shadow:0 22px 55px rgba(0,0,0,.5);border:1px solid rgba(212,175,55,.2)}
-  .venue .addr{font-family:var(--font-d);font-size:1.5rem;line-height:2.1;color:var(--ivory)}
-  .venue .sub{color:var(--sand);margin-top:.4rem}
-  .venue .btns{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
-
-  /* ---- rsvp / footer ---- */
-  .rsvp{text-align:center;padding-bottom:4rem}
-  .rsvp .dua-sm{font-family:var(--font-q);color:var(--sand);font-size:1.1rem;max-width:36rem;margin:1.2rem auto 2rem}
-  footer{
-    border-top:1px solid rgba(212,175,55,.2);padding:2.2rem 1rem 3.4rem;text-align:center;
-    color:var(--sand);font-size:.82rem;letter-spacing:.08em;background:var(--bg);
-  }
-  footer .fam{font-family:var(--font-d);font-size:1.2rem;color:var(--gold);margin-bottom:.3rem}
-
-  /* ---- responsive ---- */
-  @media (max-width:860px){
-    .hosts,.venue-grid{grid-template-columns:1fr}
-    .day-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
-    .gal{columns:2}
-    .sec{padding:4.5rem 0}
-  }
-  @media (max-width:520px){
-    .gal{columns:1}
-    .count .cell{min-width:3.6rem}
-    .top .date{display:none}
+  .gate-hope{color:var(--ink-mute);font-size:.78rem;margin-top:.9rem;line-height:1.6}
+  .gate-hope a{color:var(--blue-light)}
+  noscript .noscript-note{
+    display:block;margin-top:1rem;color:#ffd66e;font-size:.85rem;
   }
 </style>
 </head>
-<body>
+<body class="gate-open">
+<a class="skip" href="#main">Skip to content</a>
 
-<header class="top">
-  <span class="name">أفراح آل عامر</span>
-  <span class="date">الخميس 23 يوليو 2026 — صنعاء</span>
+<!-- Inline logo symbol: referenced by <use> in the gate, header, and hero -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="cloudBody" cx="50%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#0e2a47"/><stop offset="55%" stop-color="#081a30"/><stop offset="100%" stop-color="#04101f"/>
+    </radialGradient>
+    <radialGradient id="cloudBodySide" cx="50%" cy="25%" r="85%">
+      <stop offset="0%" stop-color="#1668ad"/><stop offset="55%" stop-color="#0b3a68"/><stop offset="100%" stop-color="#062038"/>
+    </radialGradient>
+    <linearGradient id="rimBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5ec1ff"/><stop offset="55%" stop-color="#1e88e5"/><stop offset="100%" stop-color="#0b4e9c"/>
+    </linearGradient>
+    <linearGradient id="rimWhite" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#cfe6f7"/>
+    </linearGradient>
+    <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0d5aa8"/><stop offset="35%" stop-color="#2196f3"/><stop offset="60%" stop-color="#5ec1ff"/><stop offset="100%" stop-color="#0d5aa8"/>
+    </linearGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="45%" stop-color="#e8ebee"/><stop offset="70%" stop-color="#aab3bb"/><stop offset="100%" stop-color="#7c868f"/>
+    </linearGradient>
+    <linearGradient id="blueText" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7fd0ff"/><stop offset="45%" stop-color="#2b95e8"/><stop offset="100%" stop-color="#0a4a95"/>
+    </linearGradient>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="cloudClip"><rect x="0" y="0" width="1500" height="478"/></clipPath>
+    <symbol id="cc-logo" viewBox="0 0 1500 1000">
+      <g clip-path="url(#cloudClip)">
+        <circle cx="455" cy="395" r="120" fill="url(#cloudBodySide)" stroke="url(#rimWhite)" stroke-width="16"/>
+        <circle cx="455" cy="395" r="101" fill="none" stroke="url(#rimBlue)" stroke-width="14"/>
+        <circle cx="1055" cy="400" r="115" fill="url(#cloudBodySide)" stroke="url(#rimWhite)" stroke-width="16"/>
+        <circle cx="1055" cy="400" r="96" fill="none" stroke="url(#rimBlue)" stroke-width="14"/>
+        <circle cx="577" cy="325" r="152" fill="url(#cloudBodySide)" stroke="url(#rimWhite)" stroke-width="18"/>
+        <circle cx="577" cy="325" r="129" fill="none" stroke="url(#rimBlue)" stroke-width="16"/>
+        <circle cx="950" cy="318" r="158" fill="url(#cloudBodySide)" stroke="url(#rimWhite)" stroke-width="18"/>
+        <circle cx="950" cy="318" r="135" fill="none" stroke="url(#rimBlue)" stroke-width="16"/>
+        <circle cx="757" cy="268" r="212" fill="url(#cloudBody)" stroke="url(#rimWhite)" stroke-width="22"/>
+        <circle cx="757" cy="268" r="188" fill="none" stroke="url(#rimBlue)" stroke-width="18" opacity=".85"/>
+        <path d="M 585 172 A 200 200 0 0 1 872 92" fill="none" stroke="#3aa3f5" stroke-width="22" stroke-linecap="round" filter="url(#softGlow)" opacity=".95"/>
+      </g>
+      <g filter="url(#softGlow)">
+        <path d="M 118 568 C 340 478, 560 448, 755 452 C 960 456, 1160 484, 1368 516 C 1240 510, 1010 496, 770 496 C 560 496, 330 526, 118 568 Z" fill="url(#waveGrad)"/>
+        <path d="M 228 596 C 430 534, 650 514, 870 518 C 1050 521, 1190 536, 1300 556 C 1150 552, 990 546, 840 548 C 650 551, 430 570, 228 596 Z" fill="#eaf5ff" opacity=".92"/>
+      </g>
+      <g font-family="'Exo 2',system-ui,sans-serif" text-anchor="middle">
+        <text x="750" y="732" font-size="155" font-weight="900" font-style="italic" letter-spacing="1"><tspan fill="url(#silver)">CUSE </tspan><tspan fill="url(#blueText)">CLOUDS</tspan></text>
+        <text x="763" y="838" font-size="72" font-weight="600" letter-spacing="26" fill="#ffffff">CANNABIS</text>
+        <g fill="#1e88e5">
+          <path d="M 185 812 L 350 812 L 340 820 L 185 820 Z"/><path d="M 210 830 L 340 830 L 330 838 L 210 838 Z"/>
+          <path d="M 1315 812 L 1150 812 L 1160 820 L 1315 820 Z"/><path d="M 1290 830 L 1160 830 L 1170 838 L 1290 838 Z"/>
+        </g>
+        <text x="754" y="922" font-size="33" font-weight="500" letter-spacing="8" fill="#ffffff">PREMIUM QUALITY&#160;&#160;<tspan fill="#2196f3" font-size="30">●</tspan>&#160;&#160;ELEVATED EXPERIENCE</text>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ==================== AGE GATE (required: confirms 21+) ==================== -->
+<div id="age-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title" aria-describedby="gate-desc">
+  <div class="gate-card">
+    <svg class="logo-gate" role="img" aria-label="Cuse Clouds Cannabis logo"><use href="#cc-logo"/></svg>
+    <h2 id="gate-title">Are you 21 years of age or older?</h2>
+    <p class="g-sub" id="gate-desc">You must be at least 21 years old to enter this website.</p>
+    <p class="g-lic">Licensed Adult-Use Cannabis Retail Dispensary · License&nbsp;#&nbsp;<span class="lic-value">OCM-XXXX-XXXXXX</span></p>
+    <div class="gate-btns">
+      <button class="btn btn-blue" id="gate-yes" type="button">Yes, I am 21 or older</button>
+      <button class="btn btn-line" id="gate-no" type="button">No, I am under 21</button>
+    </div>
+    <p class="gate-warn">For use only by persons 21 years of age and older. Keep out of reach of children and pets. If someone accidentally consumes cannabis, contact the Poison Center. Consume responsibly.</p>
+    <p class="gate-hope">NYS HOPEline — Call <a href="tel:18778467369">1‑877‑8‑HOPENY</a> (1‑877‑846‑7369) · Text HOPENY (467369) · <a href="https://oasas.ny.gov/hopeline" rel="noopener">oasas.ny.gov/hopeline</a></p>
+    <noscript><span class="noscript-note">JavaScript is required to confirm your age and enter this site.</span></noscript>
+  </div>
+</div>
+
+<!-- ==================== OCM CONSUMER WARNING — bright yellow text box ==================== -->
+<div class="warning-band" role="region" aria-label="Cannabis consumer warnings">
+  <p class="w-main">For use only by persons 21 years of age and older. Keep out of reach of children and pets. If someone accidentally consumes cannabis, contact the Poison Center. Consume responsibly.</p>
+  <p class="w-rotating"><span class="w-label">Warning</span><span id="rotating-warning" aria-live="polite">Cannabis can be addictive.</span></p>
+</div>
+
+<header class="site">
+  <a class="brand" href="#top" aria-label="Cuse Clouds Cannabis — home">
+    <svg role="img" aria-hidden="true"><use href="#cc-logo"/></svg>
+    <span class="b-name">CUSE <span class="blue">CLOUDS</span><br><span style="font-style:normal;font-weight:600;font-size:.72rem;letter-spacing:.28em;color:var(--ink-mute)">CANNABIS</span></span>
+  </a>
+  <nav class="main" aria-label="Main">
+    <a href="#visit">Visit</a>
+    <a href="#licensed">Our License</a>
+    <a href="#responsible">Responsible Use</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <p class="lic-chip">Licensed Adult-Use Retail Dispensary<br><strong>License # <span class="lic-value">OCM-XXXX-XXXXXX</span></strong></p>
 </header>
 
-<main>
-  <!-- HERO -->
+<main id="main">
+  <!-- ==================== HERO ==================== -->
   <section class="hero" id="top">
-    <div class="sparks" aria-hidden="true"></div>
-    <p class="reveal" style="margin-top:0"><span class="ribbon">دعوة عامة</span></p>
-    <p class="kicker reveal">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-    <figure class="medallion reveal">
-      <img src="assets/groom-smile.webp" alt="المهندس عبداللّه فضل عامر بالزي اليمني" fetchpriority="high">
-    </figure>
-
-    <p class="title-sm reveal">أفراح آل عامر — زفاف المهندس</p>
-    <h1 class="reveal">عبداللّه فضل عامر</h1>
-    <p class="invite-line reveal">
-      يتشرف الأخ <b>عبداللّه صالح عامر</b> وولده الأخ <b>فضل عبداللّه عامر</b>
-      بدعوتكم لحضور المقيل والزفة والسمرة، وبحضوركم تكتمل الفرحة.
-    </p>
-    <div class="date-pill reveal">
-      <span class="d1">الخميس 23 يوليو 2026م</span>
-      <span class="d2">صنعاء — قاعة بيت معياد، شارع 16</span>
-    </div>
-
-    <div class="count reveal" id="count" role="timer" aria-label="الوقت المتبقي حتى الزفاف">
-      <div class="cell"><b id="c-d">0</b><span>يوم</span></div>
-      <div class="cell"><b id="c-h">0</b><span>ساعة</span></div>
-      <div class="cell"><b id="c-m">0</b><span>دقيقة</span></div>
-      <div class="cell"><b id="c-s">0</b><span>ثانية</span></div>
-    </div>
-
-    <div class="hero-ctas reveal">
-      <a class="btn btn-gold" href="#rsvp">تأكيد الحضور</a>
-      <a class="btn btn-line" href="#venue">مكان الحفل</a>
-    </div>
-
-    <div class="stage reveal">
-      <div class="frame">
-        <video src="assets/hero.mp4" poster="assets/hero-poster.jpg"
-               autoplay muted loop playsinline aria-label="العريس أثناء الاستعداد ليوم الزفاف"></video>
-      </div>
-      <p class="cap">من كواليس الاستعداد — صنعاء 2026</p>
-      <div class="skyline" aria-hidden="true">
-        <svg viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" fill="none">
-          <g fill="#A8842C" opacity=".3">
-            <rect x="40"  y="90"  width="90"  height="130" rx="4"/>
-            <rect x="150" y="50"  width="110" height="170" rx="4"/>
-            <rect x="280" y="110" width="80"  height="110" rx="4"/>
-            <rect x="380" y="70"  width="100" height="150" rx="4"/>
-            <rect x="720" y="80"  width="100" height="140" rx="4"/>
-            <rect x="840" y="45"  width="115" height="175" rx="4"/>
-            <rect x="975" y="100" width="85"  height="120" rx="4"/>
-            <rect x="1080" y="65" width="95"  height="155" rx="4"/>
-          </g>
-          <g fill="#E9C46A" opacity=".8">
-            <rect x="62" y="110" width="12" height="16" rx="6"/><rect x="94" y="110" width="12" height="16" rx="6"/>
-            <rect x="62" y="145" width="12" height="16" rx="6"/><rect x="94" y="145" width="12" height="16" rx="6"/>
-            <rect x="175" y="75" width="13" height="18" rx="6"/><rect x="210" y="75" width="13" height="18" rx="6"/>
-            <rect x="175" y="115" width="13" height="18" rx="6"/><rect x="210" y="115" width="13" height="18" rx="6"/>
-            <rect x="175" y="155" width="13" height="18" rx="6"/><rect x="210" y="155" width="13" height="18" rx="6"/>
-            <rect x="300" y="130" width="11" height="15" rx="5"/><rect x="328" y="130" width="11" height="15" rx="5"/>
-            <rect x="402" y="92" width="12" height="16" rx="6"/><rect x="436" y="92" width="12" height="16" rx="6"/>
-            <rect x="402" y="130" width="12" height="16" rx="6"/><rect x="436" y="130" width="12" height="16" rx="6"/>
-            <rect x="742" y="100" width="12" height="16" rx="6"/><rect x="776" y="100" width="12" height="16" rx="6"/>
-            <rect x="742" y="138" width="12" height="16" rx="6"/><rect x="776" y="138" width="12" height="16" rx="6"/>
-            <rect x="864" y="68" width="13" height="18" rx="6"/><rect x="900" y="68" width="13" height="18" rx="6"/>
-            <rect x="864" y="108" width="13" height="18" rx="6"/><rect x="900" y="108" width="13" height="18" rx="6"/>
-            <rect x="864" y="148" width="13" height="18" rx="6"/><rect x="900" y="148" width="13" height="18" rx="6"/>
-            <rect x="997" y="120" width="11" height="15" rx="5"/><rect x="1025" y="120" width="11" height="15" rx="5"/>
-            <rect x="1102" y="85" width="12" height="16" rx="6"/><rect x="1136" y="85" width="12" height="16" rx="6"/>
-            <rect x="1102" y="125" width="12" height="16" rx="6"/><rect x="1136" y="125" width="12" height="16" rx="6"/>
-          </g>
-        </svg>
-      </div>
+    <svg class="logo-lg" role="img" aria-label="Cuse Clouds Cannabis — Premium Quality, Elevated Experience"><use href="#cc-logo"/></svg>
+    <h1>CUSE <span class="blue">CLOUDS</span> CANNABIS</h1>
+    <p class="act">Licensed Adult-Use Cannabis Retail Dispensary</p>
+    <p class="sub">Proudly serving Syracuse, New York. Licensed by the New York State Office of Cannabis Management.</p>
+    <p class="lic-line">License&nbsp;#&nbsp;<span class="lic-value">OCM-XXXX-XXXXXX</span></p>
+    <div class="cta-row">
+      <a class="btn btn-blue" href="#visit">Plan Your Visit</a>
+      <a class="btn btn-line" href="#responsible">Consume Responsibly</a>
     </div>
   </section>
 
-  <!-- BLESSING -->
-  <section class="sec blessing">
-    <div class="wrap reveal">
-      <p class="dua"><span class="marks">﴿</span> بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ <span class="marks">﴾</span></p>
-      <p class="ornament" aria-hidden="true">✻ ✻ ✻</p>
-    </div>
-  </section>
-
-  <!-- HOSTS -->
-  <section class="sec">
-    <div class="wrap hosts">
-      <figure class="reveal">
-        <img src="assets/father-kiss.webp" alt="جدّ العريس يقبّل جبينه مباركاً" loading="lazy">
-      </figure>
-      <div class="txt reveal">
-        <p class="eyebrow">أهل الدعوة</p>
-        <h2>آل عامر يرحبون بالجميع …أهلاً وسهلاً بكم</h2>
-        <p>
-          على العادة اليمانية، تكتمل الفرحة بوجوه الأهل والأحباب.
-          دعوة عامة لكل من يشاركنا الود — حضوركم وسام الفرح الأول.
-        </p>
-        <p class="names">
-          يتشرف بالدعوة: الأخ <b>عبداللّه صالح عامر</b><br>
-          وولده الأخ <b>فضل عبداللّه عامر</b><br>
-          احتفاءً بزفاف المهندس <b>عبداللّه فضل عامر</b>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- DAY -->
-  <section class="sec day">
+  <!-- ==================== VISIT ==================== -->
+  <section class="sec" id="visit">
     <div class="wrap">
-      <p class="eyebrow reveal">برنامج اليوم</p>
-      <h2 class="reveal">المقيل والزفة والسمرة — الخميس 23 يوليو</h2>
-      <div class="day-grid">
-        <article class="stop reveal">
-          <div class="media">
-            <video src="assets/prep-belt.mp4" muted loop playsinline preload="none" aria-label="شدّ حزام الجنبية استعداداً للزفة"></video>
-          </div>
-          <div class="body">
-            <span class="time">صباحاً</span>
-            <h3>الزفّة وجلسة التصوير</h3>
-            <p>استوديو ريتش — شارع الستين الجنوبي</p>
-          </div>
-        </article>
-        <article class="stop reveal">
-          <div class="media">
-            <img src="assets/majlis.webp" alt="مجلس المقيل في القاعة" loading="lazy">
-          </div>
-          <div class="body">
-            <span class="time">ظهراً</span>
-            <h3>المقيل واستقبال الضيوف</h3>
-            <p>قاعة بيت معياد — شارع 16</p>
-          </div>
-        </article>
-        <article class="stop reveal">
-          <div class="media">
-            <video src="assets/regalia.mp4" muted loop playsinline preload="none" aria-label="الجنبية والحزام المذهّب على أريكة المجلس"></video>
-          </div>
-          <div class="body">
-            <span class="time">مساءً</span>
-            <h3>السمرة</h3>
-            <p>سهرة على العادة اليمانية حتى تكتمل الفرحة</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="sec">
-    <div class="wrap">
-      <p class="eyebrow reveal">الفرحة بعيون العدسة</p>
-      <h2 class="reveal">المهندس عبداللّه فضل عامر… بالزيّ اليمني</h2>
-      <div class="gal">
-        <figure class="reveal"><img src="assets/groom-glass.webp" alt="العريس أمام نوافذ القمرية الملوّنة" loading="lazy"></figure>
-        <figure class="reveal"><img src="assets/groom-chair.webp" alt="العريس على الكرسي الذهبي" loading="lazy"></figure>
-        <figure class="reveal"><img src="assets/brothers.webp" alt="العريس مع إخوته بالزي التقليدي" loading="lazy"></figure>
-        <figure class="reveal"><img src="assets/groom-smile.webp" alt="ابتسامة العريس بالزي اليمني" loading="lazy"></figure>
-        <figure class="reveal"><img src="assets/family.webp" alt="العريس مع الوالد والإخوة" loading="lazy"></figure>
-        <figure class="reveal"><img src="assets/groom-seated.webp" alt="العريس في جلسة التصوير" loading="lazy"></figure>
-        <figure class="reveal"><img src="assets/groom-hall.webp" alt="العريس في قاعة التصوير" loading="lazy"></figure>
-        <figure class="reveal"><img src="assets/group-hall.webp" alt="الأهل والأصحاب في القاعة" loading="lazy"></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- VENUE -->
-  <section class="sec venue" id="venue">
-    <div class="wrap venue-grid">
-      <div class="reveal">
-        <p class="eyebrow">المكان</p>
-        <h2>قاعة بيت معياد</h2>
-        <p class="addr">الكائنة في بيت معياد — شارع 16</p>
-        <p class="sub">صنعاء</p>
-        <div class="btns">
-          <a class="btn btn-gold" href="https://maps.app.goo.gl/BrYdpYDpBPE3FdA18" target="_blank" rel="noopener">الاتجاهات على الخريطة</a>
-          <a class="btn btn-line" href="assets/wedding.ics" download>أضِف الموعد إلى تقويمك</a>
+      <p class="eyebrow">Visit Us</p>
+      <h2>Find the Dispensary</h2>
+      <p class="lead">We're located in Syracuse, New York.</p>
+      <div class="cards">
+        <div class="card">
+          <h3>Location</h3>
+          <!-- TODO: replace with the full street address once posted, e.g.:
+               <p class="big">123 Example Ave</p><p>Syracuse, NY 13202</p>
+               and add a directions link:
+               <p><a href="https://maps.google.com/?q=Cuse+Clouds+Cannabis+123+Example+Ave+Syracuse+NY" rel="noopener">Get directions</a></p> -->
+          <p class="big">Syracuse, New York</p>
+          <p>Our full street address will be posted here.</p>
+        </div>
+        <div class="card">
+          <h3>Hours</h3>
+          <!-- TODO: replace with real store hours, e.g.:
+               <p class="big">Mon–Sat: 10:00 AM – 9:00 PM</p>
+               <p class="big">Sun: 11:00 AM – 6:00 PM</p> -->
+          <p>Store hours will be posted here.</p>
+        </div>
+        <div class="card" id="contact">
+          <h3>Contact</h3>
+          <!-- TODO: add the store phone number, e.g.:
+               <p class="big"><a href="tel:+13155550123">(315) 555-0123</a></p> -->
+          <p class="big"><a href="mailto:info@cuseclouds.com">info@cuseclouds.com</a></p><!-- TODO: confirm this mailbox is live -->
+          <p><a href="https://cuseclouds.com">cuseclouds.com</a></p>
         </div>
       </div>
-      <figure class="reveal">
-        <img src="assets/group-hall.webp" alt="قاعة الاحتفال مكتملة بالضيوف" loading="lazy">
-      </figure>
     </div>
   </section>
 
-  <!-- RSVP -->
-  <section class="sec rsvp" id="rsvp">
-    <div class="wrap reveal">
-      <p class="eyebrow">تأكيد الحضور</p>
-      <h2>بحضوركم تكتمل الفرحة</h2>
-      <p class="dua-sm">أسعدونا بتأكيد حضوركم، وشاركوا الدعوة مع من تحبون من الأهل والأصحاب.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-gold" id="rsvp-btn" href="#" rel="noopener">تأكيد الحضور</a>
-        <button class="btn btn-line" id="share-btn" type="button">مشاركة الدعوة</button>
+  <!-- ==================== LICENSED ==================== -->
+  <section class="sec" id="licensed">
+    <div class="wrap">
+      <div class="licensed">
+        <div>
+          <p class="eyebrow">New York State Licensed</p>
+          <h2>Fully Licensed &amp; Verified</h2>
+          <p class="note">Cuse Clouds Cannabis is a licensed adult-use cannabis retail dispensary regulated by the New York State Office of Cannabis Management (OCM).</p>
+          <p class="lic-num">License # <span class="lic-value">OCM-XXXX-XXXXXX</span></p>
+          <p class="note">All products are sourced from New York State licensed processors and cultivators, and are lab-tested as required by the OCM.</p>
+        </div>
+        <div class="nys-seal">
+          <p class="t">New York State</p>
+          <p class="t" style="color:var(--blue-light)">Office of Cannabis Management</p>
+          <p style="margin-top:.6rem">Verify licensed dispensaries at<br><a href="https://cannabis.ny.gov" rel="noopener">cannabis.ny.gov</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== RESPONSIBLE USE ==================== -->
+  <section class="sec" id="responsible">
+    <div class="wrap">
+      <p class="eyebrow">Responsible Use</p>
+      <h2>Support &amp; Resources</h2>
+      <p class="lead">Free, confidential help is available 24 hours a day, 7 days a week, 365 days a year.</p>
+      <div class="hopeline">
+        <h3>New York State HOPEline</h3>
+        <p style="color:var(--ink-mute);font-size:.95rem">If you or someone you know struggles with substance use, help is always available.</p>
+        <div class="hl-grid">
+          <div class="hl-item">
+            <p class="k">Call</p>
+            <p class="v"><a href="tel:18778467369">1‑877‑8‑HOPENY</a></p>
+            <p style="color:var(--ink-mute);font-size:.85rem">(1‑877‑846‑7369)</p>
+          </div>
+          <div class="hl-item">
+            <p class="k">Text</p>
+            <p class="v">HOPENY <span style="color:var(--ink-mute);font-weight:500">(467369)</span></p>
+          </div>
+          <div class="hl-item">
+            <p class="k">Website</p>
+            <p class="v"><a href="https://oasas.ny.gov/hopeline" rel="noopener">oasas.ny.gov/hopeline</a></p>
+          </div>
+        </div>
+        <p class="poison"><strong>Accidental consumption?</strong> Contact the Poison Center immediately: <strong><a href="tel:18002221222" style="color:var(--blue-light);text-decoration:none">1‑800‑222‑1222</a></strong></p>
       </div>
     </div>
   </section>
 </main>
 
-<footer>
-  <p class="fam">أفراح آل عامر — صنعاء</p>
-  <p>بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
+<!-- ==================== FOOTER ==================== -->
+<footer class="site">
+  <p class="f-brand">CUSE <span class="blue">CLOUDS</span> CANNABIS</p>
+  <p class="f-lic">Licensed Adult-Use Cannabis Retail Dispensary · License # <span class="lic-value">OCM-XXXX-XXXXXX</span></p>
+  <p>Syracuse, New York · <a href="mailto:info@cuseclouds.com">info@cuseclouds.com</a> · <a href="https://cuseclouds.com">cuseclouds.com</a></p>
+  <!-- TODO: once posted, add street address and phone to the line above -->
+  <p class="f-warn">For use only by persons 21 years of age and older. Keep out of reach of children and pets. If someone accidentally consumes cannabis, contact the Poison Center (1‑800‑222‑1222). Consume responsibly.</p>
+  <p class="f-hope">NYS HOPEline: Call <a href="tel:18778467369">1‑877‑8‑HOPENY</a> (1‑877‑846‑7369) · Text HOPENY (467369) · <a href="https://oasas.ny.gov/hopeline" rel="noopener">oasas.ny.gov/hopeline</a></p>
+  <p class="f-copy">© <span id="year">2026</span> Cuse Clouds Cannabis. All rights reserved. This website is intended only for persons 21 years of age or older.</p>
 </footer>
 
 <script>
-  // ---- config: set the host's WhatsApp number (e.g. '9677xxxxxxx') to route RSVP there.
-  const RSVP_PHONE = '19498808501';
+(function(){
+  'use strict';
 
-  const WEDDING = new Date('2026-07-23T12:00:00+03:00');
-  const AR = n => String(n); // standard 0-9 digits
+  /* ---------- Age gate (21+) ---------- */
+  var gate = document.getElementById('age-gate');
+  var yes = document.getElementById('gate-yes');
+  var no = document.getElementById('gate-no');
+  var body = document.body;
 
-  // countdown
-  const ids = ['c-d','c-h','c-m','c-s'];
-  function tick(){
-    let ms = Math.max(0, WEDDING - Date.now());
-    const d = Math.floor(ms/864e5), h = Math.floor(ms/36e5)%24,
-          m = Math.floor(ms/6e4)%60, s = Math.floor(ms/1e3)%60;
-    [d,h,m,s].forEach((v,i)=>{ document.getElementById(ids[i]).textContent = AR(v); });
+  function openGate(){
+    body.classList.add('gate-open');
+    body.classList.remove('gate-closed');
+    document.querySelectorAll('main, header.site, footer.site, .warning-band').forEach(function(el){
+      el.setAttribute('aria-hidden','true');
+    });
+    yes.focus();
   }
-  tick(); setInterval(tick, 1000);
-
-  // gold specks drifting over the hero, like the published page
-  const sparks = document.querySelector('.sparks');
-  for (let i = 0; i < 26; i++){
-    const s = document.createElement('i');
-    const sz = 3 + Math.random()*4;
-    s.style.cssText = `left:${2+Math.random()*96}%;top:${4+Math.random()*88}%;`+
-      `width:${sz}px;height:${sz}px;--dur:${6+Math.random()*7}s;--delay:${-Math.random()*9}s;`;
-    sparks.appendChild(s);
+  function closeGate(){
+    body.classList.remove('gate-open');
+    body.classList.add('gate-closed');
+    document.querySelectorAll('main, header.site, footer.site, .warning-band').forEach(function(el){
+      el.removeAttribute('aria-hidden');
+    });
   }
 
-  // scroll reveal
-  const io = new IntersectionObserver(es=>{
-    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{threshold:.15});
-  document.querySelectorAll('.reveal').forEach((el,i)=>{
-    el.style.transitionDelay = (i<9 ? i*90 : 0)+'ms'; // orchestrated hero stagger only
-    io.observe(el);
+  var verified = false;
+  try { verified = sessionStorage.getItem('cc_age_verified') === 'yes'; } catch(e){}
+
+  if (verified) {
+    closeGate();
+  } else {
+    openGate();
+  }
+
+  yes.addEventListener('click', function(){
+    try { sessionStorage.setItem('cc_age_verified','yes'); } catch(e){}
+    closeGate();
+    var main = document.getElementById('main');
+    if (main) { main.setAttribute('tabindex','-1'); main.focus({preventScroll:true}); }
   });
 
-  // play looping video chips only when visible (battery/perf)
-  const vio = new IntersectionObserver(es=>{
-    es.forEach(e=>{ const v=e.target; if(e.isIntersecting){ v.play().catch(()=>{}); } else v.pause(); });
-  },{threshold:.3});
-  document.querySelectorAll('.stop video, .frame video').forEach(v=>vio.observe(v));
+  no.addEventListener('click', function(){
+    window.location.replace('https://www.google.com');
+  });
 
-  // reduced motion: no autoplaying ambience
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches){
-    document.querySelectorAll('video').forEach(v=>{ v.removeAttribute('autoplay'); v.pause(); });
+  /* keep keyboard focus inside the gate while it is open */
+  gate.addEventListener('keydown', function(ev){
+    if (ev.key !== 'Tab' || body.classList.contains('gate-closed')) return;
+    var focusables = [yes, no];
+    var first = focusables[0], last = focusables[focusables.length-1];
+    if (ev.shiftKey && document.activeElement === first) { ev.preventDefault(); last.focus(); }
+    else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+  });
+
+  /* ---------- OCM rotating warnings (one shown at a time, distributed evenly) ---------- */
+  var WARNINGS = [
+    'Cannabis can be addictive.',
+    'Cannabis can impair concentration and coordination. Do not operate a vehicle or machinery under the influence of cannabis.',
+    'There may be health risks associated with consumption of this product.',
+    'Cannabis is not recommended for use by persons who are pregnant or nursing.'
+  ];
+  var slot = document.getElementById('rotating-warning');
+  var idx = 0;
+  try {
+    idx = parseInt(localStorage.getItem('cc_warn_idx') || '0', 10);
+    if (isNaN(idx) || idx < 0) idx = 0;
+    idx = idx % WARNINGS.length;
+    localStorage.setItem('cc_warn_idx', String((idx + 1) % WARNINGS.length));
+  } catch(e) {
+    idx = Math.floor(Date.now() / 86400000) % WARNINGS.length; /* fall back to day-based rotation */
+  }
+  slot.textContent = WARNINGS[idx];
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    setInterval(function(){
+      slot.classList.add('fading');
+      setTimeout(function(){
+        idx = (idx + 1) % WARNINGS.length;
+        slot.textContent = WARNINGS[idx];
+        slot.classList.remove('fading');
+      }, 460);
+    }, 15000);
   }
 
-  // RSVP + share
-  const msg = 'يسعدنا تأكيد حضورنا أفراح آل عامر — زفاف المهندس عبداللّه فضل عامر، الخميس 23 يوليو 2026، قاعة بيت معياد، شارع 16، صنعاء. بارك الله لكما وبارك عليكما.';
-  const rsvp = document.getElementById('rsvp-btn');
-  rsvp.href = RSVP_PHONE
-    ? `https://wa.me/${RSVP_PHONE}?text=${encodeURIComponent(msg)}`
-    : `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
-  rsvp.target = '_blank';
-  document.getElementById('share-btn').addEventListener('click', async ()=>{
-    const data = { title:'أفراح آل عامر — زفاف المهندس عبداللّه فضل عامر', text:msg, url:location.href };
-    if (navigator.share) { try{ await navigator.share(data); }catch(_){} }
-    else { await navigator.clipboard.writeText(location.href); alert('تم نسخ رابط الدعوة'); }
-  });
+  /* ---------- misc ---------- */
+  var y = document.getElementById('year');
+  if (y) y.textContent = String(new Date().getFullYear());
+})();
 </script>
 </body>
 </html>
