@@ -26,12 +26,12 @@ The four rotating warnings (9 NYCRR Part 129):
 
 ## ⚠️ Before going live — required
 
-1. **License number.** Find and replace every occurrence of `OCM-XXXX-XXXXXX` in
-   `index.html` with the license number exactly as issued by the OCM (it appears
-   4 times; one find-and-replace-all covers them).
-2. **Contact details.** Search `index.html` for `TODO` and fill in, when ready:
-   street address, phone number, store hours, and confirm `info@cuseclouds.com`
-   is a live mailbox.
+**Contact details.** Search `index.html` for `TODO` and fill in, when ready:
+street address, phone number, store hours, and confirm `info@cuseclouds.com`
+is a live mailbox.
+
+(The OCM license number, `OCM-RETL-26-000487`, is already in place — age gate,
+header, hero, licensed section, and footer.)
 
 ## Assets
 
