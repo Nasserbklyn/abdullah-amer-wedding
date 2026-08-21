@@ -1,0 +1,41 @@
+Capture of https://cuseclouds.com/index.php FAILED on 2026-08-21 (UTC).
+
+Reason: the domain cuseclouds.com is blocked by the session's network egress proxy
+(organization policy denial). No page content could be retrieved by any tool.
+
+Attempt log
+-----------
+
+1) curl (3 attempts, ~05:36 UTC):
+   Command: curl -sSL --max-time 30 -o oldsite-capture/home.html -w "%{http_code}" "https://cuseclouds.com/index.php"
+   attempt 1: exit code 56, reported http_code=000
+   attempt 2: exit code 56, reported http_code=000
+   attempt 3: exit code 56, reported http_code=000
+   stderr (identical each attempt):
+     curl: (56) CONNECT tunnel failed, response 403
+
+   Note: http_code=000 because the TLS CONNECT tunnel itself was refused by the
+   proxy with HTTP 403 before any request reached cuseclouds.com. curl hides the
+   proxy response body on failed CONNECTs.
+
+2) Agent proxy status endpoint ($HTTPS_PROXY/__agentproxy/status) recorded for
+   each attempt:
+     kind:   connect_rejected
+     detail: gateway answered 403 to CONNECT (policy denial or upstream failure)
+     host:   cuseclouds.com:443
+
+3) WebFetch tool (1 attempt):
+   URL: https://cuseclouds.com/index.php
+   Error (verbatim):
+     {"error_type":"EGRESS_BLOCKED","domain":"cuseclouds.com","message":"Access to cuseclouds.com is blocked by the network egress proxy."}
+
+Conclusion
+----------
+HTTP code: 403 (proxy CONNECT denial); no origin-server response was ever received.
+Per the environment's egress policy documentation (/root/.ccr/README.md), 403 from
+the proxy means the destination host is not allowed by the organization's egress
+policy for this session and must not be retried or routed around. To capture this
+site, an administrator must allow cuseclouds.com in the egress policy, or the
+capture must be run from a network without this restriction.
+
+No home.html, subpages, images, or EXTRACT.md could be produced.
