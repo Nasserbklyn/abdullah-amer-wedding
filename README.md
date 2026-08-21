@@ -1,8 +1,11 @@
 # Cuse Clouds Cannabis — cuseclouds.com
 
-Website for **Cuse Clouds Cannabis**, a New York State licensed adult-use cannabis
-retail dispensary in Syracuse, NY. Built as a single static page (`index.html`) so it
-can be hosted on GitHub Pages (the `CNAME` file points the site at `cuseclouds.com`).
+Website for **Cuse Clouds** (registered d/b/a of **On The Bus Inc.**), a New York
+State licensed adult-use cannabis retail dispensary at 900 E Fayette St, Syracuse,
+NY 13210. License # OCM-RETL-26-000487 (Adult-Use Retail Dispensary License;
+licensed activity: in-person retail sales with delivery). Built as a single static
+page (`index.html`) so it can be hosted on GitHub Pages (the `CNAME` file points
+the site at `cuseclouds.com`).
 
 ## NY OCM website compliance
 
@@ -27,11 +30,11 @@ The four rotating warnings (9 NYCRR Part 129):
 ## ⚠️ Before going live — required
 
 **Contact details.** Search `index.html` for `TODO` and fill in, when ready:
-street address, phone number, store hours, and confirm `info@cuseclouds.com`
-is a live mailbox.
+phone number, store hours, and confirm `info@cuseclouds.com` is a live mailbox.
 
-(The OCM license number, `OCM-RETL-26-000487`, is already in place — age gate,
-header, hero, licensed section, and footer.)
+(Already in place: the OCM license number `OCM-RETL-26-000487` — age gate, header,
+hero, licensed section, footer — plus the operating address and the
+On The Bus Inc. d/b/a Cuse Clouds licensee line.)
 
 ## Assets
 
