@@ -173,36 +173,72 @@
     body.nav-open{overflow:hidden}
     nav.main > ul{flex-direction:column;align-items:stretch;gap:.2rem}
     nav.main > ul > li > a{font-size:1.15rem;padding:.8rem .4rem;border-bottom:1px solid var(--line);display:block}
-    nav.main li.has-sub > a::after{content:""}
-    nav.main .sub{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:none;background:none;padding:.2rem 0 .6rem .9rem;display:none}
+    nav.main li.has-sub > a::after{content:" ▾";font-size:.75em;color:var(--blue-light);float:right;transition:transform .2s ease}
+    nav.main li.has-sub.open > a::after{content:" ▴"}
+    nav.main .sub{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:none;background:rgba(11,21,38,.5);border-radius:10px;padding:.3rem .4rem .5rem .9rem;display:none;margin:.3rem 0 .5rem}
+    nav.main li.has-sub.open .sub{display:block}
+    nav.main .sub a{font-size:1rem;padding:.55rem .5rem}
     .nav-toggle{display:inline-block;z-index:95;position:relative}
     .lic-chip{display:none}
   }
 
-  /* ============ HERO ============ */
-  .hero{text-align:center;padding:clamp(2.2rem,6vw,4.2rem) 1rem 2.6rem;position:relative}
-  .hero .logo-lg{width:min(560px,86vw);margin-inline:auto;aspect-ratio:3/2;height:auto}
-  .hero h1{
+  /* ============ HERO SLIDER ============ */
+  .slider{position:relative;overflow:hidden;min-height:min(74vh,660px)}
+  .slide{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:2.5rem 1.2rem 4rem;
+    opacity:0;visibility:hidden;transition:opacity .7s ease,visibility .7s;
+    background-size:cover;background-position:center;
+  }
+  .slide.active{position:relative;opacity:1;visibility:visible}
+  @media (prefers-reduced-motion:reduce){.slide{transition:none}}
+  .slide::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(rgba(5,8,13,.82),rgba(5,8,13,.55) 55%,rgba(5,8,13,.88));
+  }
+  .slide-inner{position:relative;max-width:56rem;margin-inline:auto}
+  .slide .logo-slide{width:min(360px,70vw);margin:0 auto .6rem;aspect-ratio:3/2;height:auto}
+  .slide h1,.slide .s-title{
     font-family:var(--font-d);font-style:italic;font-weight:900;
-    font-size:clamp(1.6rem,4.5vw,2.6rem);letter-spacing:.02em;margin-top:1.3rem;
+    font-size:clamp(1.7rem,4.6vw,2.8rem);letter-spacing:.02em;line-height:1.25;
+    text-shadow:0 3px 14px rgba(0,0,0,.55);
   }
-  .hero h1 .blue{color:var(--blue-light)}
-  .hero .tagline{
+  .slide .blue{color:var(--blue-light)}
+  .slide .tagline{
     font-family:var(--font-d);font-style:italic;font-weight:800;
-    font-size:clamp(1.05rem,2.6vw,1.5rem);color:var(--blue-light);margin-top:.3rem;
+    font-size:clamp(1.1rem,2.8vw,1.6rem);color:var(--blue-light);margin-top:.35rem;
+    text-shadow:0 2px 10px rgba(0,0,0,.5);
   }
-  .hero .sub{
-    color:var(--ink-mute);font-size:clamp(1rem,2.2vw,1.12rem);max-width:46rem;margin:0.9rem auto 0;
+  .slide .sub{
+    color:#d9e6f2;font-size:clamp(1rem,2.2vw,1.15rem);max-width:44rem;margin:.9rem auto 0;
+    text-shadow:0 2px 8px rgba(0,0,0,.6);
   }
-  .hero .act{
+  .slide .act{
     font-family:var(--font-d);font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--blue-light);font-size:clamp(.78rem,1.8vw,.92rem);margin-top:1.3rem;
+    color:var(--blue-light);font-size:clamp(.75rem,1.7vw,.9rem);margin-top:1.1rem;
   }
-  .hero .lic-line{
-    display:inline-block;margin-top:1rem;padding:.5rem 1.2rem;border:1px solid var(--line);
-    border-radius:999px;background:var(--panel);color:var(--silver);
-    font-size:.9rem;letter-spacing:.05em;
+  .slide .lic-line{
+    display:inline-block;margin-top:.9rem;padding:.45rem 1.15rem;border:1px solid rgba(94,193,255,.35);
+    border-radius:999px;background:rgba(11,21,38,.75);color:var(--silver);
+    font-size:.88rem;letter-spacing:.05em;
   }
+  .slider-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+    background:rgba(11,21,38,.65);border:1px solid var(--line);color:var(--ink);
+    width:44px;height:44px;border-radius:50%;font-size:1.25rem;line-height:1;cursor:pointer;
+  }
+  .slider-arrow:hover{border-color:var(--blue-light);color:var(--blue-light)}
+  .slider-arrow.prev{left:clamp(.5rem,2vw,1.4rem)}
+  .slider-arrow.next{right:clamp(.5rem,2vw,1.4rem)}
+  .slider-dots{
+    position:absolute;bottom:1.1rem;left:0;right:0;z-index:5;
+    display:flex;gap:.55rem;justify-content:center;
+  }
+  .slider-dots button{
+    width:12px;height:12px;border-radius:50%;border:1px solid var(--blue-light);
+    background:transparent;cursor:pointer;padding:0;
+  }
+  .slider-dots button.active{background:var(--blue-light)}
   .cta-row{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:1.6rem}
   .btn{
     display:inline-flex;align-items:center;gap:.55rem;
@@ -250,15 +286,39 @@
   .card p+p{margin-top:.5rem}
   .card .big{color:var(--ink);font-size:1.05rem;font-weight:600}
 
-  /* category grid */
-  .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.9rem}
+  /* category grid — products view */
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
   .cat{
-    background:linear-gradient(170deg,var(--panel-2),var(--panel));
-    border:1px solid var(--line);border-radius:14px;padding:1.15rem 1rem;text-align:center;
-    font-family:var(--font-d);font-weight:700;letter-spacing:.09em;font-size:.92rem;color:var(--ink);
+    position:relative;overflow:hidden;border:1px solid var(--line);border-radius:16px;
+    padding:2.1rem 1rem 1.3rem;text-align:center;min-height:118px;
+    display:flex;flex-direction:column;justify-content:flex-end;gap:.25rem;
+    background:
+      radial-gradient(120% 90% at 20% 0%, rgba(94,193,255,.28), transparent 55%),
+      radial-gradient(120% 110% at 85% 100%, rgba(11,78,156,.5), transparent 60%),
+      linear-gradient(170deg,var(--panel-2),var(--panel));
+    transition:transform .2s ease,border-color .2s ease;
   }
-  .cat span{display:block;font-family:var(--font-b);font-weight:400;letter-spacing:0;font-size:.8rem;color:var(--ink-mute);margin-top:.3rem}
+  .cat:hover{transform:translateY(-3px);border-color:rgba(94,193,255,.45)}
+  @media (prefers-reduced-motion:reduce){.cat,.cat:hover{transform:none;transition:none}}
+  .cat::before{
+    content:"";position:absolute;top:-34px;left:50%;transform:translateX(-50%);
+    width:120px;height:120px;border-radius:50%;
+    background:radial-gradient(circle at 38% 32%, rgba(94,193,255,.5), rgba(11,78,156,.22) 55%, transparent 72%);
+    filter:blur(2px);
+  }
+  .cat .c-name{
+    position:relative;font-family:var(--font-d);font-weight:700;letter-spacing:.09em;
+    font-size:.95rem;color:var(--ink);
+  }
+  .cat .c-sub{position:relative;font-size:.78rem;color:var(--ink-mute)}
   .note-line{color:var(--ink-mute);font-size:.9rem;margin-top:1.2rem}
+
+  /* map embed */
+  .map-wrap{
+    margin-top:1.1rem;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    background:var(--panel);
+  }
+  .map-wrap iframe{display:block;width:100%;height:360px;border:0;filter:saturate(.9)}
 
   /* brand chips */
   .chip-row{display:flex;flex-wrap:wrap;gap:.7rem}
@@ -511,18 +571,44 @@
 </header>
 
 <main id="main">
-  <!-- ==================== HERO ==================== -->
-  <section class="hero" id="top">
-    <svg class="logo-lg" role="img" aria-label="Cuse Clouds Cannabis — Premium Quality, Elevated Experience"><use href="#cc-logo"/></svg>
-    <h1>CUSE <span class="blue">CLOUDS</span> CANNABIS</h1>
-    <p class="tagline">Cannabis Done Right.</p>
-    <p class="sub">Premium cannabis products in Syracuse — a handpicked selection of flower, edibles, and concentrates. Quality-tested and locally sourced at Cuse Clouds Cannabis. In-store &amp; delivery available.</p>
-    <p class="act">Licensed Adult-Use Cannabis Retail Dispensary</p>
-    <p class="lic-line">License&nbsp;#&nbsp;<span class="lic-value">OCM-RETL-26-000487</span></p>
-    <div class="cta-row">
-      <a class="btn btn-blue" href="#products">Shop Products</a>
-      <a class="btn btn-line" href="#visit">Plan Your Visit</a>
+  <!-- ==================== HERO SLIDER ==================== -->
+  <section class="slider" id="top" aria-roledescription="carousel" aria-label="Cuse Clouds Cannabis highlights">
+    <div class="slide active" style="background-image:linear-gradient(rgba(5,8,13,.4),rgba(5,8,13,.4)),url('/images/ccc/slide1.jpg')">
+      <div class="slide-inner">
+        <svg class="logo-slide" role="img" aria-label="Cuse Clouds Cannabis logo"><use href="#cc-logo"/></svg>
+        <h1>CUSE <span class="blue">CLOUDS</span> CANNABIS</h1>
+        <p class="tagline">Cannabis Done Right.</p>
+        <p class="act">Licensed Adult-Use Cannabis Retail Dispensary</p>
+        <p class="lic-line">License&nbsp;#&nbsp;<span class="lic-value">OCM-RETL-26-000487</span></p>
+        <div class="cta-row">
+          <a class="btn btn-blue" href="#products">Shop Products</a>
+          <a class="btn btn-line" href="#visit">Plan Your Visit</a>
+        </div>
+      </div>
     </div>
+    <div class="slide" style="background-image:linear-gradient(rgba(5,8,13,.4),rgba(5,8,13,.4)),url('/images/ccc/slide2.jpg')">
+      <div class="slide-inner">
+        <p class="s-title">Premium Cannabis Products <span class="blue">in Syracuse</span></p>
+        <p class="sub">Discover our handpicked selection of flowers, edibles, and concentrates. Quality-tested and locally sourced at Cuse Clouds Cannabis.</p>
+        <div class="cta-row">
+          <a class="btn btn-blue" href="#products">Shop Products</a>
+          <a class="btn btn-line" href="#products">View Menu</a>
+        </div>
+      </div>
+    </div>
+    <div class="slide" style="background-image:linear-gradient(rgba(5,8,13,.4),rgba(5,8,13,.4)),url('/images/ccc/slide3.jpg')">
+      <div class="slide-inner">
+        <p class="s-title">In-Store &amp; Delivery <span class="blue">Available</span></p>
+        <p class="sub">Shop at 900 E Fayette St, or call (315) 214‑4017 to order for fast pickup and delivery across Syracuse.</p>
+        <div class="cta-row">
+          <a class="btn btn-blue" href="tel:+13152144017">Call to Order</a>
+          <a class="btn btn-line" href="#visit">Get Directions</a>
+        </div>
+      </div>
+    </div>
+    <button class="slider-arrow prev" id="slide-prev" type="button" aria-label="Previous slide">‹</button>
+    <button class="slider-arrow next" id="slide-next" type="button" aria-label="Next slide">›</button>
+    <div class="slider-dots" id="slider-dots" role="tablist" aria-label="Choose slide"></div>
   </section>
 
   <div class="info-strip">
@@ -538,14 +624,14 @@
       <h2>Shop by Category</h2>
       <p class="lead">A handpicked selection of quality-tested products from New York State licensed processors and cultivators.</p>
       <div class="cat-grid">
-        <div class="cat">FLOWER</div>
-        <div class="cat">PRE-ROLLS</div>
-        <div class="cat">EDIBLES</div>
-        <div class="cat">VAPES &amp; CARTRIDGES</div>
-        <div class="cat">TOPICALS</div>
-        <div class="cat">TINCTURES</div>
-        <div class="cat">CONCENTRATES</div>
-        <div class="cat">ACCESSORIES</div>
+        <div class="cat"><span class="c-name">FLOWER</span><span class="c-sub">Hand-selected strains</span></div>
+        <div class="cat"><span class="c-name">PRE-ROLLS</span><span class="c-sub">Ready when you are</span></div>
+        <div class="cat"><span class="c-name">EDIBLES</span><span class="c-sub">Gummies, chocolates &amp; more</span></div>
+        <div class="cat"><span class="c-name">VAPES &amp; CARTRIDGES</span><span class="c-sub">Carts, disposables &amp; pods</span></div>
+        <div class="cat"><span class="c-name">TOPICALS</span><span class="c-sub">Balms &amp; lotions</span></div>
+        <div class="cat"><span class="c-name">TINCTURES</span><span class="c-sub">Precise, measured drops</span></div>
+        <div class="cat"><span class="c-name">CONCENTRATES</span><span class="c-sub">Wax, shatter &amp; rosin</span></div>
+        <div class="cat"><span class="c-name">ACCESSORIES</span><span class="c-sub">Everything you need</span></div>
       </div>
       <p class="note-line">Our full online menu is coming soon — call <a href="tel:+13152144017">(315) 214-4017</a> or visit the dispensary for today's selection.</p>
     </div>
@@ -599,6 +685,9 @@
           <p class="big"><a href="mailto:cs@cuseclouds.com">cs@cuseclouds.com</a></p>
           <p><a href="https://cuseclouds.com">cuseclouds.com</a></p>
         </div>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps?q=900+E+Fayette+St%2C+Syracuse%2C+NY+13210&amp;output=embed" title="Map to Cuse Clouds Cannabis, 900 E Fayette St, Syracuse, NY 13210" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
@@ -814,22 +903,67 @@
     }, 15000);
   }
 
-  /* ---------- mobile nav ---------- */
+  /* ---------- hero slider ---------- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slider .slide'));
+  var dotsWrap = document.getElementById('slider-dots');
+  var current = 0, timer = null;
+  var sliderReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  slides.forEach(function(_, i){
+    var d = document.createElement('button');
+    d.type = 'button';
+    d.setAttribute('role','tab');
+    d.setAttribute('aria-label','Slide ' + (i+1));
+    d.addEventListener('click', function(){ goTo(i); restartTimer(); });
+    dotsWrap.appendChild(d);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function goTo(i){
+    current = (i + slides.length) % slides.length;
+    slides.forEach(function(s, k){ s.classList.toggle('active', k === current); });
+    dots.forEach(function(d, k){ d.classList.toggle('active', k === current); });
+  }
+  function restartTimer(){
+    if (sliderReduce) return;
+    if (timer) clearInterval(timer);
+    timer = setInterval(function(){ goTo(current + 1); }, 6500);
+  }
+  document.getElementById('slide-prev').addEventListener('click', function(){ goTo(current - 1); restartTimer(); });
+  document.getElementById('slide-next').addEventListener('click', function(){ goTo(current + 1); restartTimer(); });
+  goTo(0);
+  restartTimer();
+
+  /* ---------- mobile nav (drawer + accordion dropdowns) ---------- */
   var toggle = document.getElementById('nav-toggle');
+  var mobileNavQuery = window.matchMedia('(max-width: 900px)');
+  function closeDrawer(){
+    body.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded','false');
+    toggle.textContent = '☰';
+    toggle.setAttribute('aria-label','Open menu');
+  }
   toggle.addEventListener('click', function(){
     var open = body.classList.toggle('nav-open');
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     toggle.textContent = open ? '✕' : '☰';
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   });
-  document.querySelectorAll('#main-nav a').forEach(function(a){
-    a.addEventListener('click', function(){
-      if (body.classList.contains('nav-open')) {
-        body.classList.remove('nav-open');
-        toggle.setAttribute('aria-expanded','false');
-        toggle.textContent = '☰';
-        toggle.setAttribute('aria-label','Open menu');
+  /* on mobile, tapping a group header expands its dropdown; sub-links navigate */
+  document.querySelectorAll('#main-nav li.has-sub > a').forEach(function(a){
+    a.addEventListener('click', function(ev){
+      if (mobileNavQuery.matches && body.classList.contains('nav-open')) {
+        ev.preventDefault();
+        var li = a.parentNode;
+        var wasOpen = li.classList.contains('open');
+        document.querySelectorAll('#main-nav li.has-sub.open').forEach(function(o){ o.classList.remove('open'); });
+        if (!wasOpen) li.classList.add('open');
       }
+    });
+  });
+  document.querySelectorAll('#main-nav .sub a, #main-nav > ul > li:not(.has-sub) > a').forEach(function(a){
+    a.addEventListener('click', function(){
+      if (body.classList.contains('nav-open')) closeDrawer();
     });
   });
 
