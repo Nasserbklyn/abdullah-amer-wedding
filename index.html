@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cuse Clouds Cannabis — Licensed Adult-Use Cannabis Retail Dispensary | Syracuse, NY</title>
-<meta name="description" content="Cuse Clouds Cannabis is a New York State licensed adult-use cannabis retail dispensary at 900 E Fayette St, Syracuse, NY 13210. For use only by persons 21 years of age and older.">
+<meta name="description" content="Cuse Clouds Cannabis — Syracuse's licensed adult-use cannabis dispensary at 900 E Fayette St. Premium flower, edibles, vapes &amp; more. In-store &amp; delivery available. 21+ only.">
 <meta name="rating" content="adult">
 <link rel="canonical" href="https://cuseclouds.com/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cuse Clouds Cannabis — Licensed Adult-Use Dispensary, Syracuse NY">
-<meta property="og:description" content="New York State licensed adult-use cannabis retail dispensary in Syracuse, NY. 21+ only.">
+<meta property="og:description" content="Syracuse's licensed adult-use cannabis dispensary. Premium flower, edibles, vapes &amp; more. In-store &amp; delivery available. 21+ only.">
 <meta property="og:url" content="https://cuseclouds.com/">
 <meta property="og:image" content="https://cuseclouds.com/assets/og-image.png">
 <meta name="theme-color" content="#05080d">
@@ -23,7 +23,8 @@
   "legalName": "On The Bus Inc.",
   "url": "https://cuseclouds.com/",
   "image": "https://cuseclouds.com/assets/og-image.png",
-  "email": "info@cuseclouds.com",
+  "email": "cs@cuseclouds.com",
+  "telephone": "+1-315-214-4017",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "900 E Fayette St",
@@ -31,7 +32,11 @@
     "addressRegion": "NY",
     "postalCode": "13210",
     "addressCountry": "US"
-  }
+  },
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "23:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday","Sunday"], "opens": "09:00", "closes": "22:00"}
+  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,26 +44,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,500;0,600;0,700;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- ============================================================
-  License # OCM-RETL-26-000487 (appears 5×: age gate, header,
-  hero, licensed section, footer).
-
   Licensee: On The Bus Inc. d/b/a Cuse Clouds
-  Operating address: 900 E Fayette St, Syracuse, NY 13210
-
-  BEFORE GOING LIVE — search for "TODO" comments below to add,
-  when ready:
-     - phone number  (Visit section + footer)
-     - store hours   (Visit section)
-     - confirm the contact email address
+  License # OCM-RETL-26-000487 · 900 E Fayette St, Syracuse, NY 13210
+  Phone (315) 214-4017 · cs@cuseclouds.com
+  Hours: Mon–Fri 9:00 AM – 11:00 PM · Sat–Sun 9:00 AM – 10:00 PM
 
   NY OCM website compliance implemented on this page:
      • Age gate confirming visitors are 21+          (#age-gate)
-     • OCM license number displayed                  (4 locations)
+     • OCM license number displayed                  (age gate, header, hero, licensed, footer)
      • NYS HOPEline phone, text number, and website  (gate, Responsible Use, footer)
      • Consumer warning in a bright yellow (#FFFF00)
        text box, conspicuously at the top of page    (.warning-band)
      • The 4 required warnings shown in a rotating
-       manner, one at a time                         (#rotating-warning)
+       manner, one at a time (plus the full static
+       list in the footer disclaimer)                (#rotating-warning)
 ============================================================ -->
 
 <style>
@@ -125,12 +124,13 @@
   #rotating-warning.fading{opacity:0}
   @media (prefers-reduced-motion:reduce){#rotating-warning{transition:none}}
 
-  /* ============ HEADER ============ */
+  /* ============ HEADER + NAV ============ */
   header.site{
     display:flex;align-items:center;justify-content:space-between;gap:1rem;
     padding:.85rem clamp(1rem,4vw,2.2rem);
     border-bottom:1px solid var(--line);
     background:linear-gradient(rgba(5,8,13,.6),rgba(5,8,13,.2));
+    position:relative;z-index:40;
   }
   .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--ink)}
   .brand svg{width:64px;height:auto;aspect-ratio:3/2}
@@ -140,32 +140,70 @@
     font-size:.78rem;color:var(--ink-mute);letter-spacing:.06em;text-align:right;line-height:1.4;
   }
   .lic-chip strong{color:var(--silver);font-weight:600}
-  nav.main{display:flex;gap:1.4rem;flex-wrap:wrap}
+  nav.main > ul{display:flex;gap:.2rem;flex-wrap:wrap;list-style:none;align-items:center}
   nav.main a{color:var(--ink-mute);text-decoration:none;font-weight:500;font-size:.92rem;letter-spacing:.04em}
   nav.main a:hover{color:var(--blue-light)}
-  @media (max-width:760px){nav.main{display:none}}
+  nav.main > ul > li{position:relative}
+  nav.main > ul > li > a{display:inline-block;padding:.45rem .75rem;border-radius:8px}
+  nav.main li.has-sub > a::after{content:" ▾";font-size:.7em;color:var(--blue-light)}
+  nav.main .sub{
+    list-style:none;position:absolute;top:100%;left:0;min-width:230px;z-index:60;
+    background:linear-gradient(170deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line);border-radius:12px;padding:.5rem;
+    box-shadow:0 18px 50px rgba(0,0,0,.55);
+    opacity:0;visibility:hidden;transform:translateY(6px);
+    transition:opacity .18s ease,transform .18s ease,visibility .18s;
+  }
+  nav.main li.has-sub:hover > .sub,
+  nav.main li.has-sub:focus-within > .sub{opacity:1;visibility:visible;transform:none}
+  @media (prefers-reduced-motion:reduce){nav.main .sub{transition:none}}
+  nav.main .sub a{display:block;padding:.42rem .7rem;border-radius:8px;font-size:.88rem}
+  nav.main .sub a:hover{background:rgba(94,193,255,.08)}
+  .nav-toggle{
+    display:none;background:none;border:1px solid var(--line);border-radius:10px;
+    color:var(--ink);font-size:1.3rem;line-height:1;padding:.4rem .65rem;cursor:pointer;
+  }
+  @media (max-width:900px){
+    nav.main{
+      display:none;position:fixed;inset:0;z-index:90;overflow-y:auto;
+      background:linear-gradient(165deg,#060a11,#05080d 60%,#040609);
+      padding:5.5rem 1.6rem 2.5rem;
+    }
+    body.nav-open nav.main{display:block}
+    body.nav-open{overflow:hidden}
+    nav.main > ul{flex-direction:column;align-items:stretch;gap:.2rem}
+    nav.main > ul > li > a{font-size:1.15rem;padding:.8rem .4rem;border-bottom:1px solid var(--line);display:block}
+    nav.main li.has-sub > a::after{content:""}
+    nav.main .sub{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:none;background:none;padding:.2rem 0 .6rem .9rem;display:none}
+    .nav-toggle{display:inline-block;z-index:95;position:relative}
+    .lic-chip{display:none}
+  }
 
   /* ============ HERO ============ */
-  .hero{text-align:center;padding:clamp(2.5rem,7vw,5rem) 1rem 3rem;position:relative}
-  .hero .logo-lg{width:min(620px,88vw);margin-inline:auto;aspect-ratio:3/2;height:auto}
+  .hero{text-align:center;padding:clamp(2.2rem,6vw,4.2rem) 1rem 2.6rem;position:relative}
+  .hero .logo-lg{width:min(560px,86vw);margin-inline:auto;aspect-ratio:3/2;height:auto}
   .hero h1{
     font-family:var(--font-d);font-style:italic;font-weight:900;
-    font-size:clamp(1.6rem,4.5vw,2.6rem);letter-spacing:.02em;margin-top:1.6rem;
+    font-size:clamp(1.6rem,4.5vw,2.6rem);letter-spacing:.02em;margin-top:1.3rem;
   }
   .hero h1 .blue{color:var(--blue-light)}
+  .hero .tagline{
+    font-family:var(--font-d);font-style:italic;font-weight:800;
+    font-size:clamp(1.05rem,2.6vw,1.5rem);color:var(--blue-light);margin-top:.3rem;
+  }
   .hero .sub{
-    color:var(--ink-mute);font-size:clamp(1rem,2.2vw,1.15rem);max-width:46rem;margin:0.9rem auto 0;
+    color:var(--ink-mute);font-size:clamp(1rem,2.2vw,1.12rem);max-width:46rem;margin:0.9rem auto 0;
   }
   .hero .act{
     font-family:var(--font-d);font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--blue-light);font-size:clamp(.8rem,1.8vw,.95rem);margin-top:1.4rem;
+    color:var(--blue-light);font-size:clamp(.78rem,1.8vw,.92rem);margin-top:1.3rem;
   }
   .hero .lic-line{
-    display:inline-block;margin-top:1.1rem;padding:.5rem 1.2rem;border:1px solid var(--line);
+    display:inline-block;margin-top:1rem;padding:.5rem 1.2rem;border:1px solid var(--line);
     border-radius:999px;background:var(--panel);color:var(--silver);
     font-size:.9rem;letter-spacing:.05em;
   }
-  .cta-row{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:1.8rem}
+  .cta-row{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:1.6rem}
   .btn{
     display:inline-flex;align-items:center;gap:.55rem;
     padding:.8rem 1.7rem;border-radius:999px;text-decoration:none;
@@ -179,13 +217,22 @@
   .btn-line{border-color:rgba(94,193,255,.4)}
   .btn-line:hover{border-color:var(--blue-light);color:var(--blue-light)}
 
+  /* quick info strip */
+  .info-strip{
+    display:flex;gap:.6rem 2rem;justify-content:center;flex-wrap:wrap;
+    padding:.9rem clamp(1rem,4vw,2.2rem);border-block:1px solid var(--line);
+    background:rgba(11,21,38,.5);font-size:.9rem;color:var(--ink-mute);text-align:center;
+  }
+  .info-strip strong{color:var(--silver);font-weight:600}
+  .info-strip a{text-decoration:none}
+
   /* ============ SECTIONS ============ */
-  .sec{padding:4.2rem 0}
+  .sec{padding:3.6rem 0}
   .sec h2{
     font-family:var(--font-d);font-style:italic;font-weight:800;
     font-size:clamp(1.5rem,3.4vw,2.1rem);margin-bottom:.6rem;
   }
-  .sec .lead{color:var(--ink-mute);max-width:46rem;margin-bottom:2rem}
+  .sec .lead{color:var(--ink-mute);max-width:50rem;margin-bottom:1.8rem}
   .eyebrow{
     font-family:var(--font-d);font-size:.78rem;letter-spacing:.3em;color:var(--blue-light);
     font-weight:600;text-transform:uppercase;margin-bottom:.8rem;
@@ -202,6 +249,24 @@
   .card p{color:var(--ink-mute);font-size:.95rem}
   .card p+p{margin-top:.5rem}
   .card .big{color:var(--ink);font-size:1.05rem;font-weight:600}
+
+  /* category grid */
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.9rem}
+  .cat{
+    background:linear-gradient(170deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line);border-radius:14px;padding:1.15rem 1rem;text-align:center;
+    font-family:var(--font-d);font-weight:700;letter-spacing:.09em;font-size:.92rem;color:var(--ink);
+  }
+  .cat span{display:block;font-family:var(--font-b);font-weight:400;letter-spacing:0;font-size:.8rem;color:var(--ink-mute);margin-top:.3rem}
+  .note-line{color:var(--ink-mute);font-size:.9rem;margin-top:1.2rem}
+
+  /* brand chips */
+  .chip-row{display:flex;flex-wrap:wrap;gap:.7rem}
+  .chip{
+    border:1px solid rgba(94,193,255,.3);border-radius:999px;
+    padding:.5rem 1.15rem;font-family:var(--font-d);font-weight:600;letter-spacing:.08em;
+    font-size:.88rem;color:var(--silver);background:rgba(11,21,38,.55);
+  }
 
   /* licensed section */
   .licensed{
@@ -246,14 +311,15 @@
   }
   footer .f-brand{font-family:var(--font-d);font-style:italic;font-weight:800;font-size:1.2rem}
   footer .f-brand .blue{color:var(--blue-light)}
-  footer p{color:var(--ink-mute);font-size:.88rem;max-width:56rem;margin:.5rem auto 0}
+  footer p{color:var(--ink-mute);font-size:.88rem;max-width:60rem;margin:.5rem auto 0}
   footer .f-lic{color:var(--silver);font-weight:600;letter-spacing:.05em}
   footer .f-warn{
     background:var(--warn-yellow);color:#000;border-radius:10px;
-    padding:.7rem 1rem;margin:1.2rem auto .4rem;max-width:56rem;
+    padding:.7rem 1rem;margin:1.2rem auto .4rem;max-width:60rem;
     font-size:.85rem;font-weight:600;line-height:1.55;
   }
   footer .f-hope{font-size:.86rem}
+  footer .f-warnlist{font-size:.82rem}
   footer .f-copy{margin-top:1.4rem;font-size:.8rem;color:#6d8199}
 
   /* ============ AGE GATE ============ */
@@ -383,13 +449,65 @@
     <svg role="img" aria-hidden="true"><use href="#cc-logo"/></svg>
     <span class="b-name">CUSE <span class="blue">CLOUDS</span><br><span style="font-style:normal;font-weight:600;font-size:.72rem;letter-spacing:.28em;color:var(--ink-mute)">CANNABIS</span></span>
   </a>
-  <nav class="main" aria-label="Main">
-    <a href="#visit">Visit</a>
-    <a href="#licensed">Our License</a>
-    <a href="#responsible">Responsible Use</a>
-    <a href="#contact">Contact</a>
+  <nav class="main" id="main-nav" aria-label="Main">
+    <ul>
+      <li class="has-sub">
+        <a href="#products">Products</a>
+        <ul class="sub">
+          <li><a href="#products">Flower</a></li>
+          <li><a href="#products">Pre-Rolls</a></li>
+          <li><a href="#products">Edibles</a></li>
+          <li><a href="#products">Vapes &amp; Cartridges</a></li>
+          <li><a href="#products">Topicals</a></li>
+          <li><a href="#products">Tinctures</a></li>
+          <li><a href="#products">Concentrates</a></li>
+          <li><a href="#products">Accessories</a></li>
+          <li><a href="#products">All Products</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="#brands">Brands</a>
+        <ul class="sub">
+          <li><a href="#brands">7 Seaz</a></li>
+          <li><a href="#brands">Doobie Labs</a></li>
+          <li><a href="#brands">Runtz</a></li>
+          <li><a href="#brands">Preferred Gardens</a></li>
+          <li><a href="#brands">Bodega Boyz</a></li>
+          <li><a href="#brands">To The Moon</a></li>
+          <li><a href="#brands">MFNY</a></li>
+          <li><a href="#brands">Stiiizy</a></li>
+          <li><a href="#brands">Jeeter</a></li>
+          <li><a href="#brands">Ayrloom</a></li>
+          <li><a href="#brands">Jaunty</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="#about">About</a>
+        <ul class="sub">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#first-time">First-Time Visitors</a></li>
+          <li><a href="#delivery">Services</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="#learn">Learn</a>
+        <ul class="sub">
+          <li><a href="#learn">Cannabis 101</a></li>
+          <li><a href="#learn">Indica vs Sativa</a></li>
+          <li><a href="#learn">Terpenes Guide</a></li>
+          <li><a href="#learn">Edible Dosing</a></li>
+          <li><a href="#learn">Consumption Methods</a></li>
+          <li><a href="#learn">Reading Labels</a></li>
+          <li><a href="#learn">NY Cannabis Laws</a></li>
+          <li><a href="#learn">OCM Resources</a></li>
+        </ul>
+      </li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
   </nav>
   <p class="lic-chip">Licensed Adult-Use Retail Dispensary<br><strong>License # <span class="lic-value">OCM-RETL-26-000487</span></strong></p>
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">☰</button>
 </header>
 
 <main id="main">
@@ -397,12 +515,61 @@
   <section class="hero" id="top">
     <svg class="logo-lg" role="img" aria-label="Cuse Clouds Cannabis — Premium Quality, Elevated Experience"><use href="#cc-logo"/></svg>
     <h1>CUSE <span class="blue">CLOUDS</span> CANNABIS</h1>
+    <p class="tagline">Cannabis Done Right.</p>
+    <p class="sub">Premium cannabis products in Syracuse — a handpicked selection of flower, edibles, and concentrates. Quality-tested and locally sourced at Cuse Clouds Cannabis. In-store &amp; delivery available.</p>
     <p class="act">Licensed Adult-Use Cannabis Retail Dispensary</p>
-    <p class="sub">900 E Fayette St, Syracuse, NY 13210 · Licensed by the New York State Office of Cannabis Management.</p>
     <p class="lic-line">License&nbsp;#&nbsp;<span class="lic-value">OCM-RETL-26-000487</span></p>
     <div class="cta-row">
-      <a class="btn btn-blue" href="#visit">Plan Your Visit</a>
-      <a class="btn btn-line" href="#responsible">Consume Responsibly</a>
+      <a class="btn btn-blue" href="#products">Shop Products</a>
+      <a class="btn btn-line" href="#visit">Plan Your Visit</a>
+    </div>
+  </section>
+
+  <div class="info-strip">
+    <span>📍 <a href="https://maps.google.com/?q=900+E+Fayette+St,+Syracuse,+NY+13210" rel="noopener"><strong>900 E Fayette St, Syracuse, NY 13210</strong></a></span>
+    <span>📞 <a href="tel:+13152144017"><strong>(315) 214-4017</strong></a></span>
+    <span>🕘 <strong>Mon–Fri 9 AM–11 PM · Sat–Sun 9 AM–10 PM</strong></span>
+  </div>
+
+  <!-- ==================== PRODUCTS ==================== -->
+  <section class="sec" id="products">
+    <div class="wrap">
+      <p class="eyebrow">Our Products</p>
+      <h2>Shop by Category</h2>
+      <p class="lead">A handpicked selection of quality-tested products from New York State licensed processors and cultivators.</p>
+      <div class="cat-grid">
+        <div class="cat">FLOWER</div>
+        <div class="cat">PRE-ROLLS</div>
+        <div class="cat">EDIBLES</div>
+        <div class="cat">VAPES &amp; CARTRIDGES</div>
+        <div class="cat">TOPICALS</div>
+        <div class="cat">TINCTURES</div>
+        <div class="cat">CONCENTRATES</div>
+        <div class="cat">ACCESSORIES</div>
+      </div>
+      <p class="note-line">Our full online menu is coming soon — call <a href="tel:+13152144017">(315) 214-4017</a> or visit the dispensary for today's selection.</p>
+    </div>
+  </section>
+
+  <!-- ==================== BRANDS ==================== -->
+  <section class="sec" id="brands">
+    <div class="wrap">
+      <p class="eyebrow">In Store</p>
+      <h2>Brands We Carry</h2>
+      <p class="lead">A rotating lineup of trusted New York cannabis brands.</p>
+      <div class="chip-row">
+        <span class="chip">7 SEAZ</span>
+        <span class="chip">DOOBIE LABS</span>
+        <span class="chip">RUNTZ</span>
+        <span class="chip">PREFERRED GARDENS</span>
+        <span class="chip">BODEGA BOYZ</span>
+        <span class="chip">TO THE MOON</span>
+        <span class="chip">MFNY</span>
+        <span class="chip">STIIIZY</span>
+        <span class="chip">JEETER</span>
+        <span class="chip">AYRLOOM</span>
+        <span class="chip">JAUNTY</span>
+      </div>
     </div>
   </section>
 
@@ -421,19 +588,81 @@
         </div>
         <div class="card">
           <h3>Hours</h3>
-          <!-- TODO: replace with real store hours, e.g.:
-               <p class="big">Mon–Sat: 10:00 AM – 9:00 PM</p>
-               <p class="big">Sun: 11:00 AM – 6:00 PM</p> -->
-          <p>Store hours will be posted here.</p>
+          <p class="big">Monday – Friday</p>
+          <p>9:00 AM – 11:00 PM</p>
+          <p class="big" style="margin-top:.7rem">Saturday – Sunday</p>
+          <p>9:00 AM – 10:00 PM</p>
         </div>
         <div class="card" id="contact">
           <h3>Contact</h3>
-          <!-- TODO: add the store phone number, e.g.:
-               <p class="big"><a href="tel:+13155550123">(315) 555-0123</a></p> -->
-          <p class="big"><a href="mailto:info@cuseclouds.com">info@cuseclouds.com</a></p><!-- TODO: confirm this mailbox is live -->
+          <p class="big"><a href="tel:+13152144017">(315) 214-4017</a></p>
+          <p class="big"><a href="mailto:cs@cuseclouds.com">cs@cuseclouds.com</a></p>
           <p><a href="https://cuseclouds.com">cuseclouds.com</a></p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICES / DELIVERY ==================== -->
+  <section class="sec" id="delivery">
+    <div class="wrap">
+      <p class="eyebrow">Services</p>
+      <h2>In-Store &amp; Delivery</h2>
+      <p class="lead">Shop in person at our Syracuse dispensary, or order for fast pickup and delivery. Licensed activity: in-person retail sales with delivery.</p>
+      <div class="cards">
+        <div class="card">
+          <h3>In-Store Shopping</h3>
+          <p>Browse the full selection with help from our knowledgeable staff, seven days a week.</p>
+        </div>
+        <div class="card">
+          <h3>Pickup</h3>
+          <p>Call ahead at <a href="tel:+13152144017">(315) 214-4017</a> and your order will be ready when you arrive.</p>
+        </div>
+        <div class="card">
+          <h3>Delivery</h3>
+          <p>Delivery available in the Syracuse area. Call <a href="tel:+13152144017">(315) 214-4017</a> to place a delivery order. Valid 21+ ID required at handoff.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT ==================== -->
+  <section class="sec" id="about">
+    <div class="wrap">
+      <p class="eyebrow">About Us</p>
+      <h2>Our Team</h2>
+      <p class="lead">Our knowledgeable staff is here to help. Visit our Syracuse dispensary or order for fast pickup and delivery.</p>
+      <div class="cards">
+        <div class="card" id="first-time">
+          <h3>First-Time Visitors</h3>
+          <p>New to Cuse Clouds? Bring a valid government-issued photo ID showing you are 21 or older — it's required for entry and for every purchase. Our team will walk you through the menu at your pace.</p>
+        </div>
+        <div class="card">
+          <h3>Locally Rooted</h3>
+          <p>We're proud to serve Syracuse with products sourced from New York State licensed processors and cultivators, lab-tested as required by the OCM.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LEARN ==================== -->
+  <section class="sec" id="learn">
+    <div class="wrap">
+      <p class="eyebrow">Learn</p>
+      <h2>Cannabis Learning Center</h2>
+      <p class="lead">Guides from our team are on the way. Topics we're covering:</p>
+      <div class="chip-row">
+        <span class="chip">CANNABIS 101</span>
+        <span class="chip">INDICA VS SATIVA</span>
+        <span class="chip">TERPENES GUIDE</span>
+        <span class="chip">EDIBLE DOSING</span>
+        <span class="chip">CONSUMPTION METHODS</span>
+        <span class="chip">READING LABELS</span>
+        <span class="chip">CANNABIS &amp; SLEEP</span>
+        <span class="chip">RECREATIONAL CANNABIS</span>
+        <span class="chip">NY CANNABIS LAWS</span>
+      </div>
+      <p class="note-line">Official state resources: <a href="https://cannabis.ny.gov" rel="noopener">cannabis.ny.gov</a> — New York State Office of Cannabis Management.</p>
     </div>
   </section>
 
@@ -451,7 +680,7 @@
         <div class="nys-seal">
           <p class="t">New York State</p>
           <p class="t" style="color:var(--blue-light)">Office of Cannabis Management</p>
-          <p style="margin-top:.6rem">Verify licensed dispensaries at<br><a href="https://cannabis.ny.gov" rel="noopener">cannabis.ny.gov</a></p>
+          <p style="margin-top:.6rem"><a href="https://cannabis.ny.gov/dispensary-location-verification" rel="noopener">Verify with NYS OCM</a><br><a href="https://buylegal.cannabis.ny.gov" rel="noopener">NY Buy Legal map</a></p>
         </div>
       </div>
     </div>
@@ -481,7 +710,7 @@
             <p class="v"><a href="https://oasas.ny.gov/hopeline" rel="noopener">oasas.ny.gov/hopeline</a></p>
           </div>
         </div>
-        <p class="poison"><strong>Accidental consumption?</strong> Contact the Poison Center immediately: <strong><a href="tel:18002221222" style="color:var(--blue-light);text-decoration:none">1‑800‑222‑1222</a></strong></p>
+        <p class="poison"><strong>Accidental ingestion or overconsumption?</strong> Contact the Poison Center hotline <strong><a href="tel:18002221222" style="color:var(--blue-light);text-decoration:none">1‑800‑222‑1222</a></strong> or call 9‑1‑1.</p>
       </div>
     </div>
   </section>
@@ -491,11 +720,12 @@
 <footer class="site">
   <p class="f-brand">CUSE <span class="blue">CLOUDS</span> CANNABIS</p>
   <p class="f-lic">On The Bus Inc. d/b/a Cuse Clouds · Licensed Adult-Use Cannabis Retail Dispensary · License # <span class="lic-value">OCM-RETL-26-000487</span></p>
-  <p>900 E Fayette St, Syracuse, NY 13210 · <a href="mailto:info@cuseclouds.com">info@cuseclouds.com</a> · <a href="https://cuseclouds.com">cuseclouds.com</a></p>
-  <!-- TODO: once available, add the phone number to the line above -->
-  <p class="f-warn">For use only by persons 21 years of age and older. Keep out of reach of children and pets. If someone accidentally consumes cannabis, contact the Poison Center (1‑800‑222‑1222). Consume responsibly.</p>
-  <p class="f-hope">NYS HOPEline: Call <a href="tel:18778467369">1‑877‑8‑HOPENY</a> (1‑877‑846‑7369) · Text HOPENY (467369) · <a href="https://oasas.ny.gov/hopeline" rel="noopener">oasas.ny.gov/hopeline</a></p>
-  <p class="f-copy">© <span id="year">2026</span> Cuse Clouds Cannabis. All rights reserved. This website is intended only for persons 21 years of age or older.</p>
+  <p><a href="https://maps.google.com/?q=900+E+Fayette+St,+Syracuse,+NY+13210" rel="noopener">900 E Fayette St, Syracuse, NY 13210</a> · <a href="tel:+13152144017">(315) 214-4017</a> · <a href="mailto:cs@cuseclouds.com">cs@cuseclouds.com</a></p>
+  <p>Mon–Fri 9:00 AM – 11:00 PM · Sat–Sun 9:00 AM – 10:00 PM · <a href="https://cannabis.ny.gov/dispensary-location-verification" rel="noopener">Verify with NYS OCM</a></p>
+  <p class="f-warn">For use only by adults 21 years of age and older. Keep out of reach of children and pets. In case of accidental ingestion or overconsumption, contact the Poison Center hotline 1‑800‑222‑1222 or call 9‑1‑1. Please consume responsibly.</p>
+  <p class="f-hope">Concerned about your cannabis use? Contact the New York State HOPEline by texting "HopeNY" (467369), calling <a href="tel:18778467369">1‑877‑8‑HOPENY</a> (1‑877‑846‑7369), or visiting <a href="https://oasas.ny.gov/hopeline" rel="noopener">oasas.ny.gov/HOPELine</a>.</p>
+  <p class="f-warnlist">Cannabis can be addictive. Cannabis can impair concentration and coordination. Do not operate a vehicle or machinery under the influence of cannabis. There may be health risks associated with consumption of this product. Cannabis is not recommended for use by persons who are pregnant or nursing.</p>
+  <p class="f-copy">© <span id="year">2026</span> Cuse Clouds Cannabis. All Rights Reserved. · <a href="privacy.html">Privacy Policy</a> · Powered by <a href="https://www.aazal.com" rel="noopener">AAZAL LLC</a><br>This website is intended only for persons 21 years of age or older.</p>
 </footer>
 
 <script>
@@ -511,7 +741,7 @@
   function openGate(){
     body.classList.add('gate-open');
     body.classList.remove('gate-closed');
-    document.querySelectorAll('main, header.site, footer.site, .warning-band').forEach(function(el){
+    document.querySelectorAll('main, header.site, footer.site, .warning-band, .info-strip').forEach(function(el){
       el.setAttribute('aria-hidden','true');
     });
     yes.focus();
@@ -519,7 +749,7 @@
   function closeGate(){
     body.classList.remove('gate-open');
     body.classList.add('gate-closed');
-    document.querySelectorAll('main, header.site, footer.site, .warning-band').forEach(function(el){
+    document.querySelectorAll('main, header.site, footer.site, .warning-band, .info-strip').forEach(function(el){
       el.removeAttribute('aria-hidden');
     });
   }
@@ -583,6 +813,25 @@
       }, 460);
     }, 15000);
   }
+
+  /* ---------- mobile nav ---------- */
+  var toggle = document.getElementById('nav-toggle');
+  toggle.addEventListener('click', function(){
+    var open = body.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.textContent = open ? '✕' : '☰';
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  document.querySelectorAll('#main-nav a').forEach(function(a){
+    a.addEventListener('click', function(){
+      if (body.classList.contains('nav-open')) {
+        body.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded','false');
+        toggle.textContent = '☰';
+        toggle.setAttribute('aria-label','Open menu');
+      }
+    });
+  });
 
   /* ---------- misc ---------- */
   var y = document.getElementById('year');

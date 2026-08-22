@@ -27,14 +27,26 @@ The four rotating warnings (9 NYCRR Part 129):
 3. “There may be health risks associated with consumption of this product.”
 4. “Cannabis is not recommended for use by persons who are pregnant or nursing.”
 
-## ⚠️ Before going live — required
+## Business details on the site
 
-**Contact details.** Search `index.html` for `TODO` and fill in, when ready:
-phone number, store hours, and confirm `info@cuseclouds.com` is a live mailbox.
+All business details are filled in (merged from the previous cuseclouds.com
+Joomla homepage): address 900 E Fayette St, Syracuse, NY 13210 · phone
+(315) 214-4017 · email cs@cuseclouds.com · hours Mon–Fri 9:00 AM–11:00 PM,
+Sat–Sun 9:00 AM–10:00 PM · licensee On The Bus Inc. d/b/a Cuse Clouds ·
+license `OCM-RETL-26-000487`.
 
-(Already in place: the OCM license number `OCM-RETL-26-000487` — age gate, header,
-hero, licensed section, footer — plus the operating address and the
-On The Bus Inc. d/b/a Cuse Clouds licensee line.)
+The homepage also carries the old site's content in the new design: product
+categories (flower, pre-rolls, edibles, vapes &amp; cartridges, topicals,
+tinctures, concentrates, accessories), the brands lineup, About/First-Time
+Visitors, the Cannabis Learning Center topics, In-Store &amp; Delivery services,
+and the OCM verification links (dispensary-location-verification and
+buylegal.cannabis.ny.gov). `privacy.html` reproduces the Privacy Policy
+(effective Aug 17, 2026).
+
+Notes: the old site's contact form was replaced with direct phone/email links
+(a static site has no form backend), and the "Delivery &amp; Specials" menu item
+was renamed to "Services"/"Delivery" — advertising promotions or "specials" is
+restricted under Part 129.
 
 ## Assets
 
