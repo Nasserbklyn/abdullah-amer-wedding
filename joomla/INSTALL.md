@@ -141,12 +141,42 @@ still returns 403, static assets still serve directly.
 A missing path now returns a genuine HTTP 404 rendering the Flex error page:
 "404 — Oops... Page Not Found!" with a link home, in the site theme.
 
-**It carries no age gate, and that is deliberate.** Joomla's error layout
-renders standalone — no header, no menu, no modules — so the page shows no
-cannabis content whatsoever: a heading, one sentence, and "Go Back to
-Homepage", which lands on `/` where the gate is. There is nothing for a gate
-to protect. Add the module to the error layout only if you want it for
-consistency rather than for compliance.
+### The age gate is not on the error page
+
+This was attempted and reverted. `jdoc:` tags are not parsed in `error.php`,
+so the module has to be rendered programmatically — but
+`ModuleHelper::getModule('mod_agegate')` returned nothing usable in Joomla's
+error-rendering context. The page ended up with the module's CSS and JS links
+and no gate markup at all. It was rolled back.
+
+It matters less than it sounds. The error layout renders standalone — no
+header, no menu, no modules — so the page shows no cannabis content
+whatsoever: a heading, one sentence, and "Go Back to Homepage", which lands on
+`/` where the gate is. There is nothing for a gate to protect.
+
+The only reliable way to put it there is to hand-copy the gate's markup into
+`error.php`. That creates a second copy of statutory warning wording that
+would silently drift from the module whenever the module is edited — the same
+duplication that caused the double-gate problem earlier in this project. Not
+recommended.
+
+### Bugs found and fixed in `error.php`
+
+Routing 404s into Joomla made the Flex error page render for the first time,
+which exposed pre-existing faults in it:
+
+- It enqueues `jquery.easing`, `main.js` and `jquery.countdown` but never
+  jQuery, so every error page threw `jQuery is not defined` three times.
+  `HTMLHelper::_('jquery.framework')` is now called before the asset chain.
+- With jQuery loading, `main.js` then ran and threw on three globals that
+  `index.php` declares and `error.php` did not: `sp_preloader`,
+  `sp_offanimation` and `stickyHeaderVar`. `main.js` only `typeof`-guards them
+  before assigning, which throws under strict mode. All three are now declared
+  in the head before `$header_contents`, with values suited to a page that has
+  no header or preloader.
+
+The 404 page now renders with zero JavaScript errors. The original file is
+backed up as `templates/flex/error.php.bak-theme`.
 
 ## Cloudflare cache
 
