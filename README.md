@@ -20,6 +20,10 @@ This site implements the website items from the OCM inspection correspondence:
 | One of the four required warnings, in a rotating manner | `#rotating-warning` inside the yellow band — a different warning is selected on each page load (distributed evenly via a stored counter) and the display also cycles through all four while the page is open |
 | No prohibited content | No depictions of smoking/consumption, no cartoons, no health or medical claims, no pricing or promotional offers |
 
+The table above describes the static pages (`index.html`, `privacy.html`). The
+same items are applied to every page of the underlying Joomla site by
+`joomla/cc-compliance.php` — see "Hosting and the existing Joomla site" below.
+
 The four rotating warnings (9 NYCRR Part 129):
 
 1. “Cannabis can be addictive.”
@@ -60,12 +64,28 @@ The logo is used on the website itself; note that per the MRTA, the **physical
 storefront sign** may not carry a logo — signage may only show the licensee/DBA name,
 address, phone, email, website URL, directions, and the licensed activity.
 
-## Hosting
+## Hosting and the existing Joomla site
 
-- GitHub Pages with a custom domain: keep `CNAME` (`cuseclouds.com`) and `.nojekyll`.
-- For the domain to resolve, DNS for `cuseclouds.com` must point to GitHub Pages
-  (apex A records `185.199.108.153` … `185.199.111.153`, or per current GitHub docs),
-  and Pages must be enabled for this repository with HTTPS enforced.
+cuseclouds.com runs on GoDaddy shared hosting (cPanel), doc root
+`/home/egxbikjjcp2o/cuseclouds.com`. The site there is **Joomla**, built on the
+**JoomShaper Helix Framework** with the **Flex** template and **SP Page
+Builder**.
+
+The static `index.html` in this repo is uploaded to that doc root, where it
+shadows Joomla's `index.php` and serves as the homepage at `/`. The Joomla site
+itself is untouched and still reachable — `/index.php`, every menu item, every
+SEF URL, and every SP Page Builder page.
+
+That split matters for compliance: shadowing the front door does **not** make
+the rest of the Joomla site compliant. `joomla/cc-compliance.php` closes that
+gap — a single PHP include, added once to the Flex template's `index.php`, that
+adds the age gate, the yellow rotating warning band, and the license/HOPEline
+footer to **every** Joomla page. See `joomla/INSTALL.md` for the two-step
+install, verification checklist, and how to undo it. It needs no database row,
+no extension, and no template override, and it is cache-safe.
+
+`CNAME` and `.nojekyll` are left in place only so the repo can also be served
+from GitHub Pages as a staging preview; they are ignored by the cPanel host.
 
 ## Items from the inspection email that are *not* website items
 
