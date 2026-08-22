@@ -290,21 +290,16 @@
   .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
   .cat{
     position:relative;overflow:hidden;border:1px solid var(--line);border-radius:16px;
-    padding:2.1rem 1rem 1.3rem;text-align:center;min-height:118px;
+    padding:2.4rem 1rem 1.3rem;text-align:center;min-height:158px;
     display:flex;flex-direction:column;justify-content:flex-end;gap:.25rem;
-    background:
-      radial-gradient(120% 90% at 20% 0%, rgba(94,193,255,.28), transparent 55%),
-      radial-gradient(120% 110% at 85% 100%, rgba(11,78,156,.5), transparent 60%),
-      linear-gradient(170deg,var(--panel-2),var(--panel));
+    background-color:var(--panel);background-size:cover;background-position:center;
     transition:transform .2s ease,border-color .2s ease;
   }
   .cat:hover{transform:translateY(-3px);border-color:rgba(94,193,255,.45)}
   @media (prefers-reduced-motion:reduce){.cat,.cat:hover{transform:none;transition:none}}
   .cat::before{
-    content:"";position:absolute;top:-34px;left:50%;transform:translateX(-50%);
-    width:120px;height:120px;border-radius:50%;
-    background:radial-gradient(circle at 38% 32%, rgba(94,193,255,.5), rgba(11,78,156,.22) 55%, transparent 72%);
-    filter:blur(2px);
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(rgba(5,8,13,.30) 0%, rgba(5,8,13,.62) 55%, rgba(5,8,13,.90) 100%);
   }
   .cat .c-name{
     position:relative;font-family:var(--font-d);font-weight:700;letter-spacing:.09em;
@@ -606,6 +601,16 @@
         </div>
       </div>
     </div>
+    <div class="slide" style="background-image:linear-gradient(rgba(5,8,13,.4),rgba(5,8,13,.4)),url('/images/ccc/slide4.jpg')">
+      <div class="slide-inner">
+        <p class="s-title">First Time Here? <span class="blue">We'll Walk You Through It</span></p>
+        <p class="sub">Our staff will talk you through the menu, formats and what to expect &mdash; no pressure, no jargon. Start low, go slow.</p>
+        <div class="cta-row">
+          <a class="btn btn-blue" href="#about">First-Time Visitors</a>
+          <a class="btn btn-line" href="#learn">Learning Center</a>
+        </div>
+      </div>
+    </div>
     <button class="slider-arrow prev" id="slide-prev" type="button" aria-label="Previous slide">‹</button>
     <button class="slider-arrow next" id="slide-next" type="button" aria-label="Next slide">›</button>
     <div class="slider-dots" id="slider-dots" role="tablist" aria-label="Choose slide"></div>
@@ -624,14 +629,14 @@
       <h2>Shop by Category</h2>
       <p class="lead">A handpicked selection of quality-tested products from New York State licensed processors and cultivators.</p>
       <div class="cat-grid">
-        <div class="cat"><span class="c-name">FLOWER</span><span class="c-sub">Hand-selected strains</span></div>
-        <div class="cat"><span class="c-name">PRE-ROLLS</span><span class="c-sub">Ready when you are</span></div>
-        <div class="cat"><span class="c-name">EDIBLES</span><span class="c-sub">Gummies, chocolates &amp; more</span></div>
-        <div class="cat"><span class="c-name">VAPES &amp; CARTRIDGES</span><span class="c-sub">Carts, disposables &amp; pods</span></div>
-        <div class="cat"><span class="c-name">TOPICALS</span><span class="c-sub">Balms &amp; lotions</span></div>
-        <div class="cat"><span class="c-name">TINCTURES</span><span class="c-sub">Precise, measured drops</span></div>
-        <div class="cat"><span class="c-name">CONCENTRATES</span><span class="c-sub">Wax, shatter &amp; rosin</span></div>
-        <div class="cat"><span class="c-name">ACCESSORIES</span><span class="c-sub">Everything you need</span></div>
+        <div class="cat" style="background-image:url('/images/ccc/flowers.jpg')"><span class="c-name">FLOWER</span><span class="c-sub">Hand-selected strains</span></div>
+        <div class="cat" style="background-image:url('/images/ccc/pre-rolls.jpg')"><span class="c-name">PRE-ROLLS</span><span class="c-sub">Ready when you are</span></div>
+        <div class="cat" style="background-image:url('/images/ccc/edibles.jpg')"><span class="c-name">EDIBLES</span><span class="c-sub">Gummies, chocolates &amp; more</span></div>
+        <div class="cat" style="background-image:url('/images/ccc/vapes-cartridges.jpg')"><span class="c-name">VAPES &amp; CARTRIDGES</span><span class="c-sub">Carts, disposables &amp; pods</span></div>
+        <div class="cat" style="background-image:url('/images/ccc/topicals.jpg')"><span class="c-name">TOPICALS</span><span class="c-sub">Balms &amp; lotions</span></div>
+        <div class="cat" style="background-image:url('/images/ccc/tinctures.jpg')"><span class="c-name">TINCTURES</span><span class="c-sub">Precise, measured drops</span></div>
+        <div class="cat" style="background-image:url('/images/ccc/concentrates.jpg')"><span class="c-name">CONCENTRATES</span><span class="c-sub">Wax, shatter &amp; rosin</span></div>
+        <div class="cat" style="background-image:url('/images/ccc/accessories.jpg')"><span class="c-name">ACCESSORIES</span><span class="c-sub">Everything you need</span></div>
       </div>
       <p class="note-line">Our full online menu is coming soon — call <a href="tel:+13152144017">(315) 214-4017</a> or visit the dispensary for today's selection.</p>
     </div>
