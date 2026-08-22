@@ -91,5 +91,21 @@ URL will hand back the stale copy and make a good deploy look like a failure.
   `frame-src 'self' https://www.google.com` so the static homepage's Google
   Maps embed renders. Every other directive, including `frame-ancestors 'self'`,
   is unchanged. Original backed up as `.htaccess.bak-claude`.
-- `index.html` / `privacy.html` — the static new-design pages, which shadow
-  Joomla's `index.php` at `/`.
+- `index.html` — renamed to `index.html.bak-claude` so it no longer shadows
+  `index.php`. `/` now serves the Joomla SPPB home page. Rename it back to
+  `index.html` to restore the static page.
+- `privacy.html` and `assets/` — still served from the doc root.
+
+## Verified after the switch
+
+`/` returns HTTP 200, 215 KB, Joomla title, Flex template, zero markers from the
+static page. In a browser: age gate shows and dismisses, body `rgb(5,8,13)`,
+Exo 2 headings, 4 slider items, the full menu (HOME / PRODUCTS / BRANDS / ABOUT /
+LEARN / DELIVERY & SPECIALS), 6 map tiles, warning band `rgb(255,255,0)` on
+`rgb(0,0,0)`, all four Part 129 warnings, licence number present, no horizontal
+overflow, no JavaScript errors.
+
+Note `/` is served `cache-control: no-store` and `cf-cache-status: DYNAMIC`, so
+the page switch reaches visitors immediately — but `custom.css` is a cache HIT
+with a 4-hour TTL, so the new theme only appears once that expires or the CDN
+cache is purged.

@@ -74,10 +74,15 @@ cuseclouds.com runs on GoDaddy shared hosting (cPanel), doc root
 **JoomShaper Helix Framework** with the **Flex** template and **SP Page
 Builder**.
 
-The static `index.html` in this repo is uploaded to that doc root, where it
-shadows Joomla's `index.php` and serves as the homepage at `/`. The Joomla site
-itself is untouched and still reachable — `/index.php`, every menu item, every
-SEF URL, and every SP Page Builder page.
+**Joomla now serves the front page.** The static `index.html` used to sit in the
+doc root and shadow `index.php`; it has been renamed on the server to
+`index.html.bak-claude`, so `/` is the real Joomla SP Page Builder home page —
+editable in the builder, carrying its own slider, menu, OpenStreetMap addon and
+compliance furniture. The static page is kept here in the repo, and on the
+server as that `.bak-claude` file, purely as a fallback: renaming it back to
+`index.html` restores it instantly.
+
+`privacy.html` and `assets/` are still served from the doc root.
 
 What the Joomla side needed was not compliance but a matching design:
 `joomla/flex-theme.css` applies the new dark-blue palette and Exo 2 / Inter
