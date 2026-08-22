@@ -348,7 +348,11 @@ section.sppb-section { background-color: var(--cc-bg) !important; }
 #sp-top-bar *:not(a) { color: #14202b !important; }
 #sp-top-bar a { color: #0b4e9c !important; text-decoration: underline; }
 
+/* The band module sits inside #sp-top-bar, so it needs the extra id to beat
+   the top-bar text colour above and keep the warning true black on yellow. */
 #ocm-warning-band { background: var(--cc-warn) !important; }
+#sp-top-bar #ocm-warning-band,
+#sp-top-bar #ocm-warning-band *,
 #ocm-warning-band,
 #ocm-warning-band * { color: #000 !important; }
 
