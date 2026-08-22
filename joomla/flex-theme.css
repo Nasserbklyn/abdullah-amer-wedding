@@ -290,3 +290,46 @@ hr { border-color: var(--cc-line); }
 /* Keep long content from forcing a horizontal scrollbar on small screens. */
 img, iframe, table { max-width: 100%; }
 body { overflow-x: hidden; }
+
+/* ---------- 10. legacy colour cleanup ------------------------------------
+   The page still carries panels and text colours from the old green theme —
+   cream and white section fills, and dark-green contact text. On the new dark
+   ground those fall below WCAG AA, so they are normalised here.
+   Ordered last so it wins over the card styling above on ties.
+   -------------------------------------------------------------------------- */
+
+section.sppb-section { background-color: var(--cc-bg) !important; }
+
+.sppb-section > .sppb-row-container,
+.sppb-row,
+.sppb-col,
+.sppb-column,
+.sppb-column-addons,
+.sppb-addon-wrapper,
+.sppb-addon-content { background-color: transparent !important; }
+
+.sppb-addon-title,
+.sppb-addon-title * { color: var(--cc-ink) !important; }
+
+.sppb-addon-text-block,
+.sppb-addon-text-block *,
+.sppb-addon-text,
+.sppb-addon-content > p,
+.sppb-addon-content > ul li { color: var(--cc-ink-mute) !important; }
+
+.sppb-addon-text-block a,
+.sppb-addon-content a { color: var(--cc-blue-light) !important; }
+
+/* Footer contact details still carry the old green; force them readable. */
+#sp-footer,
+#sp-footer *:not(a),
+#sp-bottom,
+#sp-bottom *:not(a) { color: var(--cc-ink-mute) !important; }
+
+#sp-footer a,
+#sp-bottom a { color: var(--cc-blue-light) !important; }
+
+/* The age-gate module is exempt from all of the above: its statutory warning
+   must stay black-on-yellow, which is itself AA-compliant. */
+.agegate-legal__warning,
+.agegate-legal__warning * { background: var(--cc-warn) !important; color: #000 !important; }
