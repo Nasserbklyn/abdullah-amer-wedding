@@ -34,7 +34,7 @@ matches the new homepage.
 one line inserted before `</head>` in `templates/flex/index.php`:
 
 ```php
-<link rel="stylesheet" href="<?php echo Joomla\CMS\Uri\Uri::root(true); ?>/templates/flex/css/cc-theme.css?v=1" />
+<link rel="stylesheet" href="<?php echo Joomla\CMS\Uri\Uri::root(true); ?>/templates/flex/css/cc-theme.css?v=2" />
 ```
 
 That link sits after every other stylesheet, so it wins on ordering. The
@@ -60,8 +60,8 @@ To tidy it up, delete everything between the markers or restore
 **Uninstall** — remove the `<link>` line from `index.php` (or restore
 `index.php.bak-theme`), and restore `custom.css.bak-claude`.
 
-**Bump `?v=1`** whenever `cc-theme.css` changes, or the CDN will cache the old
-one for four hours.
+**Bump the `?v=` number** whenever `cc-theme.css` changes, or the CDN will
+serve the old copy for four hours. It is at `v=2` today.
 
 ### What it changes
 
@@ -73,6 +73,12 @@ one for four hours.
   white box that sat behind the headline.
 - `mod_agegate` restyled to match — **wording and behaviour untouched**.
 - Footer, forms and selection colours.
+- Replaces the JoomShaper Cloudinary stock photography still sitting behind
+  `#contact-us` and `#section-id-1481572543` with the brand gradient. SPPB
+  writes section backgrounds into inline `<style>` blocks rather than style
+  attributes, so these are targeted by id. Only the imagery changes — the
+  section content, including the staff copy under the "OUR TEAM" heading,
+  is left alone.
 
 ### What it deliberately does not change
 
