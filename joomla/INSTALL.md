@@ -1,109 +1,95 @@
-# Joomla compliance layer — install guide
+# Joomla side of cuseclouds.com
 
-`cc-compliance.php` puts the three things the OCM inspection asked for on
-**every page** of the Joomla site — the Helix Framework template, the Flex
-template, and every SP Page Builder page alike:
+The live site is **Joomla 6.1.3** on the **JoomShaper Flex** template (Helix
+Framework) with **SP Page Builder 6.8.0**, hosted on GoDaddy cPanel at
+`/home/egxbikjjcp2o/cuseclouds.com`, behind a Cloudflare edge cache.
 
-1. a **21+ age gate** that blocks the page until the visitor confirms;
-2. the **bright-yellow (`#FFFF00`) consumer-warning box**, at the very top of
-   the page, carrying one of the **four required warnings, rotated** between
-   page loads;
-3. a **compliance footer** with the OCM license number, the licensee name, the
-   address/phone/email, and the **NYS HOPEline**.
+## Compliance: already in place, do not duplicate
 
-## Why this is needed
+The Joomla site was **already OCM-compliant before any of this work**. It
+carries its own furniture, and all of it renders on every front-end route:
 
-The new static homepage sits at `/` and shadows Joomla's `index.php`. That
-covers the front door only. Every other address on the site still goes to
-Joomla and still renders the old, non-compliant page — for example:
-
-- `https://cuseclouds.com/index.php`
-- every menu item and SEF URL (`/about-us`, `/products`, `/contact`, …)
-- every SP Page Builder page
-- article, category, and search result pages
-
-An inspector who opens any of those sees no age gate and no yellow warning
-box. This file closes that gap at the template level, so it applies
-everywhere at once and keeps applying to any new page built in SP Page
-Builder later.
-
-## Install (two steps, cPanel File Manager)
-
-### Step 1 — upload the file
-
-Upload `cc-compliance.php` into the **site root** — the folder that contains
-`configuration.php`, i.e. `/home/egxbikjjcp2o/cuseclouds.com/`.
-
-### Step 2 — add one line to the active template
-
-Find the active template folder under `/templates/`. It is the JoomShaper
-Flex template — the folder name is usually `flex`, `shaper_flex`, or
-`shaper_helixultimate`. (In Joomla admin: **System → Site Templates
-Styles** shows which one is default. Or open `/index.php` in the browser,
-View Source, and look for a `/templates/<name>/` path in the stylesheet
-links.)
-
-Open `/templates/<that-folder>/index.php`, find the opening `<body …>` tag,
-and add this **immediately after it**:
-
-```php
-<?php include_once JPATH_BASE . '/cc-compliance.php'; ?>
-```
-
-So it ends up looking like:
-
-```php
-<body class="<?php echo $bodyClass; ?>">
-<?php include_once JPATH_BASE . '/cc-compliance.php'; ?>
-  <div class="body-wrapper">
-  ...
-```
-
-**Back the file up first** — copy `index.php` to `index.php.bak` in the same
-folder before editing, so it is a one-click revert.
-
-### Step 3 — clear caches
-
-Joomla admin → **System → Clear Cache** (and **Clear Expired Cache**). If SP
-Page Builder caching or a CDN is on, purge those too.
-
-## Verify
-
-Open each of these in a **private/incognito window** (the gate remembers your
-answer for the rest of the browser session, so a normal window will not show
-it a second time):
-
-| Check | Expected |
+| Element | Where it lives |
 | --- | --- |
-| `https://cuseclouds.com/index.php` | Age gate appears and blocks the page |
-| Click "Yes, I am 21 or older" | Gate disappears, site works normally |
-| Top of the page | Full-width yellow bar, black text, with the general warning + one required warning |
-| Reload a few times | The second line cycles through all four required warnings |
-| Bottom of the page | License #, address, phone, email, HOPEline |
-| Any menu item / SEF URL | Same gate and same yellow bar |
-| Joomla administrator | **No** gate — the layer excludes the admin app |
+| 21+ age gate | `mod_agegate` module (`#agegate-…`), assigned to all pages, `z-index: 99999` |
+| OCM license number | Inside the age gate card |
+| NYS HOPEline (call / text / website) | Inside the age gate card |
+| `#FFFF00` consumer warning box | `#ocm-warning-band` custom module, inside `#sp-top-bar` |
+| All four Part 129 warnings | Present in the page body |
+| OCM verification link | "Verify with NYS OCM" button (`#plf-ocm .o-btn`) |
+| Location map | SP Page Builder `openstreetmap` addon |
 
-## Undo
+An earlier `cc-compliance.php` template include added a *second* age gate and a
+*second* yellow box on top of these. It has been removed from the server and
+deleted from this repo. **Do not reintroduce it.** Anything added here must
+check what the site already renders first.
 
-Delete the one `include_once` line from the template's `index.php` (or
-restore `index.php.bak`). Nothing else in Joomla is modified — no database
-row, no extension, no module, no template override.
+## What is installed: `flex-theme.css`
 
-## Design notes
+The new design's palette and typography, applied site-wide so every Joomla page
+matches the new homepage.
 
-- **Cache-safe.** The warning rotation runs in the browser, not in PHP, so a
-  cached page still rotates correctly. Joomla's page cache, SP Page Builder
-  cache, and any CDN in front of the site can stay on.
-- **No dependencies.** All CSS and JS is inline and namespaced `cc-`. It does
-  not rely on — or interfere with — Bootstrap, jQuery, Helix, or SPPB styles.
-  The gate uses `z-index: 2147483000` so it sits above sticky headers,
-  off-canvas menus, and cookie banners.
-- **Fails closed.** The gate is real markup in the HTML and is removed by
-  JavaScript on confirm. With JavaScript disabled it stays up, which is the
-  safe direction.
-- **Admin and AJAX excluded.** The layer returns early for the administrator
-  app and for `format=` / `tmpl=component|raw` requests, so Joomla's admin,
-  SPPB's editor, and AJAX/JSON endpoints are untouched.
-- **Accessible.** `role="dialog"` + `aria-modal`, focus moves to the confirm
-  button, Tab is trapped inside the gate, visible focus rings, and the
-  rotation pauses for `prefers-reduced-motion`.
+**Install** — appended to `templates/flex/css/custom.css`, which the Flex
+template already loads last:
+
+```
+…existing custom.css…
+
+/* CC-THEME-BEGIN */
+…contents of flex-theme.css…
+/* CC-THEME-END */
+```
+
+The append is idempotent: re-running strips any previous `CC-THEME-BEGIN…END`
+block before adding the new one. The original file is backed up on the server as
+`templates/flex/css/custom.css.bak-claude` (32,413 bytes).
+
+**Uninstall** — delete everything between the two markers, or restore the
+`.bak-claude` copy.
+
+### What it changes
+
+- Dark-blue palette (`#05080d` ground, `#2196f3` / `#5ec1ff` accents) and
+  Exo 2 italic headings over Inter body text, loaded from Google Fonts.
+- Helix header, megamenu, dropdowns and off-canvas drawer.
+- SP Page Builder sections, addons, cards and pill buttons.
+- The SP slider: adds a scrim over each slide and removes the translucent
+  white box that sat behind the headline.
+- `mod_agegate` restyled to match — **wording and behaviour untouched**.
+- Footer, forms and selection colours.
+
+### What it deliberately does not change
+
+The site's OCM furniture keeps its existing appearance, because recolouring it
+would make the statutory warnings less conspicuous:
+
+- `#sp-top-bar` keeps its cream background; the theme only pins its text colour
+  (the new dark body colour was being inherited into it and dropping it below
+  WCAG AA).
+- `#ocm-warning-band` stays `#FFFF00` with true black text — it renders inside
+  `#sp-top-bar`, so the rule carries the parent id to win on specificity.
+- The OpenStreetMap addon and its attribution are left alone.
+
+### Verified on the live site
+
+A WCAG pass over the themed page went from 8 failures below AA to **0** across
+49 text nodes. Age gate still shows and dismisses, warning band still
+`rgb(255,255,0)` on `rgb(0,0,0)`, all four required warnings present, map tiles
+loading, no horizontal overflow, no JavaScript errors.
+
+## Cloudflare cache
+
+`custom.css` is served with `cache-control: max-age=14400` and
+`cf-cache-status: HIT`, so a CSS change takes up to **4 hours** to reach
+visitors. Purge the CDN cache for it to appear immediately. When verifying a
+change, always request the file with a cache-busting query string — the plain
+URL will hand back the stale copy and make a good deploy look like a failure.
+
+## Server changes made outside the template
+
+- `.htaccess` — `frame-src 'self'` widened to
+  `frame-src 'self' https://www.google.com` so the static homepage's Google
+  Maps embed renders. Every other directive, including `frame-ancestors 'self'`,
+  is unchanged. Original backed up as `.htaccess.bak-claude`.
+- `index.html` / `privacy.html` — the static new-design pages, which shadow
+  Joomla's `index.php` at `/`.
