@@ -333,3 +333,38 @@ section.sppb-section { background-color: var(--cc-bg) !important; }
    must stay black-on-yellow, which is itself AA-compliant. */
 .agegate-legal__warning,
 .agegate-legal__warning * { background: var(--cc-warn) !important; color: #000 !important; }
+
+/* ---------- 11. compliance furniture: keep, don't restyle -----------------
+   The site already carries its own OCM elements — a light top bar with the
+   consumer warning, the #FFFF00 warning band module, and the OCM verify
+   button. Recolouring them would make the statutory warnings less
+   conspicuous, so they keep their existing appearance. They only need text
+   colours pinned, because the new dark body colour was being inherited into
+   them and dropping them below AA.
+   -------------------------------------------------------------------------- */
+
+#sp-top-bar { border-bottom: 1px solid rgba(0, 0, 0, .25); }
+#sp-top-bar,
+#sp-top-bar *:not(a) { color: #14202b !important; }
+#sp-top-bar a { color: #0b4e9c !important; text-decoration: underline; }
+
+#ocm-warning-band { background: var(--cc-warn) !important; }
+#ocm-warning-band,
+#ocm-warning-band * { color: #000 !important; }
+
+/* The OpenStreetMap addon renders its own tiles and attribution — leave it. */
+.sppb-addon-openstreetmap,
+.sppb-addon-openstreetmap * { color: initial; }
+.leaflet-control-attribution,
+.leaflet-control-attribution * { color: #333 !important; }
+
+/* ---------- 12. slider text panel ----------------------------------------
+   The slide headline sat in a translucent white box left over from the old
+   theme. The new design puts the headline straight on the photo, over the
+   scrim added in section 6.
+   -------------------------------------------------------------------------- */
+
+.sppb-sp-slider-text { background-color: transparent !important; }
+
+.sppb-sp-slider-text,
+.sppb-sp-slider-text *:not(.sppb-btn):not(.btn) { color: var(--cc-ink) !important; }
