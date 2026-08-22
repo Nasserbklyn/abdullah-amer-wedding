@@ -106,11 +106,24 @@ a:hover, a:focus { color: var(--cc-blue); }
 
 /* ---------- 3. header + menu ---------------------------------------------- */
 
+/* backdrop-filter creates a stacking context. Without an explicit z-index the
+   header's context sits in normal flow order, so the page sections below paint
+   over it and the megamenu dropdowns — which live inside the header at
+   z-index 10 — end up behind the content: visible to the DOM, invisible and
+   unclickable to the visitor. The z-index lifts the whole header above the
+   page. Keep these two declarations together. */
 #sp-header {
   background: rgba(5, 8, 13, .88) !important;
   border-bottom: 1px solid var(--cc-line);
   backdrop-filter: saturate(140%) blur(10px);
+  position: relative;
+  z-index: 1000;
 }
+
+/* Belt and braces: keep the dropdown above page content even if the header's
+   stacking context is ever flattened again. */
+.sp-megamenu-parent > li.sp-has-child > .sp-dropdown,
+.sp-megamenu-parent .sp-dropdown { z-index: 1001 !important; }
 
 #sp-header.header-sticky,
 #sp-header.menu-fixed { background: rgba(5, 8, 13, .95) !important; }
