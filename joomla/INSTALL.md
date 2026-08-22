@@ -29,23 +29,39 @@ check what the site already renders first.
 The new design's palette and typography, applied site-wide so every Joomla page
 matches the new homepage.
 
-**Install** — appended to `templates/flex/css/custom.css`, which the Flex
-template already loads last:
+**Install — as served today.** The file lives at
+`templates/flex/css/cc-theme.css` and is linked from the template's `<head>`,
+one line inserted before `</head>` in `templates/flex/index.php`:
 
-```
-…existing custom.css…
-
-/* CC-THEME-BEGIN */
-…contents of flex-theme.css…
-/* CC-THEME-END */
+```php
+<link rel="stylesheet" href="<?php echo Joomla\CMS\Uri\Uri::root(true); ?>/templates/flex/css/cc-theme.css?v=1" />
 ```
 
-The append is idempotent: re-running strips any previous `CC-THEME-BEGIN…END`
-block before adding the new one. The original file is backed up on the server as
+That link sits after every other stylesheet, so it wins on ordering. The
+original template is backed up on the server as
+`templates/flex/index.php.bak-theme`.
+
+**Why a separate file rather than `custom.css`.** The theme was originally
+appended to `custom.css`, which the Flex template already loads last. That
+works, but the CDN in front of the site holds `custom.css` with a 4-hour TTL
+and would not release it — a purge from the hosting panel left every asset's
+`age` untouched (`custom.css`, `template.css`, `preset5.css` and the images
+were all still ~4,950 s old afterwards), so visitors kept getting the
+pre-theme copy. A filename that has never been requested cannot be stale:
+`cc-theme.css` came back `cf-cache-status: MISS` and the theme was live
+immediately.
+
+The appended block is still present in `custom.css` between
+`CC-THEME-BEGIN` / `CC-THEME-END` markers. It is harmless — the same rules
+resolving twice — and acts as a fallback if the `<head>` link is ever removed.
+To tidy it up, delete everything between the markers or restore
 `templates/flex/css/custom.css.bak-claude` (32,413 bytes).
 
-**Uninstall** — delete everything between the two markers, or restore the
-`.bak-claude` copy.
+**Uninstall** — remove the `<link>` line from `index.php` (or restore
+`index.php.bak-theme`), and restore `custom.css.bak-claude`.
+
+**Bump `?v=1`** whenever `cc-theme.css` changes, or the CDN will cache the old
+one for four hours.
 
 ### What it changes
 
@@ -79,11 +95,15 @@ loading, no horizontal overflow, no JavaScript errors.
 
 ## Cloudflare cache
 
-`custom.css` is served with `cache-control: max-age=14400` and
-`cf-cache-status: HIT`, so a CSS change takes up to **4 hours** to reach
-visitors. Purge the CDN cache for it to appear immediately. When verifying a
-change, always request the file with a cache-busting query string — the plain
-URL will hand back the stale copy and make a good deploy look like a failure.
+Static assets are served with `cache-control: max-age=14400` behind Cloudflare,
+so an edited CSS file takes up to **4 hours** to reach visitors. A purge from
+the hosting panel did not clear it — every asset's `age` was unchanged
+afterwards — so do not rely on purging. Ship CSS changes under a new filename
+or a bumped `?v=` query instead.
+
+When verifying, request the file with a cache-busting query string. The plain
+URL hands back the stale copy and makes a good deploy look like a failure —
+that happened once here and triggered a needless rollback.
 
 ## Server changes made outside the template
 
@@ -91,6 +111,8 @@ URL will hand back the stale copy and make a good deploy look like a failure.
   `frame-src 'self' https://www.google.com` so the static homepage's Google
   Maps embed renders. Every other directive, including `frame-ancestors 'self'`,
   is unchanged. Original backed up as `.htaccess.bak-claude`.
+- `templates/flex/index.php` — one `<link>` line added before `</head>` for
+  `cc-theme.css`. Backed up as `templates/flex/index.php.bak-theme`.
 - `index.html` — renamed to `index.html.bak-claude` so it no longer shadows
   `index.php`. `/` now serves the Joomla SPPB home page. Rename it back to
   `index.html` to restore the static page.
