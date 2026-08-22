@@ -53,8 +53,16 @@ body.site {
 #sp-main-body,
 #sp-component { background-color: transparent; }
 
-/* The Flex demo content ships with JoomShaper's Cloudinary stock backgrounds.
-   Neutralise them rather than let stock imagery sit behind the brand. */
+/* Two sections still carry JoomShaper's Cloudinary stock photography behind
+   real Cuse Clouds copy. SPPB writes those backgrounds into inline <style>
+   blocks rather than style attributes, so they are targeted by id here — this
+   stylesheet loads last, so it wins. The section content is untouched; only
+   the stock imagery is replaced with the brand gradient.
+
+   `#contact-us` and `#section-id-1481572543` are this site's ids; the
+   attribute selector is a catch-all for any others added later. */
+#contact-us,
+#section-id-1481572543,
 [style*="res.cloudinary.com/joomshaper"] {
   background-image:
     radial-gradient(120% 90% at 15% 0%, rgba(94, 193, 255, .16), transparent 55%),
