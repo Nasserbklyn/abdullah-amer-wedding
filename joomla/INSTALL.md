@@ -129,6 +129,25 @@ Main Menu to confirm which SP Page Builder page it points at, edit that page's
 heading, Apply, then Save. Then delete `templates/flex/js/cc-patch.js` and its
 `<script>` tag.
 
+## The 404 page
+
+Unknown paths used to return Apache's bare 13-byte `404 Not Found`: the
+`.htaccess` had no Joomla rewrite block, so requests never reached Joomla and
+`templates/flex/error.php` never rendered. Joomla's own shipped block now sits
+in `.htaccess` between `CC-404-BEGIN` / `CC-404-END`. It excludes real files
+and directories, so only non-existent paths are affected — `/administrator/`
+still returns 403, static assets still serve directly.
+
+A missing path now returns a genuine HTTP 404 rendering the Flex error page:
+"404 — Oops... Page Not Found!" with a link home, in the site theme.
+
+**It carries no age gate, and that is deliberate.** Joomla's error layout
+renders standalone — no header, no menu, no modules — so the page shows no
+cannabis content whatsoever: a heading, one sentence, and "Go Back to
+Homepage", which lands on `/` where the gate is. There is nothing for a gate
+to protect. Add the module to the error layout only if you want it for
+consistency rather than for compliance.
+
 ## Cloudflare cache
 
 Static assets are served with `cache-control: max-age=14400` behind Cloudflare,
@@ -150,6 +169,12 @@ that happened once here and triggered a needless rollback.
 - `templates/flex/index.php` — a `<link>` for `cc-theme.css` and a `<script>`
   for `cc-patch.js`, both added before `</head>`. Backed up as
   `templates/flex/index.php.bak-theme` (that backup predates both lines).
+- `templates/flex/error.php` — a `<link>` for `cc-theme.css` before `</head>`,
+  so error pages carry the theme in their own right. Backed up as
+  `templates/flex/error.php.bak-theme`.
+- `.htaccess` — Joomla's front-controller rewrite added between
+  `CC-404-BEGIN` / `CC-404-END` markers, so a path that does not exist reaches
+  Joomla instead of Apache. Backed up as `.htaccess.bak-404`.
 - `index.html` — renamed to `index.html.bak-claude` so it no longer shadows
   `index.php`. `/` now serves the Joomla SPPB home page. Rename it back to
   `index.html` to restore the static page.
