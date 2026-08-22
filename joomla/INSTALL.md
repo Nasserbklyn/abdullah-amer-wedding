@@ -99,6 +99,36 @@ A WCAG pass over the themed page went from 8 failures below AA to **0** across
 `rgb(255,255,0)` on `rgb(0,0,0)`, all four required warnings present, map tiles
 loading, no horizontal overflow, no JavaScript errors.
 
+## Temporary: `cc-heading-patch.js`
+
+**This is a cover, not a fix. Remove it once the real edit lands.**
+
+The last section's heading should read "Knowledgeable Staff"; the database
+still holds "OUR TEAM". Two attempts to change it in SP Page Builder did not
+persist, and nothing is caching it — the page is served `no-store` and
+re-rendered from the database on every request, so the old value is genuinely
+still stored.
+
+`templates/flex/js/cc-patch.js` rewrites the heading in the DOM on load,
+linked from the template head after the stylesheet:
+
+```php
+<script src="<?php echo Joomla\CMS\Uri\Uri::root(true); ?>/templates/flex/js/cc-patch.js?v=1" defer></script>
+```
+
+It is scoped to `#section-id-1481572543`, matches the exact heading text, and
+skips any heading that wraps other markup, so it cannot affect anything else.
+
+What it does and does not achieve: the live DOM carries the new wording, so
+screen readers and JavaScript-executing crawlers see it. The HTML leaving the
+server still contains "OUR TEAM", so `curl`, View Source, and any crawler that
+does not run JavaScript will see the old text.
+
+**The real fix.** The home menu item is Itemid 101 — open it under Menus →
+Main Menu to confirm which SP Page Builder page it points at, edit that page's
+heading, Apply, then Save. Then delete `templates/flex/js/cc-patch.js` and its
+`<script>` tag.
+
 ## Cloudflare cache
 
 Static assets are served with `cache-control: max-age=14400` behind Cloudflare,
@@ -117,8 +147,9 @@ that happened once here and triggered a needless rollback.
   `frame-src 'self' https://www.google.com` so the static homepage's Google
   Maps embed renders. Every other directive, including `frame-ancestors 'self'`,
   is unchanged. Original backed up as `.htaccess.bak-claude`.
-- `templates/flex/index.php` — one `<link>` line added before `</head>` for
-  `cc-theme.css`. Backed up as `templates/flex/index.php.bak-theme`.
+- `templates/flex/index.php` — a `<link>` for `cc-theme.css` and a `<script>`
+  for `cc-patch.js`, both added before `</head>`. Backed up as
+  `templates/flex/index.php.bak-theme` (that backup predates both lines).
 - `index.html` — renamed to `index.html.bak-claude` so it no longer shadows
   `index.php`. `/` now serves the Joomla SPPB home page. Rename it back to
   `index.html` to restore the static page.
