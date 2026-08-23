@@ -263,7 +263,7 @@ Nothing caches menu data here: global caching is off, there is no
 | OPEN-1 | Menu label still reads "DELIVERY & SPECIALS" (Part 129) | `#__menu` row 109 |
 | OPEN-2 | HOPEline text number `467369` appears only inside the age gate, never in the page body | SPPB page content |
 | OPEN-7 | 25 Flex template demo pages publicly reachable; `id=3` and `id=24` show a "MILES STONED" counter | SPPB pages |
-| OPEN-3 | All 43 menu links point at `/` — no destination pages exist | needs a decision |
+| OPEN-3 | All 43 menu links point at `/` — no destination pages exist | **deferred by decision**, revisit after the OCM response |
 | OPEN-4 | "OUR TEAM" corrected only by `cc-patch.js`, not at source | SPPB page content |
 | OPEN-5 | Rotate the `waleed@cuseclouds.com` FTP password | cPanel account owner |
 | OPEN-6 | Delete or rename the unused "Flex Menu" | `#__menus` |
