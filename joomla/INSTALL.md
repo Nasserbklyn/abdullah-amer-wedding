@@ -223,3 +223,56 @@ Note `/` is served `cache-control: no-store` and `cf-cache-status: DYNAMIC`, so
 the page switch reaches visitors immediately — but `custom.css` is a cache HIT
 with a 4-hour TTL, so the new theme only appears once that expires or the CDN
 cache is purged.
+
+## Site audit — 23 August 2026
+
+A full live verification pass. Everything below was confirmed by loading the
+site in a real browser and reading computed styles and rendered text, at
+1440×900 and 390×844.
+
+### Compliance furniture: verified
+
+Age gate (`position: fixed`, `z-index: 99999`, covering the full viewport —
+hit-tests at the viewport centre and corner both resolve inside the gate),
+licence number, `#FFFF00` warning band (computed `rgb(255,255,0)` on
+`rgb(0,0,0)`), all four Part 129 warnings rotating correctly across six
+consecutive loads, HOPEline phone and website, premises and phone, both OCM
+verification links, and the OpenStreetMap map. No prices (the eight `$`
+characters in the source are all inside JavaScript). No discount, sale, deal,
+coupon or promo strings. Zero JavaScript errors, no horizontal overflow at
+390px, all megamenu dropdowns open and are clickable, and unknown paths return
+a genuine themed HTTP 404.
+
+### The menu, finally pinned down
+
+The rendered navigation is **Main Menu**, 43 items: 6 at top level
+(101 HOME, 110 PRODUCTS, 108 BRANDS, 107 ABOUT, 1781 LEARN, **109 DELIVERY &
+SPECIALS**) and 37 children. The separate 6-item **"Flex Menu"** duplicates
+that top level and **renders nowhere** — the string `Delivery` appears zero
+times in the served HTML. Four attempts to rename the label edited the Flex
+Menu copy by mistake. Always confirm the ID column reads **109** first.
+
+Nothing caches menu data here: global caching is off, there is no
+`cache/com_menus` directory, and `/` is served `no-store` /
+`cf-cache-status: DYNAMIC`.
+
+### Open items
+
+| Ref | Item | Blocked on |
+| --- | --- | --- |
+| OPEN-1 | Menu label still reads "DELIVERY & SPECIALS" (Part 129) | `#__menu` row 109 |
+| OPEN-2 | HOPEline text number `467369` appears only inside the age gate, never in the page body | SPPB page content |
+| OPEN-7 | 25 Flex template demo pages publicly reachable; `id=3` and `id=24` show a "MILES STONED" counter | SPPB pages |
+| OPEN-3 | All 43 menu links point at `/` — no destination pages exist | needs a decision |
+| OPEN-4 | "OUR TEAM" corrected only by `cc-patch.js`, not at source | SPPB page content |
+| OPEN-5 | Rotate the `waleed@cuseclouds.com` FTP password | cPanel account owner |
+| OPEN-6 | Delete or rename the unused "Flex Menu" | `#__menus` |
+
+**All of these are database content or the account owner's own credentials.**
+None is a file on disk, so none can be deployed from here — every fix is an
+edit in the Joomla admin. Do **not** paper over them with a server-side string
+filter in the template: that would make a later admin edit appear to do
+nothing, which is precisely the failure that cost four attempts on OPEN-1.
+
+The 25 demo pages all do render the age gate and the warning band, so none of
+them is reachable without age confirmation.
