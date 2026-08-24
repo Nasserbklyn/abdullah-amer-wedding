@@ -324,7 +324,43 @@ these against database rows:
 | --- | --- |
 | Rotate the FTP password for `waleed@cuseclouds.com` | Account owner — credentials were shared in working sessions |
 | 43 menu links all resolve to `/` because no destination pages exist | Deferred by decision until after the OCM response |
-| `configuration.php` is mode 444, dated 9 Aug | Unexplained. Combined with the stripped privileges, it suggests someone deliberately put the site into read-only mode. Worth establishing who had access that day |
+| Who altered the MySQL grants, and when | Not recoverable from the filesystem — see below |
+
+## The "9 August lockdown" — withdrawn
+
+An earlier revision of this file proposed that the mode-444 `configuration.php`
+and the SELECT-only database user were one deliberate act. A filesystem
+timeline taken on 24 Aug does not support it:
+
+```
+Aug  8 22:10   components/                                (site)
+Aug  9 00:41   administrator/components/com_virtuemart
+Aug  9 00:54   configuration.php                          (rewritten, mode 444)
+```
+
+That is the ordinary signature of **an extension install** — VirtueMart, around
+midnight — with the configuration file rewritten thirteen minutes later and left
+read-only, which is a common and frequently deliberate post-install state.
+The install carries traces of several e-commerce extensions tried and abandoned
+(VirtueMart, EasyStore, HikaShop), so an install that night is unremarkable.
+
+**The privilege change leaves no filesystem trace, by design.** MySQL grants
+live in cPanel, not in the site directory. Nothing reachable over FTP can
+establish who changed them. The two events are probably unrelated.
+
+Where the answer would actually live, in order of likelihood:
+
+1. **Joomla → Users → User Actions Log.** The `actionlogs` plugin is installed;
+   if it was enabled on 9 Aug it records admin logins and changes with usernames.
+2. **cPanel → Metrics → Raw Access Logs**, filtered to `/administrator/` around
+   8–9 Aug — shows which IPs reached the admin.
+3. **GoDaddy account → Delegate Access** — who else can sign in at all.
+
+One usable handle already exists: `administrator/logs/joomla_update.php` records
+the Joomla 6.1.3 update on **22 Aug 07:31 UTC** from IPv6
+`2600:4041:7a8f:3900:cd0c:63e5:5e0e:77b6`. That log only captures core updates,
+so it says nothing about 9 Aug — but comparing that address against your own
+tells you whether admin access that week was yours.
 
 ## Compliance status
 
