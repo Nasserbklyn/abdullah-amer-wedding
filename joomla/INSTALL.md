@@ -152,6 +152,18 @@ would silently drift from the module whenever the module is edited — the same
 duplication that caused the double-gate problem earlier in this project. Not
 recommended.
 
+**One untested alternative, found 24 Aug.** `error.php` already renders a
+module position called `404`, on its second-to-last line:
+
+    <?php echo $doc->getBuffer('modules', '404', array('style' => 'sp_xhtml')); ?>
+
+Publishing the gate module to position `404` would need no template edit and no
+duplicated warning wording, which is what made the hand-copy approach
+unattractive. Whether it actually works is unknown — `$doc->getBuffer()`
+resolves modules through the same helper that returned nothing usable in the
+error context, so it may well fail identically. Worth ten minutes before anyone
+hand-copies markup.
+
 ### Bugs found and fixed in `error.php`
 
 Routing 404s into Joomla made the Flex error page render for the first time,
@@ -201,6 +213,67 @@ that happened once here and triggered a needless rollback.
   `index.php`. `/` now serves the Joomla SPPB home page. Rename it back to
   `index.html` to restore the static page.
 - `privacy.html` and `assets/` — still served from the doc root.
+
+## ⚠ Those backup files are publicly downloadable
+
+Found on 24 August by requesting them over HTTPS. Apache on this host protects
+`.htaccess` **by exact filename only**, and hands `*.php.bak-*` to the PHP
+handler as a *download* rather than executing it. So every backup this project
+left in the document root is world-readable:
+
+| URL | Response | What it exposes |
+| --- | --- | --- |
+| `/.htaccess.bak-404` | 200 · 2,218 B | The full CSP allowlist, the API-blocking rewrite, every hardening rule |
+| `/.htaccess.bak-claude` | 200 · 2,195 B | The same, one revision older |
+| `/templates/flex/index.php.bak-ccpatch` | 200 · 20,494 B | Template PHP source, as plain text |
+| `/templates/flex/index.php.bak-theme` | 200 · 20,264 B | Template PHP source |
+| `/templates/flex/error.php.bak-theme` | 200 · 6,377 B | Template PHP source |
+| `/index.html.bak-claude` | 200 · 53,005 B | A complete, crawlable copy of the old static homepage |
+
+`configuration.php` itself is correctly 403. The danger is the *pattern*: a
+`configuration.php.bak` left by any future edit would publish the database
+username, password and Joomla secret to anyone who guesses the URL. Backing up
+a config file in place is a routine admin reflex, so this is not hypothetical.
+
+Publishing our own CSP and rewrite rules is the smaller problem, though it does
+tell an attacker exactly which sources are allowed and what is filtered.
+`/index.html.bak-claude` is the compliance-relevant one: a full second homepage
+on the licensee's domain, crawlable — nothing in `robots.txt` excludes it — and
+frozen, so it drifts further from the live site with every change made to the
+live site.
+
+**These backups were created by this project. The exposure is ours.**
+
+### The fix
+
+One additive block, mirroring the `langmetadata.xml` pattern already in the
+file, denies the whole class by extension including any future
+`configuration.php.bak`:
+
+```apache
+<IfModule mod_authz_core.c>
+  <FilesMatch "\.(bak|old|orig|save|swp|swo|tmp|dist|log|sql)(-[A-Za-z0-9_]+)?$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+  <FilesMatch "\.(bak|old|orig|save|swp|swo|tmp|dist|log|sql)(-[A-Za-z0-9_]+)?$">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>
+```
+
+Checked against every filename in the document root: it blocks the six URLs
+above plus `robots.txt.dist`, and matches nothing the site serves — not
+`index.php`, `configuration.php`, `cc-theme.css`, `agegate.js`, `robots.txt`,
+`sitemap.xml`, or any asset. Append it to `.htaccess`, keep a copy of the
+previous file first, and confirm `/` still returns 200 before walking away: a
+malformed `.htaccess` returns 500 for the whole site.
+
+The stray file `old` (809 bytes, a copy of Joomla's default `robots.txt`) is
+also served but holds nothing sensitive. It has no extension, so the block does
+not catch it.
 
 ## Verified after the switch
 
@@ -324,6 +397,7 @@ these against database rows:
 | --- | --- |
 | Rotate the FTP password for `waleed@cuseclouds.com` | Account owner — credentials were shared in working sessions |
 | 43 menu links all resolve to `/` because no destination pages exist | Deferred by decision until after the OCM response |
+| Backup files in the document root are publicly downloadable | Fix written and verified against the file list; not yet deployed |
 | Who altered the MySQL grants, and when | Not recoverable from the filesystem — see below |
 
 ## The "9 August lockdown" — withdrawn
