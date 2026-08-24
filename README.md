@@ -55,10 +55,11 @@ Notes: the old site's contact form was replaced with direct phone/email links
 was renamed to "Services"/"Delivery" — advertising promotions or "specials" is
 restricted under Part 129.
 
-**On the live Joomla site that rename is still outstanding**, along with six
-other items found in the 23 Aug 2026 audit. All of them are database content or
-cPanel credentials rather than files, so they cannot be deployed from this repo
-— see the audit table in `joomla/INSTALL.md` for what each one needs.
+**On the live Joomla site that rename is now done** — along with every other
+website item raised in the inspection correspondence. As of 24 Aug 2026 all
+fourteen are verified against the live site with none outstanding. See
+`joomla/INSTALL.md` for what was fixed and the cautions that come with this
+install.
 
 ## Assets
 

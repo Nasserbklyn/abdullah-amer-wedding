@@ -99,35 +99,27 @@ A WCAG pass over the themed page went from 8 failures below AA to **0** across
 `rgb(255,255,0)` on `rgb(0,0,0)`, all four required warnings present, map tiles
 loading, no horizontal overflow, no JavaScript errors.
 
-## Temporary: `cc-heading-patch.js`
+## Removed: `cc-heading-patch.js`
 
-**This is a cover, not a fix. Remove it once the real edit lands.**
+**Gone from the server and from this repo as of 24 Aug 2026. Do not reinstate it.**
 
-The last section's heading should read "Knowledgeable Staff"; the database
-still holds "OUR TEAM". Two attempts to change it in SP Page Builder did not
-persist, and nothing is caching it — the page is served `no-store` and
-re-rendered from the database on every request, so the old value is genuinely
-still stored.
+While admin saves were silently failing (see *The write-rejecting database*
+below), the staff heading could not be corrected at source, so a small script
+rewrote it in the DOM on load. That was always a cover, not a fix — the HTML
+leaving the server still read "OUR TEAM" for View Source and non-JavaScript
+crawlers.
 
-`templates/flex/js/cc-patch.js` rewrites the heading in the DOM on load,
-linked from the template head after the stylesheet:
+Once saves worked again the heading was corrected properly in SP Page Builder,
+and the patch was removed:
 
-```php
-<script src="<?php echo Joomla\CMS\Uri\Uri::root(true); ?>/templates/flex/js/cc-patch.js?v=1" defer></script>
-```
+- `templates/flex/js/cc-patch.js` — deleted
+- its `<script>` tag stripped from `templates/flex/index.php`
+  (20,494 → 20,383 bytes; the `cc-theme.css` `<link>` on the preceding line was
+  deliberately preserved)
+- original kept on the server as `templates/flex/index.php.bak-ccpatch`
 
-It is scoped to `#section-id-1481572543`, matches the exact heading text, and
-skips any heading that wraps other markup, so it cannot affect anything else.
-
-What it does and does not achieve: the live DOM carries the new wording, so
-screen readers and JavaScript-executing crawlers see it. The HTML leaving the
-server still contains "OUR TEAM", so `curl`, View Source, and any crawler that
-does not run JavaScript will see the old text.
-
-**The real fix.** The home menu item is Itemid 101 — open it under Menus →
-Main Menu to confirm which SP Page Builder page it points at, edit that page's
-heading, Apply, then Save. Then delete `templates/flex/js/cc-patch.js` and its
-`<script>` tag.
+Verified after the edit: HTTP 200, no PHP errors, zero `cc-patch` references,
+`Knowledgeable Staff` present in the raw HTML, `OUR TEAM` absent.
 
 ## The 404 page
 
@@ -224,55 +216,118 @@ the page switch reaches visitors immediately — but `custom.css` is a cache HIT
 with a 4-hour TTL, so the new theme only appears once that expires or the CDN
 cache is purged.
 
-## Site audit — 23 August 2026
+## The write-rejecting database — root cause of everything
 
-A full live verification pass. Everything below was confirmed by loading the
-site in a real browser and reading computed styles and rendered text, at
-1440×900 and 390×844.
+For roughly two days, **every** change made through the Joomla admin reported
+success and silently vanished. Four menu renames, six edits in one sitting, a
+brand-new article — all green, none persisted.
 
-### Compliance furniture: verified
+**Cause: the MySQL user `waleed` held `SELECT` but no `INSERT` / `UPDATE` /
+`DELETE` on `cusecloudycannabis`.** Reads worked, so the site rendered and the
+admin displayed accurate data; writes were refused, and Joomla — running with
+error reporting off — swallowed the error and showed the success message
+anyway. Re-ticking **ALL PRIVILEGES** in cPanel → MySQL Databases fixed it.
 
-Age gate (`position: fixed`, `z-index: 99999`, covering the full viewport —
-hit-tests at the viewport centre and corner both resolve inside the gate),
-licence number, `#FFFF00` warning band (computed `rgb(255,255,0)` on
-`rgb(0,0,0)`), all four Part 129 warnings rotating correctly across six
-consecutive loads, HOPEline phone and website, premises and phone, both OCM
-verification links, and the OpenStreetMap map. No prices (the eight `$`
-characters in the source are all inside JavaScript). No discount, sale, deal,
-coupon or promo strings. Zero JavaScript errors, no horizontal overflow at
-390px, all megamenu dropdowns open and are clickable, and unknown paths return
-a genuine themed HTTP 404.
+**The diagnostic that settles this class of fault in 30 seconds:** create a new
+article with a throwaway name and see whether it appears in the list. It
+isolates "can this install write at all" from every content-specific theory. It
+should have been the first thing tried, not the twentieth.
 
-### The menu, finally pinned down
+Three theories were investigated and **disproved** — recorded so nobody
+re-treads them:
+
+| Theory | Why it was wrong |
+| --- | --- |
+| Admin and front end are separate installs | `index.html.bak-claude` — a file created only in the live document root — is present in `public_html/cuseclouds.com`. One install. |
+| A demo-protection / read-only plugin | All 41 folders in `plugins/system` are recognizable stock or commercial extensions. No such plugin exists. |
+| Database or disk quota exhausted | Database 117.95 MB, disk far from its limit. |
+
+A fourth red herring cost real time: after privileges were restored, a report
+that the test article "didn't show up" was almost certainly a search for the
+*original* never-persisted article rather than a fresh save.
+
+## The site, accurately
+
+| | |
+| --- | --- |
+| Document root | `/home/egxbikjjcp2o/public_html/cuseclouds.com` |
+| Database / prefix | `cusecloudycannabis` / `azl_` |
+| Template | **Flex 4.3 by Aplikko.com** (Nov 2025, GPLv2) |
+| Framework / builder | JoomShaper `helix3` / `helixultimate` and `sppagebuilder` |
+| FTP | `p3plzcpnl509615.prod.phx3.secureserver.net` (`50.63.176.16`), port 21, explicit FTPS — `AUTH TLS` works, `AUTH SSL` refused |
+
+**Earlier revisions of this file called the template "JoomShaper Flex". That was
+wrong** — `templateDetails.xml` names Aplikko.com. JoomShaper supplies the
+separate framework and page-builder extensions, and the demo imagery came from
+JoomShaper's CDN, which is what caused the confusion.
+
+`ftp.aazal.com` has **no DNS record** and can never connect; both domains
+resolve only to Cloudflare, which does not proxy port 21. This account also
+hosts `aazal.com` (AAZAL Print & Graphics) — the install this one was cloned
+from, which is where the `azl_` prefix comes from.
+
+## The menu
 
 The rendered navigation is **Main Menu**, 43 items: 6 at top level
-(101 HOME, 110 PRODUCTS, 108 BRANDS, 107 ABOUT, 1781 LEARN, **109 DELIVERY &
-SPECIALS**) and 37 children. The separate 6-item **"Flex Menu"** duplicates
-that top level and **renders nowhere** — the string `Delivery` appears zero
-times in the served HTML. Four attempts to rename the label edited the Flex
-Menu copy by mistake. Always confirm the ID column reads **109** first.
+(101 HOME, 110 PRODUCTS, 108 BRANDS, 107 ABOUT, 1781 LEARN, **109 Delivery**)
+and 37 children. A separate 6-item menu duplicated that top level and rendered
+nowhere — four rename attempts edited *that* copy by mistake before the
+database fault was even understood. It is now titled `AAZAL - UNUSED - do not
+edit`.
 
-Nothing caches menu data here: global caching is off, there is no
-`cache/com_menus` directory, and `/` is served `no-store` /
-`cf-cache-status: DYNAMIC`.
+## Fixed on 24 August
 
-### Open items
+| Item | How |
+| --- | --- |
+| Menu label "DELIVERY & SPECIALS" → "Delivery" | `UPDATE azl_menu SET title='Delivery' WHERE id=109` via phpMyAdmin, while admin saves were still failing |
+| HOPEline text number `467369` missing from the page body | It lives in the **site-wide footer disclaimer** (Helix3 template style → Copyright), not SP Page Builder — so the fix covers every page |
+| 54 demo and junk pages publicly reachable | Trashed in SP Page Builder; trash deliberately not emptied. Includes the two "MILES STONED" pages |
+| "OUR TEAM" heading | Corrected at source; `cc-patch.js` removed |
+| Template vendor CDN references | Were SP Page Builder's **lazy-load placeholder**, not section backgrounds. Fixed by disabling Lazy Loading — clearing the backgrounds would have destroyed the real local artwork |
+| Admin labels white-labelled to AAZAL | Template styles, menus and modules — **titles only** |
 
-| Ref | Item | Blocked on |
-| --- | --- | --- |
-| OPEN-1 | Menu label still reads "DELIVERY & SPECIALS" (Part 129) | `#__menu` row 109 |
-| OPEN-2 | HOPEline text number `467369` appears only inside the age gate, never in the page body | SPPB page content |
-| OPEN-7 | 25 Flex template demo pages publicly reachable; `id=3` and `id=24` show a "MILES STONED" counter | SPPB pages |
-| OPEN-3 | All 43 menu links point at `/` — no destination pages exist | **deferred by decision**, revisit after the OCM response |
-| OPEN-4 | "OUR TEAM" corrected only by `cc-patch.js`, not at source | SPPB page content |
-| OPEN-5 | Rotate the `waleed@cuseclouds.com` FTP password | cPanel account owner |
-| OPEN-6 | Delete or rename the unused "Flex Menu" | `#__menus` |
+## ⚠ Load-bearing components with meaningless names
 
-**All of these are database content or the account owner's own credentials.**
-None is a file on disk, so none can be deployed from here — every fix is an
-edit in the Joomla admin. Do **not** paper over them with a server-side string
-filter in the template: that would make a later admin edit appear to do
-nothing, which is precisely the failure that cost four attempts on OPEN-1.
+Custom module **ID 215**, position `top3`, renders the `#FFFF00` Part 129
+consumer warning box. Until 24 Aug its title was the single word **"Name"**,
+and it was very nearly unpublished as debris — which would have stripped the
+statutory warning from every page. It is now titled
+`AAZAL - NYS OCM Warning Band (DO NOT UNPUBLISH)`.
 
-The 25 demo pages all do render the age gate and the warning band, so none of
-them is reachable without age confirmation.
+**This site is a clone carrying inherited naming, demo remnants, and
+load-bearing parts with unhelpful labels. Things here are frequently not what
+they look like.** Three separate instructions during this work looked purely
+mechanical and would each have broken something real. Every one was caught by a
+confirm-before-executing branch — *"check X is present first; if not, stop and
+report"* — rather than by the diagnosis behind it. Keep writing that branch.
+
+A related trap worth naming: **inspecting served HTML with a narrow `grep`
+window**. Twice a module looked empty because the window ended just after the
+opening tag. Widen the window before concluding anything is empty.
+
+## Do not rename these
+
+Renaming display titles is free. Renaming identifiers is not — Joomla matches
+these against database rows:
+
+- **`templates/flex/`** — requires editing `azl_template_styles`,
+  `azl_extensions` and every asset path; Aplikko updates then no longer match,
+  so security updates stop arriving
+- **`helix3`, `helixultimate`, `sppagebuilder`** — loaded by folder+element
+  from `azl_extensions`; renaming takes the site down
+- **the `azl_` prefix** — ~70 tables plus `configuration.php`, and it is
+  already AAZAL-derived
+
+## Open items
+
+| Item | Owner |
+| --- | --- |
+| Rotate the FTP password for `waleed@cuseclouds.com` | Account owner — credentials were shared in working sessions |
+| 43 menu links all resolve to `/` because no destination pages exist | Deferred by decision until after the OCM response |
+| `configuration.php` is mode 444, dated 9 Aug | Unexplained. Combined with the stripped privileges, it suggests someone deliberately put the site into read-only mode. Worth establishing who had access that day |
+
+## Compliance status
+
+All fourteen website items required by the OCM inspection correspondence are
+verified against the live site, with none outstanding. The full record, with
+per-item evidence, is the authoritative document.
