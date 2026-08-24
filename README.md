@@ -20,6 +20,13 @@ This site implements the website items from the OCM inspection correspondence:
 | One of the four required warnings, in a rotating manner | `#rotating-warning` inside the yellow band — a different warning is selected on each page load (distributed evenly via a stored counter) and the display also cycles through all four while the page is open |
 | No prohibited content | No depictions of smoking/consumption, no cartoons, no health or medical claims, no pricing or promotional offers |
 
+The table above describes the static pages (`index.html`, `privacy.html`).
+
+**The Joomla site behind them was already OCM-compliant before this work** — it
+carries its own `mod_agegate` module (21+ gate with the license number and the
+HOPEline), an `#ocm-warning-band` module in `#FFFF00`, all four Part 129
+warnings, and an OCM verification link, on every route. See `joomla/INSTALL.md`.
+
 The four rotating warnings (9 NYCRR Part 129):
 
 1. “Cannabis can be addictive.”
@@ -27,14 +34,32 @@ The four rotating warnings (9 NYCRR Part 129):
 3. “There may be health risks associated with consumption of this product.”
 4. “Cannabis is not recommended for use by persons who are pregnant or nursing.”
 
-## ⚠️ Before going live — required
+## Business details on the site
 
-**Contact details.** Search `index.html` for `TODO` and fill in, when ready:
-phone number, store hours, and confirm `info@cuseclouds.com` is a live mailbox.
+All business details are filled in (merged from the previous cuseclouds.com
+Joomla homepage): address 900 E Fayette St, Syracuse, NY 13210 · phone
+(315) 214-4017 · email cs@cuseclouds.com · hours Mon–Fri 9:00 AM–11:00 PM,
+Sat–Sun 9:00 AM–10:00 PM · licensee On The Bus Inc. d/b/a Cuse Clouds ·
+license `OCM-RETL-26-000487`.
 
-(Already in place: the OCM license number `OCM-RETL-26-000487` — age gate, header,
-hero, licensed section, footer — plus the operating address and the
-On The Bus Inc. d/b/a Cuse Clouds licensee line.)
+The homepage also carries the old site's content in the new design: product
+categories (flower, pre-rolls, edibles, vapes &amp; cartridges, topicals,
+tinctures, concentrates, accessories), the brands lineup, About/First-Time
+Visitors, the Cannabis Learning Center topics, In-Store &amp; Delivery services,
+and the OCM verification links (dispensary-location-verification and
+buylegal.cannabis.ny.gov). `privacy.html` reproduces the Privacy Policy
+(effective Aug 17, 2026).
+
+Notes: the old site's contact form was replaced with direct phone/email links
+(a static site has no form backend), and the "Delivery &amp; Specials" menu item
+was renamed to "Services"/"Delivery" — advertising promotions or "specials" is
+restricted under Part 129.
+
+**On the live Joomla site that rename is now done** — along with every other
+website item raised in the inspection correspondence. As of 24 Aug 2026 all
+fourteen are verified against the live site with none outstanding. See
+`joomla/INSTALL.md` for what was fixed and the cautions that come with this
+install.
 
 ## Assets
 
@@ -48,12 +73,31 @@ The logo is used on the website itself; note that per the MRTA, the **physical
 storefront sign** may not carry a logo — signage may only show the licensee/DBA name,
 address, phone, email, website URL, directions, and the licensed activity.
 
-## Hosting
+## Hosting and the existing Joomla site
 
-- GitHub Pages with a custom domain: keep `CNAME` (`cuseclouds.com`) and `.nojekyll`.
-- For the domain to resolve, DNS for `cuseclouds.com` must point to GitHub Pages
-  (apex A records `185.199.108.153` … `185.199.111.153`, or per current GitHub docs),
-  and Pages must be enabled for this repository with HTTPS enforced.
+cuseclouds.com runs on GoDaddy shared hosting (cPanel), doc root
+`/home/egxbikjjcp2o/cuseclouds.com`. The site there is **Joomla**, built on the
+**JoomShaper Helix Framework** with the **Flex** template and **SP Page
+Builder**.
+
+**Joomla now serves the front page.** The static `index.html` used to sit in the
+doc root and shadow `index.php`; it has been renamed on the server to
+`index.html.bak-claude`, so `/` is the real Joomla SP Page Builder home page —
+editable in the builder, carrying its own slider, menu, OpenStreetMap addon and
+compliance furniture. The static page is kept here in the repo, and on the
+server as that `.bak-claude` file, purely as a fallback: renaming it back to
+`index.html` restores it instantly.
+
+`privacy.html` and `assets/` are still served from the doc root.
+
+What the Joomla side needed was not compliance but a matching design:
+`joomla/flex-theme.css` applies the new dark-blue palette and Exo 2 / Inter
+typography across every Joomla page, appended to the Flex template's
+`custom.css`. It deliberately leaves the site's OCM furniture looking as it
+does, so the statutory warnings stay conspicuous. See `joomla/INSTALL.md`.
+
+`CNAME` and `.nojekyll` are left in place only so the repo can also be served
+from GitHub Pages as a staging preview; they are ignored by the cPanel host.
 
 ## Items from the inspection email that are *not* website items
 

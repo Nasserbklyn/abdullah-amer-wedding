@@ -1,0 +1,395 @@
+/* ==========================================================================
+   Cuse Clouds — new design theme for the JoomShaper Flex template
+   --------------------------------------------------------------------------
+   Applies the dark-blue palette and Exo 2 / Inter typography from the new
+   homepage to the whole Joomla site: Helix header and menu, SP Page Builder
+   sections and addons, the SP slider, the age-gate module, and the footer.
+
+   Install: append this file to templates/flex/css/custom.css (the Flex
+   template already loads that file last), between the BEGIN/END markers so it
+   stays easy to remove. Back up custom.css first.
+
+   Everything is namespaced through CSS custom properties, so retuning the
+   palette means editing the :root block only.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,700;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --cc-bg:         #05080d;
+  --cc-bg-2:       #060a11;
+  --cc-panel:      #0b1526;
+  --cc-panel-2:    #0e1a2e;
+  --cc-line:       rgba(94, 193, 255, .16);
+  --cc-line-hi:    rgba(94, 193, 255, .40);
+  --cc-ink:        #eef4fa;
+  --cc-ink-mute:   #9db2c7;
+  --cc-silver:     #c9d3dc;
+  --cc-blue:       #2196f3;
+  --cc-blue-light: #5ec1ff;
+  --cc-blue-deep:  #0b4e9c;
+  --cc-warn:       #FFFF00;
+  --cc-font-d:     'Exo 2', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --cc-font-b:     'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --cc-radius:     16px;
+}
+
+/* ---------- 1. page canvas ------------------------------------------------ */
+
+body,
+body.site {
+  background-color: var(--cc-bg) !important;
+  background-image:
+    radial-gradient(55% 38% at 50% 0%, rgba(33, 150, 243, .10), transparent 70%),
+    linear-gradient(160deg, var(--cc-bg-2) 0%, var(--cc-bg) 55%, #040609 100%) !important;
+  background-attachment: fixed;
+  color: var(--cc-ink-mute);
+  font-family: var(--cc-font-b);
+  line-height: 1.75;
+}
+
+.sppb-section,
+.sppb-row-container,
+#sp-main-body,
+#sp-component { background-color: transparent; }
+
+/* Two sections still carry JoomShaper's Cloudinary stock photography behind
+   real Cuse Clouds copy. SPPB writes those backgrounds into inline <style>
+   blocks rather than style attributes, so they are targeted by id here — this
+   stylesheet loads last, so it wins. The section content is untouched; only
+   the stock imagery is replaced with the brand gradient.
+
+   `#contact-us` and `#section-id-1481572543` are this site's ids; the
+   attribute selector is a catch-all for any others added later. */
+#contact-us,
+#section-id-1481572543,
+[style*="res.cloudinary.com/joomshaper"] {
+  background-image:
+    radial-gradient(120% 90% at 15% 0%, rgba(94, 193, 255, .16), transparent 55%),
+    linear-gradient(170deg, var(--cc-panel-2), var(--cc-panel)) !important;
+}
+
+/* ---------- 2. typography ------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6,
+.sppb-addon-title,
+.sppb-sp-slider-title,
+.sp-megamenu-parent > li > a {
+  font-family: var(--cc-font-d) !important;
+  font-style: italic;
+  font-weight: 800;
+  color: var(--cc-ink);
+  letter-spacing: .01em;
+  line-height: 1.2;
+}
+
+h1, .sppb-sp-slider-title { font-weight: 900; }
+
+p,
+li,
+.sppb-addon-text-block,
+.sppb-addon-content,
+.sppb-addon-text { font-family: var(--cc-font-b); color: var(--cc-ink-mute); }
+
+a { color: var(--cc-blue-light); }
+a:hover, a:focus { color: var(--cc-blue); }
+
+:focus-visible {
+  outline: 3px solid var(--cc-blue-light) !important;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* A blue accent on the second word of a heading, matching the new homepage. */
+.sppb-addon-title .cc-accent,
+.sppb-sp-slider-title .cc-accent { color: var(--cc-blue-light); }
+
+/* ---------- 3. header + menu ---------------------------------------------- */
+
+/* backdrop-filter creates a stacking context. Without an explicit z-index the
+   header's context sits in normal flow order, so the page sections below paint
+   over it and the megamenu dropdowns — which live inside the header at
+   z-index 10 — end up behind the content: visible to the DOM, invisible and
+   unclickable to the visitor. The z-index lifts the whole header above the
+   page. Keep these two declarations together. */
+#sp-header {
+  background: rgba(5, 8, 13, .88) !important;
+  border-bottom: 1px solid var(--cc-line);
+  backdrop-filter: saturate(140%) blur(10px);
+  position: relative;
+  z-index: 1000;
+}
+
+/* Belt and braces: keep the dropdown above page content even if the header's
+   stacking context is ever flattened again. */
+.sp-megamenu-parent > li.sp-has-child > .sp-dropdown,
+.sp-megamenu-parent .sp-dropdown { z-index: 1001 !important; }
+
+#sp-header.header-sticky,
+#sp-header.menu-fixed { background: rgba(5, 8, 13, .95) !important; }
+
+.sp-megamenu-parent > li > a,
+.sp-megamenu-parent > li > span {
+  color: var(--cc-ink) !important;
+  font-size: .92rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.sp-megamenu-parent > li:hover > a,
+.sp-megamenu-parent > li.active > a { color: var(--cc-blue-light) !important; }
+
+.sp-megamenu-parent .sp-dropdown .sp-dropdown-inner {
+  background: linear-gradient(170deg, var(--cc-panel-2), var(--cc-panel)) !important;
+  border: 1px solid var(--cc-line);
+  border-radius: 14px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, .55);
+}
+
+.sp-megamenu-parent .sp-dropdown li.sp-menu-item > a { color: var(--cc-ink-mute) !important; }
+.sp-megamenu-parent .sp-dropdown li.sp-menu-item > a:hover { color: var(--cc-blue-light) !important; }
+
+/* Off-canvas / mobile drawer */
+.offcanvas-menu,
+.offcanvas-inner { background: linear-gradient(170deg, var(--cc-panel-2), var(--cc-bg)) !important; }
+.offcanvas-menu .offcanvas-inner .sp-module ul > li > a { color: var(--cc-ink) !important; }
+#offcanvas-toggler > .fa, .burger-icon > span { color: var(--cc-ink); background-color: var(--cc-ink); }
+
+/* ---------- 4. buttons ---------------------------------------------------- */
+
+.sppb-btn,
+.btn,
+.sppb-btn-primary,
+.sp-slider .sppb-btn {
+  font-family: var(--cc-font-b) !important;
+  font-weight: 600;
+  border-radius: 999px !important;
+  padding: .8rem 1.7rem;
+  border: 1px solid transparent;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.sppb-btn-primary,
+.btn-primary,
+.sppb-btn.sppb-btn-primary {
+  background: linear-gradient(160deg, var(--cc-blue-light), var(--cc-blue) 55%, var(--cc-blue-deep)) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 10px 26px rgba(33, 150, 243, .28);
+}
+
+.sppb-btn-secondary,
+.btn-secondary,
+.sppb-btn-default {
+  background: transparent !important;
+  border-color: var(--cc-line-hi) !important;
+  color: var(--cc-ink) !important;
+}
+
+.sppb-btn:hover, .btn:hover { transform: translateY(-2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sppb-btn, .btn { transition: none; }
+  .sppb-btn:hover, .btn:hover { transform: none; }
+}
+
+/* ---------- 5. cards, features, panels ------------------------------------ */
+
+.sppb-addon-feature,
+.sppb-addon-single-image,
+.sppb-addon-image-overlay,
+.sppb-panel,
+.sppb-addon-pricing-table,
+.sppb-addon-testimonial-pro {
+  background: linear-gradient(170deg, var(--cc-panel-2), var(--cc-panel));
+  border: 1px solid var(--cc-line);
+  border-radius: var(--cc-radius);
+}
+
+.sppb-addon-feature .sppb-addon-title,
+.sppb-addon-feature .sppb-addon-text { color: var(--cc-ink); }
+
+.sppb-addon-image-overlay img,
+.sppb-addon-single-image img { border-radius: var(--cc-radius); }
+
+.sppb-divider { border-color: var(--cc-line) !important; }
+
+/* ---------- 6. SP slider -------------------------------------------------- */
+
+.sp-slider .sp-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(5, 8, 13, .78), rgba(5, 8, 13, .48) 55%, rgba(5, 8, 13, .88));
+  pointer-events: none;
+}
+
+.sp-slider .sp-item > * { position: relative; z-index: 1; }
+
+.sppb-sp-slider-title,
+.sp-slider .sp-slider-title { color: var(--cc-ink) !important; text-shadow: 0 2px 24px rgba(0, 0, 0, .6); }
+
+.sp-slider .sp-slider-subtitle,
+.sp-slider .sp-slider-content p { color: var(--cc-silver) !important; }
+
+.sp-slider .dot-controller span,
+.sp-slider .sp-slider-dots span { background: rgba(255, 255, 255, .35) !important; }
+.sp-slider .dot-controller span.active,
+.sp-slider .sp-slider-dots span.active { background: var(--cc-blue-light) !important; }
+
+/* ---------- 7. the existing age-gate module ------------------------------- */
+/* mod_agegate already provides a compliant 21+ gate. This only restyles it so
+   it matches the new design — no wording or behaviour is changed. */
+
+.agegate-backdrop {
+  background: linear-gradient(165deg, var(--cc-bg-2), var(--cc-bg) 60%, #040609) !important;
+  opacity: 1 !important;
+}
+
+.agegate-card {
+  background: linear-gradient(170deg, var(--cc-panel-2), var(--cc-panel)) !important;
+  border: 1px solid rgba(94, 193, 255, .25) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, .55) !important;
+  color: var(--cc-ink) !important;
+}
+
+.agegate-title { font-family: var(--cc-font-d) !important; font-style: italic; color: var(--cc-ink) !important; }
+.agegate-subtitle, .agegate-legal__terms { color: var(--cc-ink-mute) !important; }
+
+.agegate-btn { border-radius: 999px !important; font-family: var(--cc-font-b) !important; font-weight: 600; }
+.agegate-btn--confirm {
+  background: linear-gradient(160deg, var(--cc-blue-light), var(--cc-blue) 55%, var(--cc-blue-deep)) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.agegate-btn--deny {
+  background: transparent !important;
+  border: 1px solid var(--cc-line-hi) !important;
+  color: var(--cc-ink) !important;
+}
+
+/* The statutory warning box must stay bright yellow with black text. */
+.agegate-legal__warning {
+  background: var(--cc-warn) !important;
+  color: #000 !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+}
+
+/* ---------- 8. footer ----------------------------------------------------- */
+
+#sp-footer,
+#sp-bottom {
+  background: rgba(5, 8, 13, .92) !important;
+  border-top: 1px solid var(--cc-line);
+  color: var(--cc-ink-mute);
+}
+
+#sp-footer a, #sp-bottom a { color: var(--cc-blue-light); }
+#sp-footer .sp-module-title, #sp-bottom .sp-module-title {
+  font-family: var(--cc-font-d);
+  font-style: italic;
+  color: var(--cc-ink);
+}
+
+/* ---------- 9. forms + misc ----------------------------------------------- */
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="search"], textarea, select {
+  background: rgba(11, 21, 38, .7) !important;
+  border: 1px solid var(--cc-line) !important;
+  border-radius: 10px !important;
+  color: var(--cc-ink) !important;
+}
+
+::placeholder { color: rgba(157, 178, 199, .7); }
+
+hr { border-color: var(--cc-line); }
+
+::selection { background: var(--cc-blue-deep); color: #fff; }
+
+/* Keep long content from forcing a horizontal scrollbar on small screens. */
+img, iframe, table { max-width: 100%; }
+body { overflow-x: hidden; }
+
+/* ---------- 10. legacy colour cleanup ------------------------------------
+   The page still carries panels and text colours from the old green theme —
+   cream and white section fills, and dark-green contact text. On the new dark
+   ground those fall below WCAG AA, so they are normalised here.
+   Ordered last so it wins over the card styling above on ties.
+   -------------------------------------------------------------------------- */
+
+section.sppb-section { background-color: var(--cc-bg) !important; }
+
+.sppb-section > .sppb-row-container,
+.sppb-row,
+.sppb-col,
+.sppb-column,
+.sppb-column-addons,
+.sppb-addon-wrapper,
+.sppb-addon-content { background-color: transparent !important; }
+
+.sppb-addon-title,
+.sppb-addon-title * { color: var(--cc-ink) !important; }
+
+.sppb-addon-text-block,
+.sppb-addon-text-block *,
+.sppb-addon-text,
+.sppb-addon-content > p,
+.sppb-addon-content > ul li { color: var(--cc-ink-mute) !important; }
+
+.sppb-addon-text-block a,
+.sppb-addon-content a { color: var(--cc-blue-light) !important; }
+
+/* Footer contact details still carry the old green; force them readable. */
+#sp-footer,
+#sp-footer *:not(a),
+#sp-bottom,
+#sp-bottom *:not(a) { color: var(--cc-ink-mute) !important; }
+
+#sp-footer a,
+#sp-bottom a { color: var(--cc-blue-light) !important; }
+
+/* The age-gate module is exempt from all of the above: its statutory warning
+   must stay black-on-yellow, which is itself AA-compliant. */
+.agegate-legal__warning,
+.agegate-legal__warning * { background: var(--cc-warn) !important; color: #000 !important; }
+
+/* ---------- 11. compliance furniture: keep, don't restyle -----------------
+   The site already carries its own OCM elements — a light top bar with the
+   consumer warning, the #FFFF00 warning band module, and the OCM verify
+   button. Recolouring them would make the statutory warnings less
+   conspicuous, so they keep their existing appearance. They only need text
+   colours pinned, because the new dark body colour was being inherited into
+   them and dropping them below AA.
+   -------------------------------------------------------------------------- */
+
+#sp-top-bar { border-bottom: 1px solid rgba(0, 0, 0, .25); }
+#sp-top-bar,
+#sp-top-bar *:not(a) { color: #14202b !important; }
+#sp-top-bar a { color: #0b4e9c !important; text-decoration: underline; }
+
+/* The band module sits inside #sp-top-bar, so it needs the extra id to beat
+   the top-bar text colour above and keep the warning true black on yellow. */
+#ocm-warning-band { background: var(--cc-warn) !important; }
+#sp-top-bar #ocm-warning-band,
+#sp-top-bar #ocm-warning-band *,
+#ocm-warning-band,
+#ocm-warning-band * { color: #000 !important; }
+
+/* The OpenStreetMap addon renders its own tiles and attribution — leave it. */
+.sppb-addon-openstreetmap,
+.sppb-addon-openstreetmap * { color: initial; }
+.leaflet-control-attribution,
+.leaflet-control-attribution * { color: #333 !important; }
+
+/* ---------- 12. slider text panel ----------------------------------------
+   The slide headline sat in a translucent white box left over from the old
+   theme. The new design puts the headline straight on the photo, over the
+   scrim added in section 6.
+   -------------------------------------------------------------------------- */
+
+.sppb-sp-slider-text { background-color: transparent !important; }
+
+.sppb-sp-slider-text,
+.sppb-sp-slider-text *:not(.sppb-btn):not(.btn) { color: var(--cc-ink) !important; }

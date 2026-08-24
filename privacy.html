@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy — Cuse Clouds Cannabis</title>
+<meta name="description" content="Privacy Policy for Cuse Clouds Cannabis (On The Bus Inc.), a New York State licensed adult-use cannabis dispensary in Syracuse, NY.">
+<meta name="robots" content="index, follow">
+<meta name="rating" content="adult">
+<link rel="canonical" href="https://cuseclouds.com/privacy.html">
+<meta name="theme-color" content="#05080d">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05080d;--panel:#0b1526;--panel-2:#0e1a2e;--line:rgba(94,193,255,.16);
+    --ink:#eef4fa;--ink-mute:#9db2c7;--blue:#2196f3;--blue-light:#5ec1ff;--blue-deep:#0b4e9c;
+    --silver:#c9d3dc;--warn-yellow:#FFFF00;
+    --font-d:'Exo 2',system-ui,sans-serif;--font-b:'Inter',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:
+      radial-gradient(55% 38% at 50% 0%, rgba(33,150,243,.10), transparent 70%),
+      linear-gradient(160deg,#060a11 0%, var(--bg) 55%, #040609 100%);
+    background-color:var(--bg);color:var(--ink);font-family:var(--font-b);line-height:1.75;overflow-x:hidden;
+  }
+  a{color:var(--blue-light)}
+  :focus-visible{outline:3px solid var(--blue-light);outline-offset:3px;border-radius:4px}
+  .warning-band{background:var(--warn-yellow);color:#000;border-bottom:3px solid #000;padding:.9rem clamp(1rem,4vw,2.2rem);text-align:center}
+  .warning-band p{font-weight:700;font-size:.95rem;line-height:1.55}
+  header.site{
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:.85rem clamp(1rem,4vw,2.2rem);border-bottom:1px solid var(--line);
+  }
+  .brand{font-family:var(--font-d);font-style:italic;font-weight:800;font-size:1.1rem;color:var(--ink);text-decoration:none}
+  .brand .blue{color:var(--blue-light)}
+  .lic-chip{font-size:.78rem;color:var(--ink-mute);letter-spacing:.05em;text-align:right}
+  main{width:min(820px,92vw);margin:0 auto;padding:3rem 0 4rem}
+  h1{font-family:var(--font-d);font-style:italic;font-weight:900;font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:.4rem}
+  .meta{color:var(--ink-mute);font-size:.92rem;margin-bottom:2rem}
+  h2{font-family:var(--font-d);font-style:italic;font-weight:800;font-size:1.2rem;color:var(--blue-light);margin:1.9rem 0 .5rem}
+  p{color:var(--ink-mute);margin:.6rem 0}
+  p strong{color:var(--silver)}
+  ul{margin:.6rem 0 .6rem 1.4rem;color:var(--ink-mute)}
+  li{margin:.35rem 0}
+  footer.site{border-top:1px solid var(--line);padding:2rem clamp(1rem,4vw,2.2rem);text-align:center}
+  footer p{color:var(--ink-mute);font-size:.85rem;max-width:56rem;margin:.4rem auto 0}
+  #age-gate{
+    position:fixed;inset:0;z-index:100;
+    background:linear-gradient(165deg,#060a11,#05080d 60%,#040609);
+    display:flex;align-items:center;justify-content:center;padding:1.2rem;overflow-y:auto;
+  }
+  body.gate-closed #age-gate{display:none}
+  body.gate-open{overflow:hidden}
+  .gate-card{
+    width:min(520px,94vw);text-align:center;background:linear-gradient(170deg,var(--panel-2),var(--panel));
+    border:1px solid rgba(94,193,255,.25);border-radius:22px;padding:clamp(1.4rem,4vw,2.2rem);margin:auto;
+  }
+  .gate-card h2{font-size:1.3rem;margin:0 0 .4rem;color:var(--ink)}
+  .gate-card .g-sub{color:var(--ink-mute);font-size:.95rem}
+  .gate-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+  .btn{
+    display:inline-flex;align-items:center;padding:.8rem 1.7rem;border-radius:999px;
+    font-weight:600;font-size:.95rem;border:1px solid transparent;cursor:pointer;background:none;color:var(--ink);font-family:var(--font-b);
+  }
+  .btn-blue{background:linear-gradient(160deg,var(--blue-light),var(--blue) 55%,var(--blue-deep));color:#fff}
+  .btn-line{border-color:rgba(94,193,255,.4)}
+  .gate-warn{background:var(--warn-yellow);color:#000;border-radius:12px;padding:.75rem .9rem;margin-top:1.2rem;font-size:.8rem;font-weight:600;line-height:1.55}
+</style>
+</head>
+<body class="gate-open">
+
+<div id="age-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate-card">
+    <h2 id="gate-title">Are you 21 years of age or older?</h2>
+    <p class="g-sub">You must be at least 21 years old to enter this website.</p>
+    <div class="gate-btns">
+      <button class="btn btn-blue" id="gate-yes" type="button">Yes, I am 21 or older</button>
+      <button class="btn btn-line" id="gate-no" type="button">No, I am under 21</button>
+    </div>
+    <p class="gate-warn">For use only by persons 21 years of age and older. Keep out of reach of children and pets. If someone accidentally consumes cannabis, contact the Poison Center. Consume responsibly.</p>
+  </div>
+</div>
+
+<div class="warning-band" role="region" aria-label="Cannabis consumer warning">
+  <p>For use only by persons 21 years of age and older. Keep out of reach of children and pets. If someone accidentally consumes cannabis, contact the Poison Center. Consume responsibly.</p>
+</div>
+
+<header class="site">
+  <a class="brand" href="index.html">CUSE <span class="blue">CLOUDS</span> CANNABIS</a>
+  <p class="lic-chip">License # OCM-RETL-26-000487</p>
+</header>
+
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Effective date: August 17, 2026</p>
+
+  <p>This Privacy Policy explains how Cuse Clouds Cannabis, operated by On The Bus Inc. ("we", "us", "our"), collects, uses, and protects information when you visit cuseclouds.com or our New York State licensed dispensary at 900 E Fayette St, Syracuse, NY 13210.</p>
+
+  <h2>Information we collect</h2>
+  <ul>
+    <li><strong>Age verification:</strong> we confirm you are 21 or older before granting access to the site; we do not retain a copy of any ID.</li>
+    <li><strong>Information you provide:</strong> your name, contact details, and order information when you contact us or place an order.</li>
+    <li><strong>Automatically collected:</strong> basic technical and usage data (such as IP address, browser type, and pages viewed) needed to operate and secure the site.</li>
+  </ul>
+
+  <h2>How we use it</h2>
+  <p>To verify eligibility, fulfill and support orders, respond to inquiries, meet our record-keeping obligations under New York State Office of Cannabis Management (OCM) rules, and keep the site secure. We do not use your cannabis purchase data to advertise to you off-site.</p>
+
+  <h2>We do not sell your personal information</h2>
+  <p>We do not sell or rent your personal information. Consistent with New York cannabis regulations (9 NYCRR § 123.10(d)(5)), we limit our collection and use of consumer data to what is reasonably necessary.</p>
+
+  <h2>How we protect it &amp; data breaches</h2>
+  <p>We maintain reasonable administrative, technical, and physical safeguards to protect personal information, consistent with the New York SHIELD Act (General Business Law § 899-bb). If a breach of private information occurs, we will notify affected individuals as required by GBL § 899-aa.</p>
+
+  <h2>Sharing</h2>
+  <p>We share information only with service providers who help us operate the business (for example payment, delivery, and IT providers) under confidentiality obligations, or where required by law or by the OCM.</p>
+
+  <h2>Your choices</h2>
+  <p>You may request access to or correction of the personal information we hold about you, or ask questions about this policy, by contacting us at <a href="mailto:cs@cuseclouds.com">cs@cuseclouds.com</a> or <a href="tel:+13152144017">(315) 214-4017</a>.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>We may update this policy from time to time; the effective date above reflects the latest revision.</p>
+  <p><em>This policy is provided for general information and should be reviewed by legal counsel before reliance.</em></p>
+
+  <p style="margin-top:2rem"><a href="index.html">← Back to home</a></p>
+</main>
+
+<footer class="site">
+  <p>On The Bus Inc. d/b/a Cuse Clouds · Licensed Adult-Use Cannabis Retail Dispensary · License # OCM-RETL-26-000487</p>
+  <p>900 E Fayette St, Syracuse, NY 13210 · (315) 214-4017 · <a href="mailto:cs@cuseclouds.com">cs@cuseclouds.com</a></p>
+  <p>© <span id="year">2026</span> Cuse Clouds Cannabis. All Rights Reserved. This website is intended only for persons 21 years of age or older.</p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var yes=document.getElementById('gate-yes'),no=document.getElementById('gate-no'),body=document.body;
+  var ok=false; try{ ok=sessionStorage.getItem('cc_age_verified')==='yes'; }catch(e){}
+  function close(){ body.classList.remove('gate-open'); body.classList.add('gate-closed'); }
+  if(ok){ close(); } else { yes.focus(); }
+  yes.addEventListener('click',function(){ try{ sessionStorage.setItem('cc_age_verified','yes'); }catch(e){} close(); });
+  no.addEventListener('click',function(){ window.location.replace('https://www.google.com'); });
+  var y=document.getElementById('year'); if(y) y.textContent=String(new Date().getFullYear());
+})();
+</script>
+</body>
+</html>
