@@ -51,6 +51,11 @@ Search `index.html` for `TODO` and resolve:
    license number.
 4. Confirm hours still hold (Mon–Fri 8–6 per the agency's own legacy site and
    Waze).
+5. Verify the Nextdoor "Neighborhood Favorite" badge is current before keeping
+   that chip, and confirm the ATIC broker listing with the client.
+
+The full sourced research dossier (180 facts, incl. an owner-interview
+checklist of unknowns) is in [`RESEARCH.md`](RESEARCH.md).
 
 ## Assets
 
