@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -42,7 +42,6 @@
     "opens": "08:00", "closes": "18:00"
   }],
   "areaServed": ["Bay Ridge", "Dyker Heights", "Sunset Park", "Brooklyn", "New York City"],
-  "knowsLanguage": ["en", "ar"],
   "sameAs": [
     "https://blackridgeinsdotcom.wordpress.com/",
     "https://nextdoor.com/pages/black-ridge-brokerage-brooklyn-ny/",
@@ -52,27 +51,23 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- ============================================================
   BLACKRIDGE BROKERAGE, INC.  (legal: Blackridge Insurance Brokerage Inc.)
-  9128 4th Avenue, Brooklyn, NY 11209 · (718) 836-0500 · fax (718) 836-2020
-  BlackridgeIns@outlook.com · NY DOS ID 4505581, filed 2013-12-26
+  9128 4th Avenue, Brooklyn, NY 11209 - (718) 836-0500 - fax (718) 836-2020
+  BlackridgeIns@outlook.com - NY DOS ID 4505581, filed 2013-12-26
 
-  Single-file static site for GitHub Pages. Fully bilingual EN/AR:
-  every copy element carries a <span lang="en"> and <span lang="ar">
-  twin; the toggle flips <html lang/dir> and CSS hides the other
-  language. Layout uses logical properties so RTL mirrors for free.
+  Single-file static site for GitHub Pages, English only.
 
-  BEFORE GOING LIVE — search "TODO" in this file:
-    · real domain (canonical + og:url + absolute og:image)
-    · confirm office hours (directories conflict: 9–5 vs 8–6)
-    · confirm BlackridgeIns@outlook.com is monitored (quote form mails there)
+  BEFORE GOING LIVE - search "TODO" in this file:
+    - real domain (canonical + og:url + absolute og:image)
+    - confirm BlackridgeIns@outlook.com is monitored (quote form mails there)
 
   Accuracy guardrails baked into the copy (see PLAN.md):
-    · no PIP dollar figure (Local Law 90 of 2025 changed the floor)
-    · American Transit referenced only as "listed broker / one of the
-      specialist markets we work with" — no carrier-financial claims
+    - PIP stated as "currently $100,000" (TLC rule effective 2026-03-01)
+    - American Transit referenced only as "listed broker / one of the
+      specialist markets we work with" - no carrier-financial claims
 ============================================================ -->
 
 <style>
@@ -88,7 +83,6 @@
     --ease:cubic-bezier(.32,.72,0,1);
     --r-lg:2rem; --r-md:1.25rem;
   }
-  html[lang="ar"]{
     --font-display:"IBM Plex Sans Arabic",system-ui,sans-serif;
     --font-body:"IBM Plex Sans Arabic",system-ui,sans-serif;
   }
@@ -100,14 +94,8 @@
     line-height:1.6; font-size:16.5px;
     -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
-  /* language gating (.keep-lang opts out — e.g. the toggle's own labels) */
-  html[lang="en"] body [lang="ar"]:not(.keep-lang){display:none !important}
-  html[lang="ar"] body [lang="en"]:not(.keep-lang){display:none !important}
-  html[lang="ar"] body{letter-spacing:0 !important}
 
   ::selection{background:var(--gold);color:var(--ink)}
-  /* keep phone numbers, emails and street addresses LTR inside RTL text */
-  a[href^="tel:"],a[href^="mailto:"],.ltr-iso{direction:ltr;unicode-bidi:isolate}
   a{color:inherit}
   img,svg{max-width:100%;display:block}
   .wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2.5rem)}
@@ -125,15 +113,12 @@
   .strip a:hover{color:var(--gold-soft)}
   .strip .dot{opacity:.35}
   .strip .grow{flex:1}
-  .lang-toggle{
     display:inline-flex;align-items:center;gap:.15rem;background:rgba(239,236,228,.08);
     border:1px solid var(--line-inv);border-radius:99px;padding:.14rem;
   }
-  .lang-toggle button{
     font:inherit;font-weight:600;color:var(--muted-inv);background:none;border:0;cursor:pointer;
     padding:.18rem .7rem;border-radius:99px;transition:all .45s var(--ease);
   }
-  .lang-toggle button[aria-pressed="true"]{background:var(--gold);color:var(--ink)}
 
   /* ---------- floating nav ---------- */
   .navbar{position:sticky;top:0;z-index:40;pointer-events:none}
@@ -149,7 +134,6 @@
   .brand svg{width:2.15rem;height:2.15rem;flex:none}
   .brand b{font-family:var(--font-display);font-weight:600;font-size:1.02rem;letter-spacing:.02em;color:var(--ink);line-height:1.05;display:block}
   .brand small{display:block;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep);font-weight:700}
-  html[lang="ar"] .brand small{letter-spacing:.05em}
   .nav-links{display:flex;align-items:center;gap:.1rem;list-style:none}
   .nav-links a{
     text-decoration:none;font-size:.86rem;font-weight:600;color:var(--muted);
@@ -170,20 +154,15 @@
     transition:transform .5s var(--ease);
   }
   .btn:hover .ico{transform:translateX(.18rem) translateY(-1px) scale(1.06)}
-  html[dir="rtl"] .btn:hover .ico{transform:translateX(-.18rem) translateY(-1px) scale(1.06)}
-  html[dir="rtl"] .btn .ico svg{transform:scaleX(-1)}
   .btn-ink{background:var(--ink);color:var(--text-inv);padding:.72rem .8rem .72rem 1.35rem}
-  html[dir="rtl"] .btn-ink{padding:.72rem 1.35rem .72rem .8rem}
   .btn-ink .ico{background:rgba(239,236,228,.14);color:var(--gold-soft)}
   .btn-ink:hover{box-shadow:0 16px 34px -14px rgba(12,15,20,.55)}
   .btn-gold{background:var(--gold);color:var(--ink);padding:.72rem .8rem .72rem 1.35rem}
-  html[dir="rtl"] .btn-gold{padding:.72rem 1.35rem .72rem .8rem}
   .btn-gold .ico{background:rgba(12,15,20,.14);color:var(--ink)}
   .btn-gold:hover{box-shadow:0 16px 40px -14px rgba(201,150,54,.55)}
   .btn-ghost{background:none;color:var(--ink);padding:.72rem 1.1rem;border:1px solid var(--line)}
   .btn-ghost:hover{background:rgba(12,15,20,.05)}
   .btn-sm{font-size:.85rem;padding:.5rem .6rem .5rem 1rem}
-  html[dir="rtl"] .btn-sm{padding:.5rem 1rem .5rem .6rem}
   .btn-sm .ico{width:1.6rem;height:1.6rem}
 
   /* hamburger */
@@ -227,12 +206,10 @@
     display:inline-flex;align-items:center;gap:.5rem;border-radius:99px;padding:.32rem .85rem;
     font-size:.66rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
   }
-  html[lang="ar"] .eyebrow{letter-spacing:.04em;font-size:.78rem}
   .eyebrow::before{content:"";width:.45rem;height:.45rem;border-radius:99px;background:var(--gold)}
   .eyebrow.on-paper{background:rgba(12,15,20,.055);color:var(--ink)}
   .eyebrow.on-ink{background:rgba(239,236,228,.08);color:var(--gold-soft);border:1px solid var(--line-inv)}
   h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter-spacing:-.015em}
-  html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3{letter-spacing:0;line-height:1.35;font-weight:700}
   h1{font-size:clamp(2.5rem,6vw,4.3rem)}
   h2{font-size:clamp(1.9rem,4.2vw,3rem)}
   .lede{color:var(--muted);font-size:clamp(1.02rem,1.6vw,1.18rem);max-width:56ch}
@@ -290,10 +267,8 @@
   .band-track{display:flex;gap:3.2rem;width:max-content;animation:slide 36s linear infinite}
   .band:hover .band-track{animation-play-state:paused}
   .band-track span{font-size:.8rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;display:flex;align-items:center;gap:3.2rem}
-  html[lang="ar"] .band-track span{letter-spacing:.06em;font-size:.9rem}
   .band-track span::after{content:"✦";color:var(--gold);letter-spacing:0}
   @keyframes slide{to{transform:translateX(-50%)}}
-  html[dir="rtl"] .band-track{animation-name:slide-r}
   @keyframes slide-r{to{transform:translateX(50%)}}
   @media (prefers-reduced-motion:reduce){
     .band-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}
@@ -329,7 +304,6 @@
   .card-c h3{color:var(--text-inv)}
   .tagpill{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);
     border:1px solid rgba(138,103,31,.35);border-radius:99px;padding:.22rem .7rem;justify-self:start}
-  html[lang="ar"] .tagpill{letter-spacing:.03em;font-size:.75rem}
 
   /* ---------- TLC deep dive (ink) ---------- */
   .ink{background:var(--ink);color:var(--text-inv)}
@@ -386,7 +360,6 @@
   .c-row:last-child{border-bottom:0}
   .c-row .ic{flex:none;width:2.4rem;height:2.4rem;border-radius:.8rem;background:rgba(201,150,54,.14);color:var(--gold-soft);display:grid;place-items:center}
   .c-row b{display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-inv);font-weight:700;margin-bottom:.1rem}
-  html[lang="ar"] .c-row b{letter-spacing:.03em;font-size:.8rem}
   .c-row a{color:var(--text-inv);text-decoration:none;font-weight:600}
   .c-row a:hover{color:var(--gold-soft)}
   .c-row .big{font-size:1.5rem;font-family:var(--font-display);font-weight:600}
@@ -404,7 +377,6 @@
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
   select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23C99636' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat:no-repeat;background-position:right .9rem center}
-  html[dir="rtl"] select{background-position:left .9rem center}
   textarea{min-height:6.5rem;resize:vertical}
   .form-note{font-size:.8rem;color:var(--muted-inv)}
   .form-note a{color:var(--gold-soft)}
@@ -444,7 +416,7 @@
 <body>
 <script>document.documentElement.classList.add('js');</script>
 
-<a class="skip" href="#main"><span lang="en">Skip to content</span><span lang="ar">تجاوز إلى المحتوى</span></a>
+<a class="skip" href="#main"><span>Skip to content</span></a>
 
 <!-- ======================= top strip ======================= -->
 <div class="strip">
@@ -452,19 +424,13 @@
     <a href="tel:+17188360500" aria-label="Call Blackridge Brokerage">☎ (718) 836-0500</a>
     <span class="dot hide-s">•</span>
     <span class="hide-s">
-      <span lang="en">9128 4th Ave, Bay Ridge, Brooklyn</span>
-      <span lang="ar">‏9128 4th Ave، باي ريدج، بروكلين</span>
-    </span>
+      <span>9128 4th Ave, Bay Ridge, Brooklyn</span>
+      </span>
     <span class="dot hide-s">•</span>
     <span class="hide-s">
-      <span lang="en">Mon–Fri 8–6</span>
-      <span lang="ar">الاثنين–الجمعة 8–6</span>
-    </span>
+      <span>Mon–Fri 8–6</span>
+      </span>
     <span class="grow"></span>
-    <div class="lang-toggle" role="group" aria-label="Language / اللغة">
-      <button type="button" id="lang-en" lang="en" class="keep-lang" aria-pressed="true">English</button>
-      <button type="button" id="lang-ar" lang="ar" class="keep-lang" aria-pressed="false">العربية</button>
-    </div>
   </div>
 </div>
 
@@ -476,19 +442,18 @@
         <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="#0B0E14"/><circle cx="32" cy="32" r="28.5" fill="none" stroke="#C99636" stroke-width="1.1" opacity=".9"/><path d="M13 41 L22.5 28.5 L28.5 34.5 L37 22 L44 31 L51 41 Z" fill="#232A38"/><path d="M12 41 L23 27 L29 33 L38.5 20 L52 41" fill="none" stroke="#C99636" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="38.5" cy="20" r="1.6" fill="#F6F3EC"/><line x1="16" y1="47.5" x2="48" y2="47.5" stroke="#C99636" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="6 4"/></svg>
         <span>
           <b>Blackridge</b>
-          <small><span lang="en">Brokerage&nbsp;Inc.</span><span lang="ar">للوساطة التأمينية</span></small>
+          <small><span>Brokerage&nbsp;Inc.</span></small>
         </span>
       </a>
       <ul class="nav-links">
-        <li><a href="#coverage"><span lang="en">Coverage</span><span lang="ar">التغطيات</span></a></li>
-        <li><a href="#tlc"><span lang="en">TLC &amp; Black Car</span><span lang="ar">تأمين TLC</span></a></li>
-        <li><a href="#why"><span lang="en">Why Us</span><span lang="ar">لماذا نحن</span></a></li>
-        <li><a href="#faq"><span lang="en">FAQ</span><span lang="ar">الأسئلة</span></a></li>
-        <li><a href="#contact"><span lang="en">Contact</span><span lang="ar">اتصل بنا</span></a></li>
+        <li><a href="#coverage"><span>Coverage</span></a></li>
+        <li><a href="#tlc"><span>TLC &amp; Black Car</span></a></li>
+        <li><a href="#why"><span>Why Us</span></a></li>
+        <li><a href="#faq"><span>FAQ</span></a></li>
+        <li><a href="#contact"><span>Contact</span></a></li>
       </ul>
       <a class="btn btn-gold btn-sm nav-cta" href="#quote">
-        <span lang="en">Get a Quote</span><span lang="ar">اطلب عرض سعر</span>
-        <span class="ico" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>Get a Quote</span><span class="ico" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="overlay-menu">
         <span></span><span></span>
@@ -499,11 +464,11 @@
 
 <!-- mobile overlay -->
 <div class="overlay" id="overlay-menu" aria-hidden="true">
-  <a href="#coverage"><span lang="en">Coverage</span><span lang="ar">التغطيات</span></a>
-  <a href="#tlc"><span lang="en">TLC &amp; Black Car</span><span lang="ar">تأمين TLC والسيارات السوداء</span></a>
-  <a href="#why"><span lang="en">Why Blackridge</span><span lang="ar">لماذا بلاكريدج</span></a>
-  <a href="#faq"><span lang="en">FAQ</span><span lang="ar">الأسئلة الشائعة</span></a>
-  <a href="#quote"><span lang="en">Get a Quote</span><span lang="ar">اطلب عرض سعر</span></a>
+  <a href="#coverage"><span>Coverage</span></a>
+  <a href="#tlc"><span>TLC &amp; Black Car</span></a>
+  <a href="#why"><span>Why Blackridge</span></a>
+  <a href="#faq"><span>FAQ</span></a>
+  <a href="#quote"><span>Get a Quote</span></a>
   <a class="o-call" href="tel:+17188360500">☎ (718) 836-0500</a>
 </div>
 
@@ -514,31 +479,26 @@
   <div class="wrap">
     <div class="hero-copy">
       <span class="eyebrow on-paper reveal">
-        <span lang="en">Independent brokerage · Bay Ridge, Brooklyn · Since 2013</span>
-        <span lang="ar">وساطة تأمين مستقلة · باي ريدج، بروكلين · منذ 2013</span>
-      </span>
+        <span>Independent brokerage · Bay Ridge, Brooklyn · Since 2013</span>
+        </span>
       <h1 class="reveal" data-d="1">
-        <span lang="en">Insurance for the people who keep New York <em>moving.</em></span>
-        <span lang="ar">تأمينٌ لمن يُبقون نيويورك في <em>حركة.</em></span>
-      </h1>
+        <span>Insurance for the people who keep New York <em>moving.</em></span>
+        </h1>
       <p class="lede reveal" data-d="2">
-        <span lang="en">From TLC plates to the family car and the home it parks in front of — Blackridge Brokerage shops New York’s specialist markets so you get the right coverage at the right price, from a broker who knows your name.</span>
-        <span lang="ar">من لوحات TLC إلى سيارة العائلة والبيت الذي تقف أمامه — تبحث بلاكريدج للوساطة التأمينية في أسواق نيويورك المتخصصة لتحصل على التغطية الصحيحة بالسعر المناسب، من وسيطٍ يعرفك بالاسم.</span>
-      </p>
+        <span>From TLC plates to the family car and the home it parks in front of — Blackridge Brokerage shops New York’s specialist markets so you get the right coverage at the right price, from a broker who knows your name.</span>
+        </p>
       <div class="hero-ctas reveal" data-d="3">
         <a class="btn btn-ink" href="tel:+17188360500">
-          <span lang="en">Call (718) 836-0500</span><span lang="ar">اتصل الآن ‎(718) 836-0500‎</span>
-          <span class="ico" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M3 1.8h2.2l1 3-1.6 1.2a9 9 0 0 0 3.4 3.4L9.2 7.8l3 1V11a1.2 1.2 0 0 1-1.3 1.2A10.7 10.7 0 0 1 1.8 3.1 1.2 1.2 0 0 1 3 1.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+          <span>Call (718) 836-0500</span><span class="ico" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M3 1.8h2.2l1 3-1.6 1.2a9 9 0 0 0 3.4 3.4L9.2 7.8l3 1V11a1.2 1.2 0 0 1-1.3 1.2A10.7 10.7 0 0 1 1.8 3.1 1.2 1.2 0 0 1 3 1.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
         </a>
         <a class="btn btn-ghost" href="#quote">
-          <span lang="en">Get a free quote</span><span lang="ar">اطلب عرض سعر مجاني</span>
-        </a>
+          <span>Get a free quote</span></a>
       </div>
       <ul class="chips reveal" data-d="4">
-        <li><span lang="en">Licensed NY brokerage</span><span lang="ar">وساطة مرخّصة في نيويورك</span></li>
-        <li><span lang="en">Full DMV &amp; TLC services</span><span lang="ar">خدمات DMV وTLC كاملة</span></li>
-        <li><span lang="en">Nextdoor Neighborhood Favorite</span><span lang="ar">「المفضّلة لدى الجيران」 على Nextdoor</span></li>
-        <li><span lang="en">On 4th Avenue since 2013</span><span lang="ar">في الجادة الرابعة منذ 2013</span></li>
+        <li><span>Licensed NY brokerage</span></li>
+        <li><span>Full DMV &amp; TLC services</span></li>
+        <li><span>Nextdoor Neighborhood Favorite</span></li>
+        <li><span>On 4th Avenue since 2013</span></li>
       </ul>
     </div>
 
@@ -551,16 +511,16 @@
           <line x1="24" y1="115" x2="396" y2="115" stroke="#C99636" stroke-width="1.6" stroke-dasharray="8 6" stroke-linecap="round" opacity=".8"/>
         </svg>
         <div class="hero-facts">
-          <div class="fact"><b>2013</b><span lang="en">serving Brooklyn since</span><span lang="ar">نخدم بروكلين منذ</span></div>
-          <div class="fact"><b>3+</b><span lang="en">core lines: TLC · auto · home</span><span lang="ar">تغطيات أساسية: TLC · سيارات · منازل</span></div>
-          <div class="fact"><b>FH-1</b><span lang="en">certificates handled for you</span><span lang="ar">شهادات نصدرها ونقدّمها عنك</span></div>
-          <div class="fact"><b>11209</b><span lang="en">your neighborhood, our block</span><span lang="ar">حيّك هو عنواننا</span></div>
+          <div class="fact"><b>2013</b><span>serving Brooklyn since</span></div>
+          <div class="fact"><b>3+</b><span>core lines: TLC · auto · home</span></div>
+          <div class="fact"><b>FH-1</b><span>certificates handled for you</span></div>
+          <div class="fact"><b>11209</b><span>your neighborhood, our block</span></div>
         </div>
         <div class="card-call">
           <span class="pulse-dot" aria-hidden="true"></span>
           <div>
             <a href="tel:+17188360500">(718) 836-0500</a>
-            <small><span lang="en">One call. A person answers.</span><span lang="ar">مكالمة واحدة… ويردّ عليك إنسان.</span></small>
+            <small><span>One call. A person answers.</span></small>
           </div>
         </div>
       </div>
@@ -571,40 +531,36 @@
 <!-- ======================= marquee ======================= -->
 <div class="band" aria-hidden="true">
   <div class="band-track">
-    <span lang="en">TLC / Black Car</span><span lang="en">Livery &amp; Car Service</span><span lang="en">Personal Auto</span><span lang="en">Homeowners</span><span lang="en">FH-1 Certificates</span><span lang="en">New TC Plates</span><span lang="en">Renewals</span>
-    <span lang="en" class="dup">TLC / Black Car</span><span lang="en" class="dup">Livery &amp; Car Service</span><span lang="en" class="dup">Personal Auto</span><span lang="en" class="dup">Homeowners</span><span lang="en" class="dup">FH-1 Certificates</span><span lang="en" class="dup">New TC Plates</span><span lang="en" class="dup">Renewals</span>
-    <span lang="ar">تأمين TLC والسيارات السوداء</span><span lang="ar">الليموزين وسيارات الخدمة</span><span lang="ar">تأمين السيارات الشخصية</span><span lang="ar">تأمين المنازل</span><span lang="ar">شهادات FH-1</span><span lang="ar">لوحات TC جديدة</span><span lang="ar">التجديدات</span>
-    <span lang="ar" class="dup">تأمين TLC والسيارات السوداء</span><span lang="ar" class="dup">الليموزين وسيارات الخدمة</span><span lang="ar" class="dup">تأمين السيارات الشخصية</span><span lang="ar" class="dup">تأمين المنازل</span><span lang="ar" class="dup">شهادات FH-1</span><span lang="ar" class="dup">لوحات TC جديدة</span><span lang="ar" class="dup">التجديدات</span>
-  </div>
+    <span>TLC / Black Car</span><span>Livery &amp; Car Service</span><span>Personal Auto</span><span>Homeowners</span><span>FH-1 Certificates</span><span>New TC Plates</span><span>Renewals</span>
+    <span class="dup">TLC / Black Car</span><span class="dup">Livery &amp; Car Service</span><span class="dup">Personal Auto</span><span class="dup">Homeowners</span><span class="dup">FH-1 Certificates</span><span class="dup">New TC Plates</span><span class="dup">Renewals</span>
+    </div>
 </div>
 
 <!-- ======================= coverage ======================= -->
 <section id="coverage">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow on-paper reveal"><span lang="en">Coverage</span><span lang="ar">التغطيات</span></span>
-      <h2 class="reveal" data-d="1"><span lang="en">Coverage we place every day.</span><span lang="ar">تغطيات نضعها لعملائنا كل يوم.</span></h2>
+      <span class="eyebrow on-paper reveal"><span>Coverage</span></span>
+      <h2 class="reveal" data-d="1"><span>Coverage we place every day.</span></h2>
       <p class="lede reveal" data-d="2">
-        <span lang="en">We’re an independent brokerage — we work for you, not for one insurance company. Tell us what you drive and what you own; we do the shopping.</span>
-        <span lang="ar">نحن وساطة مستقلة — نعمل لمصلحتك أنت، لا لمصلحة شركة تأمين واحدة. أخبرنا ماذا تقود وماذا تملك، ونحن نتولّى البحث والمقارنة.</span>
-      </p>
+        <span>We’re an independent brokerage — we work for you, not for one insurance company. Tell us what you drive and what you own; we do the shopping.</span>
+        </p>
     </div>
 
     <div class="bento">
       <div class="card card-flag reveal">
         <div class="core">
-          <span class="tagpill"><span lang="en">Our specialty</span><span lang="ar">تخصصنا</span></span>
+          <span class="tagpill"><span>Our specialty</span></span>
           <div class="glyph" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 13.5 5 8.6A2 2 0 0 1 6.9 7.3h10.2A2 2 0 0 1 19 8.6l2 4.9M4.5 13.5h15a1.5 1.5 0 0 1 1.5 1.5v3h-2.2a2 2 0 0 1-3.9.4H9.1a2 2 0 0 1-3.9-.4H3v-3a1.5 1.5 0 0 1 1.5-1.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
-          <h3><span lang="en">TLC / Black Car &amp; Livery</span><span lang="ar">تأمين TLC — السيارات السوداء والليموزين</span></h3>
+          <h3><span>TLC / Black Car &amp; Livery</span></h3>
           <p>
-            <span lang="en">Commercial auto coverage for TLC-licensed vehicles — black cars, car service &amp; livery, boro (green) taxis and luxury limousines. New plates or renewals, we quote the specialist for-hire markets and handle the paperwork end to end.</span>
-            <span lang="ar">تأمين تجاري للمركبات المرخّصة من لجنة TLC — السيارات السوداء، سيارات الخدمة (Livery)، تاكسي البورو الأخضر، والليموزين. لوحات جديدة أو تجديد، نأخذ لك الأسعار من الأسواق المتخصصة وننجز الأوراق من أولها إلى آخرها.</span>
-          </p>
+            <span>Commercial auto coverage for TLC-licensed vehicles — black cars, car service &amp; livery, boro (green) taxis and luxury limousines. New plates or renewals, we quote the specialist for-hire markets and handle the paperwork end to end.</span>
+            </p>
           <ul>
-            <li><span lang="en">Binder &amp; FH-1 certificate issued and filed</span><span lang="ar">إصدار البوليصة المؤقتة وشهادة FH-1 وتقديمها</span></li>
-            <li><span lang="en">New TC (“diamond”) plate paperwork &amp; renewals</span><span lang="ar">أوراق لوحات TC الجديدة والتجديدات</span></li>
-            <li><span lang="en">Base changes, vehicle swaps, added drivers</span><span lang="ar">تغيير البيس، استبدال المركبة، إضافة سائقين</span></li>
-            <li><span lang="en">We work with New York’s for-hire specialists — we’re a listed American Transit broker, and we place with other TLC markets too</span><span lang="ar">نتعامل مع شركات نيويورك المتخصصة — نحن وسيط مُدرج لدى American Transit، ونضع التأمين لدى أسواق TLC أخرى أيضًا</span></li>
+            <li><span>Binder &amp; FH-1 certificate issued and filed</span></li>
+            <li><span>New TC (“diamond”) plate paperwork &amp; renewals</span></li>
+            <li><span>Base changes, vehicle swaps, added drivers</span></li>
+            <li><span>We work with New York’s for-hire specialists — we’re a listed American Transit broker, and we place with other TLC markets too</span></li>
           </ul>
         </div>
       </div>
@@ -612,35 +568,31 @@
       <div class="card card-a reveal" data-d="1">
         <div class="core">
           <div class="glyph" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3.5 4.5 6.8v5.1c0 4.6 3.2 7.5 7.5 8.6 4.3-1.1 7.5-4 7.5-8.6V6.8L12 3.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="m8.8 11.8 2.2 2.2 4.2-4.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <h3><span lang="en">Personal Auto</span><span lang="ar">تأمين السيارات الشخصية</span></h3>
+          <h3><span>Personal Auto</span></h3>
           <p>
-            <span lang="en">New York private-passenger coverage — liability, comprehensive and collision. New license? Points on the record? A teen driver? We shop it instead of letting one carrier decide.</span>
-            <span lang="ar">تأمين السيارات الخاصة في نيويورك — مسؤولية، شامل وحوادث. رخصة جديدة؟ نقاط مخالفات؟ سائق مراهق في البيت؟ نقارن الأسعار بدلاً من أن تقرر شركة واحدة عنك.</span>
-          </p>
+            <span>New York private-passenger coverage — liability, comprehensive and collision. New license? Points on the record? A teen driver? We shop it instead of letting one carrier decide.</span>
+            </p>
         </div>
       </div>
 
       <div class="card card-b reveal">
         <div class="core">
           <div class="glyph" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 11.5 12 4l8 7.5M6 10v9h12v-9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 19v-5h4v5" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
-          <h3><span lang="en">Homeowners &amp; Renters</span><span lang="ar">تأمين المنازل والمستأجرين</span></h3>
+          <h3><span>Homeowners &amp; Renters</span></h3>
           <p>
-            <span lang="en">Brooklyn homes, condos, co-ops and rentals — protection for the place your family comes home to, placed with carriers that actually write in New York City.</span>
-            <span lang="ar">منازل بروكلين والشقق التمليك والتعاونية والإيجارات — حماية للمكان الذي تعود إليه عائلتك، لدى شركات تكتب فعلاً وثائق في مدينة نيويورك.</span>
-          </p>
+            <span>Brooklyn homes, condos, co-ops and rentals — protection for the place your family comes home to, placed with carriers that actually write in New York City.</span>
+            </p>
         </div>
       </div>
 
       <div class="card card-c reveal" data-d="1">
         <div class="core">
-          <h3><span lang="en">Something else?</span><span lang="ar">تحتاج شيئًا آخر؟</span></h3>
+          <h3><span>Something else?</span></h3>
           <p>
-            <span lang="en">Landlord policies, small business coverage, umbrella liability — as brokers we can usually find a market. Ask. If we can’t place it, we’ll tell you straight and point you to someone who can.</span>
-            <span lang="ar">وثائق الملّاك، تأمين الأعمال الصغيرة، مظلة المسؤولية الإضافية — كوسطاء نستطيع غالبًا إيجاد سوق مناسبة. اسألنا؛ وإن لم نستطع، نقولها لك بصراحة وندلّك على من يستطيع.</span>
-          </p>
+            <span>Landlord policies, small business coverage, umbrella liability — as brokers we can usually find a market. Ask. If we can’t place it, we’ll tell you straight and point you to someone who can.</span>
+            </p>
           <a class="btn btn-gold btn-sm" href="tel:+17188360500" style="justify-self:start">
-            <span lang="en">Ask us — (718) 836-0500</span><span lang="ar">اسألنا — ‎(718) 836-0500‎</span>
-            <span class="ico" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Ask us — (718) 836-0500</span><span class="ico" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
         </div>
       </div>
@@ -652,67 +604,63 @@
 <section class="ink" id="tlc">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow on-ink reveal"><span lang="en">TLC &amp; Black Car</span><span lang="ar">تأمين TLC والسيارات السوداء</span></span>
+      <span class="eyebrow on-ink reveal"><span>TLC &amp; Black Car</span></span>
       <h2 class="reveal" data-d="1">
-        <span lang="en">If you drive for a living, insurance isn’t paperwork. It’s your livelihood.</span>
-        <span lang="ar">إذا كانت القيادة مصدر رزقك، فالتأمين ليس أوراقًا — إنه لقمة عيشك.</span>
-      </h2>
+        <span>If you drive for a living, insurance isn’t paperwork. It’s your livelihood.</span>
+        </h2>
       <p class="lede reveal" data-d="2">
-        <span lang="en">A lapse can park your TC plates for weeks. We keep drivers on the road: correct coverage, certificates filed on time, renewals chased before they become emergencies.</span>
-        <span lang="ar">انقطاع التأمين قد يوقف لوحاتك أسابيع. نحن نُبقي السائقين على الطريق: تغطية صحيحة، شهادات تُقدَّم في وقتها، وتجديدات نتابعها قبل أن تتحول إلى طوارئ.</span>
-      </p>
+        <span>A lapse can park your TC plates for weeks. We keep drivers on the road: correct coverage, certificates filed on time, renewals chased before they become emergencies.</span>
+        </p>
     </div>
 
     <div class="tlc-grid">
       <div class="tlc-col reveal">
-        <h3><span lang="en">What your policy must include</span><span lang="ar">ما الذي يجب أن تشمله وثيقتك</span></h3>
+        <h3><span>What your policy must include</span></h3>
         <ul>
-          <li><span lang="en">$100,000 / $300,000 bodily-injury liability</span><span lang="ar">مسؤولية إصابات جسدية بحد ‎$100,000 / $300,000‎</span></li>
-          <li><span lang="en">$10,000 property damage</span><span lang="ar">أضرار ممتلكات بحد ‎$10,000‎</span></li>
-          <li><span lang="en">Uninsured motorist protection</span><span lang="ar">حماية من السائقين غير المؤمَّنين</span></li>
-          <li><span lang="en">New York no-fault (PIP) — currently $100,000 per person under TLC rules</span><span lang="ar">تغطية اللاخطأ (PIP) — حاليًا ‎$100,000‎ للشخص وفق قواعد TLC</span></li>
+          <li><span>$100,000 / $300,000 bodily-injury liability</span></li>
+          <li><span>$10,000 property damage</span></li>
+          <li><span>Uninsured motorist protection</span></li>
+          <li><span>New York no-fault (PIP) — currently $100,000 per person under TLC rules</span></li>
           <li>
-            <span lang="en">Exact requirements depend on your vehicle class and base — we confirm before you bind.<small>Black car, livery or luxury limousine: the class follows your base.</small></span>
-            <span lang="ar">تختلف المتطلبات بحسب فئة مركبتك والبيس التابع له — نتأكد من كل شيء قبل إصدار الوثيقة.<small>سيارة سوداء أو Livery أو ليموزين: الفئة تتبع البيس.</small></span>
-          </li>
+            <span>Exact requirements depend on your vehicle class and base — we confirm before you bind.<small>Black car, livery or luxury limousine: the class follows your base.</small></span>
+            </li>
         </ul>
       </div>
 
       <div class="tlc-col reveal" data-d="1">
-        <h3><span lang="en">What we handle for you</span><span lang="ar">ما الذي نتولاه عنك</span></h3>
+        <h3><span>What we handle for you</span></h3>
         <ul>
-          <li><span lang="en">Quotes from New York’s for-hire specialist markets</span><span lang="ar">عروض أسعار من الأسواق المتخصصة في نيويورك</span></li>
-          <li><span lang="en">Binder and FH-1 certificate, issued and filed</span><span lang="ar">البوليصة المؤقتة وشهادة FH-1 — إصدارًا وتقديمًا</span></li>
-          <li><span lang="en">New plate paperwork, renewals &amp; non-renewal rescues</span><span lang="ar">أوراق اللوحات الجديدة، التجديدات، وإنقاذ الوثائق غير المجدَّدة</span></li>
-          <li><span lang="en">Base change &amp; vehicle swap endorsements</span><span lang="ar">تظهيرات تغيير البيس واستبدال المركبات</span></li>
-          <li><span lang="en">Certificates for TLC, DMV and your base</span><span lang="ar">شهادات لِـ TLC وإدارة المركبات (DMV) وللبيس</span></li>
-          <li><span lang="en">A human on the phone when there’s a claim</span><span lang="ar">إنسان يرد على الهاتف عند وقوع حادث</span></li>
+          <li><span>Quotes from New York’s for-hire specialist markets</span></li>
+          <li><span>Binder and FH-1 certificate, issued and filed</span></li>
+          <li><span>New plate paperwork, renewals &amp; non-renewal rescues</span></li>
+          <li><span>Base change &amp; vehicle swap endorsements</span></li>
+          <li><span>Certificates for TLC, DMV and your base</span></li>
+          <li><span>A human on the phone when there’s a claim</span></li>
         </ul>
       </div>
 
       <div class="tlc-col reveal" data-d="2">
-        <h3><span lang="en">What to bring</span><span lang="ar">ما الذي تحضره معك</span></h3>
+        <h3><span>What to bring</span></h3>
         <ul>
-          <li><span lang="en">DMV driver license + TLC license</span><span lang="ar">رخصة القيادة (DMV) + رخصة TLC</span></li>
-          <li><span lang="en">Title, bill of sale or registration</span><span lang="ar">سند الملكية أو عقد الشراء أو التسجيل</span></li>
-          <li><span lang="en">Base affiliation letter</span><span lang="ar">خطاب الانتساب من البيس</span></li>
-          <li><span lang="en">Proof of address</span><span lang="ar">إثبات عنوان السكن</span></li>
-          <li><span lang="en">Prior insurance / loss history, if any</span><span lang="ar">تاريخ التأمين والحوادث السابقة، إن وُجد</span></li>
+          <li><span>DMV driver license + TLC license</span></li>
+          <li><span>Title, bill of sale or registration</span></li>
+          <li><span>Base affiliation letter</span></li>
+          <li><span>Proof of address</span></li>
+          <li><span>Prior insurance / loss history, if any</span></li>
         </ul>
       </div>
     </div>
 
     <div class="steps">
-      <div class="step reveal"><b class="num">01</b><h4><span lang="en">Call or walk in</span><span lang="ar">اتصل أو تفضّل بزيارتنا</span></h4><p><span lang="en">Tell us about the vehicle, the base and the driver.</span><span lang="ar">أخبرنا عن المركبة والبيس والسائق.</span></p></div>
-      <div class="step reveal" data-d="1"><b class="num">02</b><h4><span lang="en">We shop the markets</span><span lang="ar">نقارن الأسواق</span></h4><p><span lang="en">Quotes from the specialist for-hire insurers — compared for you.</span><span lang="ar">عروض من شركات التأمين المتخصصة — نقارنها لأجلك.</span></p></div>
-      <div class="step reveal" data-d="2"><b class="num">03</b><h4><span lang="en">Bind &amp; file</span><span lang="ar">إصدار وتقديم</span></h4><p><span lang="en">Binder issued, FH-1 filed, certificates to TLC, DMV and your base.</span><span lang="ar">تصدر البوليصة، تُقدَّم FH-1، والشهادات إلى TLC وDMV والبيس.</span></p></div>
-      <div class="step reveal" data-d="3"><b class="num">04</b><h4><span lang="en">You drive</span><span lang="ar">وأنت… انطلق</span></h4><p><span lang="en">Register your TC plates and get to work. We watch the renewal.</span><span lang="ar">سجّل لوحاتك وابدأ العمل، ونحن نراقب موعد التجديد.</span></p></div>
+      <div class="step reveal"><b class="num">01</b><h4><span>Call or walk in</span></h4><p><span>Tell us about the vehicle, the base and the driver.</span></p></div>
+      <div class="step reveal" data-d="1"><b class="num">02</b><h4><span>We shop the markets</span></h4><p><span>Quotes from the specialist for-hire insurers — compared for you.</span></p></div>
+      <div class="step reveal" data-d="2"><b class="num">03</b><h4><span>Bind &amp; file</span></h4><p><span>Binder issued, FH-1 filed, certificates to TLC, DMV and your base.</span></p></div>
+      <div class="step reveal" data-d="3"><b class="num">04</b><h4><span>You drive</span></h4><p><span>Register your TC plates and get to work. We watch the renewal.</span></p></div>
     </div>
 
     <p class="finenote reveal">
-      <span lang="en">Blackridge Brokerage is a listed broker in American Transit Insurance Company’s broker directory and also places coverage with other New York for-hire markets. Requirements shown are New York / NYC TLC minimums for most TLC-licensed vehicles; your exact requirements are confirmed at quoting.</span>
-      <span lang="ar">بلاكريدج وسيطٌ مُدرج في دليل وسطاء شركة American Transit للتأمين، ويضع التغطيات كذلك لدى أسواق أخرى متخصصة في نيويورك. المتطلبات المذكورة أعلاه هي الحدود الدنيا في نيويورك/‏TLC لمعظم المركبات المرخّصة؛ ونؤكد متطلباتك بدقة عند طلب التسعير.</span>
-    </p>
+      <span>Blackridge Brokerage is a listed broker in American Transit Insurance Company’s broker directory and also places coverage with other New York for-hire markets. Requirements shown are New York / NYC TLC minimums for most TLC-licensed vehicles; your exact requirements are confirmed at quoting.</span>
+      </p>
   </div>
 </section>
 
@@ -720,43 +668,41 @@
 <section class="why" id="why">
   <div class="wrap">
     <div class="sec-head" style="margin-bottom:0">
-      <span class="eyebrow on-paper reveal"><span lang="en">Why Blackridge</span><span lang="ar">لماذا بلاكريدج</span></span>
+      <span class="eyebrow on-paper reveal"><span>Why Blackridge</span></span>
       <h2 class="reveal" data-d="1">
-        <span lang="en">A storefront on 4th Avenue. Not a call center.</span>
-        <span lang="ar">مكتب حقيقي في الجادة الرابعة… لا مركز اتصال.</span>
-      </h2>
+        <span>A storefront on 4th Avenue. Not a call center.</span>
+        </h2>
       <p class="lede reveal" data-d="2">
-        <span lang="en">Since 2013, drivers and families from Bay Ridge, Dyker Heights and Sunset Park have walked through the same door and talked to the same people. That’s the whole model.</span>
-        <span lang="ar">منذ 2013 والسائقون والعائلات من باي ريدج ودايكر هايتس وصنست بارك يدخلون من الباب نفسه ويتحدثون إلى الأشخاص أنفسهم. هذه هي فكرتنا ببساطة.</span>
-      </p>
+        <span>Since 2013, drivers and families from Bay Ridge, Dyker Heights and Sunset Park have walked through the same door and talked to the same people. That’s the whole model.</span>
+        </p>
     </div>
     <div class="why-list">
       <div class="why-item reveal">
         <span class="n">01</span>
         <div>
-          <h3><span lang="en">Independent, by design</span><span lang="ar">مستقلون — عن قصد</span></h3>
-          <p><span lang="en">We’re a brokerage, not an insurance company’s sales desk. We compare the markets that fit your risk and tell you what we’d pick for our own family.</span><span lang="ar">نحن وساطة، لا مكتب مبيعات لشركة تأمين. نقارن الأسواق المناسبة لحالتك ونخبرك بما كنا سنختاره لعائلتنا.</span></p>
+          <h3><span>Independent, by design</span></h3>
+          <p><span>We’re a brokerage, not an insurance company’s sales desk. We compare the markets that fit your risk and tell you what we’d pick for our own family.</span></p>
         </div>
       </div>
       <div class="why-item reveal" data-d="1">
         <span class="n">02</span>
         <div>
-          <h3><span lang="en">The TLC niche is our home turf</span><span lang="ar">تأمين TLC هو ملعبنا</span></h3>
-          <p><span lang="en">More than 20 years in New York’s taxi &amp; limousine industry. FH-1s, TC plates, base letters, lapse rescues — the paperwork that scares new drivers is our Tuesday morning.</span><span lang="ar">أكثر من عشرين عامًا في قطاع التاكسي والليموزين في نيويورك. شهادات FH-1، لوحات TC، خطابات البيس، إنقاذ الوثائق المنقطعة — الأوراق التي تقلق السائقين الجدد هي روتين صباحنا.</span></p>
+          <h3><span>The TLC niche is our home turf</span></h3>
+          <p><span>More than 20 years in New York’s taxi &amp; limousine industry. FH-1s, TC plates, base letters, lapse rescues — the paperwork that scares new drivers is our Tuesday morning.</span></p>
         </div>
       </div>
       <div class="why-item reveal" data-d="2">
         <span class="n">03</span>
         <div>
-          <h3><span lang="en">Rooted in the neighborhood</span><span lang="ar">جذورنا في الحي</span></h3>
-          <p><span lang="en">Voted a “Neighborhood Favorite” by neighbors on Nextdoor, serving Bay Ridge, Dyker Heights and Sunset Park East. Our clients are the people we see on 4th Avenue every day.</span><span lang="ar">اختارنا الجيران على Nextdoor ضمن «المفضّلين في الحي»، ونخدم باي ريدج ودايكر هايتس وشرق صنست بارك. عملاؤنا هم من نلتقيهم في الجادة الرابعة كل يوم.</span></p>
+          <h3><span>Rooted in the neighborhood</span></h3>
+          <p><span>Voted a “Neighborhood Favorite” by neighbors on Nextdoor, serving Bay Ridge, Dyker Heights and Sunset Park East. Our clients are the people we see on 4th Avenue every day.</span></p>
         </div>
       </div>
       <div class="why-item reveal" data-d="3">
         <span class="n">04</span>
         <div>
-          <h3><span lang="en">Renewals that don’t sneak up on you</span><span lang="ar">تجديدات لا تفاجئك</span></h3>
-          <p><span lang="en">We track your dates and call you first — because a lapse costs a working driver far more than a premium does.</span><span lang="ar">نراقب مواعيدك ونتصل بك أولًا — لأن انقطاع التأمين يكلّف السائق العامل أكثر بكثير من قسط التأمين نفسه.</span></p>
+          <h3><span>Renewals that don’t sneak up on you</span></h3>
+          <p><span>We track your dates and call you first — because a lapse costs a working driver far more than a premium does.</span></p>
         </div>
       </div>
     </div>
@@ -767,37 +713,37 @@
 <section class="faq" id="faq">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow on-paper reveal"><span lang="en">Questions</span><span lang="ar">الأسئلة الشائعة</span></span>
-      <h2 class="reveal" data-d="1"><span lang="en">Asked across this desk, daily.</span><span lang="ar">أسئلة تُطرح على مكتبنا كل يوم.</span></h2>
+      <span class="eyebrow on-paper reveal"><span>Questions</span></span>
+      <h2 class="reveal" data-d="1"><span>Asked across this desk, daily.</span></h2>
     </div>
     <div class="faq-list">
       <details class="reveal">
-        <summary><span><span lang="en">What insurance do I need to drive a TLC vehicle?</span><span lang="ar">ما التأمين الذي أحتاجه لقيادة مركبة TLC؟</span></span><span class="pm" aria-hidden="true">+</span></summary>
-        <p class="a"><span lang="en">Most TLC-licensed vehicles need commercial auto coverage with $100,000/$300,000 bodily-injury liability, $10,000 property damage, uninsured motorist protection and New York no-fault (PIP) — currently $100,000 per person under TLC rules. The exact requirement follows your vehicle class and base — we confirm it before you bind, so there are no surprises at inspection.</span><span lang="ar">تحتاج معظم مركبات TLC إلى تأمين تجاري بمسؤولية إصابات ‎$100,000/$300,000‎ وأضرار ممتلكات ‎$10,000‎ وحماية من غير المؤمَّنين وتغطية اللاخطأ (PIP) — حاليًا ‎$100,000‎ للشخص وفق قواعد TLC. المتطلبات الدقيقة تتبع فئة مركبتك والبيس — نتأكد منها قبل إصدار الوثيقة كي لا تُفاجأ عند الفحص.</span></p>
+        <summary><span><span>What insurance do I need to drive a TLC vehicle?</span></span><span class="pm" aria-hidden="true">+</span></summary>
+        <p class="a"><span>Most TLC-licensed vehicles need commercial auto coverage with $100,000/$300,000 bodily-injury liability, $10,000 property damage, uninsured motorist protection and New York no-fault (PIP) — currently $100,000 per person under TLC rules. The exact requirement follows your vehicle class and base — we confirm it before you bind, so there are no surprises at inspection.</span></p>
       </details>
       <details class="reveal" data-d="1">
-        <summary><span><span lang="en">What is an FH-1 certificate?</span><span lang="ar">ما هي شهادة FH-1؟</span></span><span class="pm" aria-hidden="true">+</span></summary>
-        <p class="a"><span lang="en">The FH-1 is New York’s for-hire insurance certificate — the DMV’s proof that your vehicle carries the required coverage. TLC expects it on file and current. When you bind through us, we issue and file it as part of the job, not as an extra.</span><span lang="ar">‏FH-1 هي شهادة تأمين المركبات العاملة بالأجرة في نيويورك — إثبات إدارة المركبات (DMV) بأن مركبتك تحمل التغطية المطلوبة. وتشترط TLC أن تكون سارية ومقدَّمة. عندما تؤمّن عبرنا، نُصدرها ونقدّمها كجزء من عملنا، لا كخدمة إضافية.</span></p>
+        <summary><span><span>What is an FH-1 certificate?</span></span><span class="pm" aria-hidden="true">+</span></summary>
+        <p class="a"><span>The FH-1 is New York’s for-hire insurance certificate — the DMV’s proof that your vehicle carries the required coverage. TLC expects it on file and current. When you bind through us, we issue and file it as part of the job, not as an extra.</span></p>
       </details>
       <details class="reveal" data-d="2">
-        <summary><span><span lang="en">My coverage lapsed. How bad is it?</span><span lang="ar">انقطع تأميني… ما مدى خطورة الأمر؟</span></span><span class="pm" aria-hidden="true">+</span></summary>
-        <p class="a"><span lang="en">Serious — a lapse can suspend your registration and park your TC plates for weeks, which for a working driver means lost income. Call us the moment you get a cancellation or non-renewal notice; caught early, most lapses can be prevented or fixed quickly.</span><span lang="ar">أمر جدّي — فالانقطاع قد يعلّق تسجيلك ويوقف لوحاتك أسابيع، وهذا للسائق العامل يعني دخلًا ضائعًا. اتصل بنا فور وصول إشعار إلغاء أو عدم تجديد؛ فمعظم الحالات يمكن تداركها بسرعة إذا تحركنا مبكرًا.</span></p>
+        <summary><span><span>My coverage lapsed. How bad is it?</span></span><span class="pm" aria-hidden="true">+</span></summary>
+        <p class="a"><span>Serious — a lapse can suspend your registration and park your TC plates for weeks, which for a working driver means lost income. Call us the moment you get a cancellation or non-renewal notice; caught early, most lapses can be prevented or fixed quickly.</span></p>
       </details>
       <details class="reveal" data-d="3">
-        <summary><span><span lang="en">I’m a brand-new TLC driver. Where do I start?</span><span lang="ar">أنا سائق TLC جديد تمامًا… من أين أبدأ؟</span></span><span class="pm" aria-hidden="true">+</span></summary>
-        <p class="a"><span lang="en">Get your TLC driver license first, then your base affiliation letter. Then come to us: we quote the markets, issue your binder and FH-1, and hand you what you need for TLC and DMV plate registration. TLC rules change often — call us and we’ll walk you through the current path.</span><span lang="ar">احصل أولًا على رخصة سائق TLC، ثم على خطاب الانتساب من البيس. بعدها تعال إلينا: نقارن الأسعار ونصدر البوليصة وشهادة FH-1 ونسلّمك ما تحتاجه لدى TLC ولتسجيل اللوحات في DMV. قواعد TLC تتغير كثيرًا — اتصل بنا ونرشدك للمسار الصحيح الحالي.</span></p>
+        <summary><span><span>I’m a brand-new TLC driver. Where do I start?</span></span><span class="pm" aria-hidden="true">+</span></summary>
+        <p class="a"><span>Get your TLC driver license first, then your base affiliation letter. Then come to us: we quote the markets, issue your binder and FH-1, and hand you what you need for TLC and DMV plate registration. TLC rules change often — call us and we’ll walk you through the current path.</span></p>
       </details>
       <details class="reveal" data-d="4">
-        <summary><span><span lang="en">Do you only work with American Transit?</span><span lang="ar">هل تتعاملون مع American Transit فقط؟</span></span><span class="pm" aria-hidden="true">+</span></summary>
-        <p class="a"><span lang="en">No. We’re a listed broker in American Transit’s directory, and we also place coverage with other New York for-hire specialist markets. As independent brokers, our job is to find the market that fits your vehicle, your base and your budget.</span><span lang="ar">لا. نحن وسيط مُدرج في دليل American Transit، ونضع التغطيات أيضًا لدى أسواق نيويورك الأخرى المتخصصة. عملنا كوسطاء مستقلين هو إيجاد السوق الذي يناسب مركبتك والبيس وميزانيتك.</span></p>
+        <summary><span><span>Do you only work with American Transit?</span></span><span class="pm" aria-hidden="true">+</span></summary>
+        <p class="a"><span>No. We’re a listed broker in American Transit’s directory, and we also place coverage with other New York for-hire specialist markets. As independent brokers, our job is to find the market that fits your vehicle, your base and your budget.</span></p>
       </details>
       <details class="reveal" data-d="4">
-        <summary><span><span lang="en">Can you handle my personal car and my home too?</span><span lang="ar">هل يمكنكم تأمين سيارتي الشخصية ومنزلي أيضًا؟</span></span><span class="pm" aria-hidden="true">+</span></summary>
-        <p class="a"><span lang="en">Yes — that’s the point of having one broker. Personal auto, homeowners, condo, co-op and renters. One office that knows your whole picture usually finds gaps (and savings) that five separate 800-numbers never will.</span><span lang="ar">نعم — وهذه فائدة أن يكون لك وسيط واحد. سيارات شخصية، منازل، شقق تمليك وتعاونية، ومستأجرون. مكتب واحد يعرف صورتك الكاملة يكتشف عادةً ثغرات (ووفورات) لن تجدها خمسة أرقام خدمة منفصلة.</span></p>
+        <summary><span><span>Can you handle my personal car and my home too?</span></span><span class="pm" aria-hidden="true">+</span></summary>
+        <p class="a"><span>Yes — that’s the point of having one broker. Personal auto, homeowners, condo, co-op and renters. One office that knows your whole picture usually finds gaps (and savings) that five separate 800-numbers never will.</span></p>
       </details>
       <details class="reveal" data-d="4">
-        <summary><span><span lang="en">Do I need an appointment?</span><span lang="ar">هل أحتاج إلى موعد مسبق؟</span></span><span class="pm" aria-hidden="true">+</span></summary>
-        <p class="a"><span lang="en">No. Call (718) 836-0500, send the quote form below, or walk into 9128 4th Avenue, Monday to Friday, 8 AM to 6 PM. Bring your documents and we’ll get to work.</span><span lang="ar">لا. اتصل على ‎(718) 836-0500‎، أو أرسل نموذج طلب السعر أدناه، أو تفضّل بزيارة ‎9128 4th Ave‎ من الاثنين إلى الجمعة، من 8 صباحًا حتى 6 مساءً. أحضر أوراقك ونبدأ العمل فورًا.</span></p>
+        <summary><span><span>Do I need an appointment?</span></span><span class="pm" aria-hidden="true">+</span></summary>
+        <p class="a"><span>No. Call (718) 836-0500, send the quote form below, or walk into 9128 4th Avenue, Monday to Friday, 8 AM to 6 PM. Bring your documents and we’ll get to work.</span></p>
       </details>
     </div>
   </div>
@@ -808,41 +754,41 @@
   <div class="wrap">
     <div>
       <div class="sec-head">
-        <span class="eyebrow on-ink reveal"><span lang="en">Contact</span><span lang="ar">اتصل بنا</span></span>
-        <h2 class="reveal" data-d="1"><span lang="en">Talk to a broker today.</span><span lang="ar">تحدّث إلى وسيط اليوم.</span></h2>
-        <p class="lede reveal" data-d="2"><span lang="en">Call, email, fax, or walk in — we’re on 4th Avenue between 91st and 92nd, a short walk from the R train.</span><span lang="ar">اتصل أو راسلنا أو تفضّل بزيارتنا — نحن في الجادة الرابعة بين شارعي 91 و92، على بُعد خطوات من قطار R.</span></p>
+        <span class="eyebrow on-ink reveal"><span>Contact</span></span>
+        <h2 class="reveal" data-d="1"><span>Talk to a broker today.</span></h2>
+        <p class="lede reveal" data-d="2"><span>Call, email, fax, or walk in — we’re on 4th Avenue between 91st and 92nd, a short walk from the R train.</span></p>
       </div>
       <div class="c-card reveal" data-d="2">
         <div class="c-row">
           <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 14 14" fill="none"><path d="M3 1.8h2.2l1 3-1.6 1.2a9 9 0 0 0 3.4 3.4L9.2 7.8l3 1V11a1.2 1.2 0 0 1-1.3 1.2A10.7 10.7 0 0 1 1.8 3.1 1.2 1.2 0 0 1 3 1.8Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
           <div>
-            <b><span lang="en">Phone</span><span lang="ar">الهاتف</span></b>
+            <b><span>Phone</span></b>
             <a class="big" href="tel:+17188360500">(718) 836-0500</a>
-            <small><span lang="en">Fax: (718) 836-2020</span><span lang="ar">فاكس: ‎(718) 836-2020‎</span></small>
+            <small><span>Fax: (718) 836-2020</span></small>
           </div>
         </div>
         <div class="c-row">
           <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
           <div>
-            <b><span lang="en">Email</span><span lang="ar">البريد الإلكتروني</span></b>
+            <b><span>Email</span></b>
             <a href="mailto:BlackridgeIns@outlook.com">BlackridgeIns@outlook.com</a>
           </div>
         </div>
         <div class="c-row">
           <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.2A7 7 0 1 0 5 9.8C5 14.9 12 21 12 21Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.4"/></svg></span>
           <div>
-            <b><span lang="en">Office</span><span lang="ar">المكتب</span></b>
-            <p class="ltr-iso">9128 4th Avenue, Brooklyn, NY 11209</p>
-            <small><span lang="en">Bay Ridge — R train to 95th St or 86th St</span><span lang="ar">باي ريدج — قطار R إلى محطة 95 St أو 86 St</span></small>
-            <small><a href="https://www.google.com/maps/search/?api=1&amp;query=Blackridge%20Brokerage%209128%204th%20Ave%20Brooklyn%20NY%2011209" target="_blank" rel="noopener"><span lang="en">Get directions ↗</span><span lang="ar">احصل على الاتجاهات ↗</span></a></small>
+            <b><span>Office</span></b>
+            <p>9128 4th Avenue, Brooklyn, NY 11209</p>
+            <small><span>Bay Ridge — R train to 95th St or 86th St</span></small>
+            <small><a href="https://www.google.com/maps/search/?api=1&amp;query=Blackridge%20Brokerage%209128%204th%20Ave%20Brooklyn%20NY%2011209" target="_blank" rel="noopener"><span>Get directions ↗</span></a></small>
           </div>
         </div>
         <div class="c-row">
           <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.4"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div>
-            <b><span lang="en">Hours</span><span lang="ar">ساعات العمل</span></b>
-            <p><span lang="en">Monday – Friday · 8:00 AM – 6:00 PM</span><span lang="ar">الاثنين – الجمعة · 8:00 صباحًا – 6:00 مساءً</span></p>
-            <small><span lang="en">Sat &amp; Sun closed. Call ahead on holidays.</span><span lang="ar">السبت والأحد مغلق. اتصل قبل الزيارة في أيام العطل.</span></small>
+            <b><span>Hours</span></b>
+            <p><span>Monday – Friday · 8:00 AM – 6:00 PM</span></p>
+            <small><span>Sat &amp; Sun closed. Call ahead on holidays.</span></small>
             <!-- Hours per the agency's own site (WordPress footer: Mon–Fri 8–6, Sat/Sun closed), matching Waze -->
 
           </div>
@@ -852,35 +798,31 @@
 
     <div id="quote">
       <form id="quote-form" novalidate>
-        <h3 style="font-size:1.35rem"><span lang="en">Request a free quote</span><span lang="ar">اطلب عرض سعر مجانيًا</span></h3>
+        <h3 style="font-size:1.35rem"><span>Request a free quote</span></h3>
         <p class="form-note" style="margin-top:-.4rem">
-          <span lang="en">No obligation. We reply during business hours.</span>
-          <span lang="ar">بدون أي التزام. نرد عليك خلال ساعات العمل.</span>
-        </p>
+          <span>No obligation. We reply during business hours.</span>
+          </p>
         <div class="f-2">
-          <label><span lang="en">Your name</span><span lang="ar">اسمك</span>
-            <input name="name" autocomplete="name" required>
+          <label><span>Your name</span><input name="name" autocomplete="name" required>
           </label>
-          <label><span lang="en">Phone number</span><span lang="ar">رقم هاتفك</span>
-            <input name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+          <label><span>Phone number</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
           </label>
         </div>
-        <label><span lang="en">What do you need covered?</span><span lang="ar">ماذا تريد أن تؤمّن؟</span>
-          <select name="type">
-            <option value="TLC / Black Car"><span>TLC</span></option>
+        <label><span>What do you need covered?</span><select name="type">
+            <option value="TLC / Black Car">TLC / Black car / Livery</option>
+            <option value="Personal Auto">Personal auto</option>
+            <option value="Homeowners / Renters">Home, condo, co-op or renters</option>
+            <option value="Other">Something else</option>
           </select>
         </label>
-        <label><span lang="en">Tell us a little more <em style="font-weight:400">(vehicle, base, current carrier, renewal date…)</em></span><span lang="ar">أخبرنا المزيد <em style="font-weight:400">(المركبة، البيس، شركتك الحالية، تاريخ التجديد…)</em></span>
-          <textarea name="msg"></textarea>
+        <label><span>Tell us a little more <em style="font-weight:400">(vehicle, base, current carrier, renewal date…)</em></span><textarea name="msg"></textarea>
         </label>
         <button class="btn btn-gold" type="submit" style="justify-self:start">
-          <span lang="en">Send quote request</span><span lang="ar">أرسل طلب السعر</span>
-          <span class="ico" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span>Send quote request</span><span class="ico" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
         <p class="form-note">
-          <span lang="en">The button opens an email to <a href="mailto:BlackridgeIns@outlook.com">BlackridgeIns@outlook.com</a> — or skip the form and call <a href="tel:+17188360500">(718) 836-0500</a>.</span>
-          <span lang="ar">الزر يفتح رسالة بريد إلى <a href="mailto:BlackridgeIns@outlook.com">BlackridgeIns@outlook.com</a> — أو تجاوز النموذج واتصل مباشرة على <a href="tel:+17188360500">‎(718) 836-0500‎</a>.</span>
-        </p>
+          <span>The button opens an email to <a href="mailto:BlackridgeIns@outlook.com">BlackridgeIns@outlook.com</a> — or skip the form and call <a href="tel:+17188360500">(718) 836-0500</a>.</span>
+          </p>
       </form>
     </div>
   </div>
@@ -895,22 +837,20 @@
       <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="#0B0E14"/><circle cx="32" cy="32" r="28.5" fill="none" stroke="#C99636" stroke-width="1.1" opacity=".9"/><path d="M13 41 L22.5 28.5 L28.5 34.5 L37 22 L44 31 L51 41 Z" fill="#232A38"/><path d="M12 41 L23 27 L29 33 L38.5 20 L52 41" fill="none" stroke="#C99636" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="38.5" cy="20" r="1.6" fill="#F6F3EC"/><line x1="16" y1="47.5" x2="48" y2="47.5" stroke="#C99636" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="6 4"/></svg>
       <div class="fb">
         <b>Blackridge Brokerage, Inc.</b>
-        <span lang="en">Independent insurance brokerage · Bay Ridge, Brooklyn</span>
-        <span lang="ar">وساطة تأمين مستقلة · باي ريدج، بروكلين</span>
-      </div>
+        <span>Independent insurance brokerage · Bay Ridge, Brooklyn</span>
+        </div>
       <div class="f-links">
-        <a href="#coverage"><span lang="en">Coverage</span><span lang="ar">التغطيات</span></a>
-        <a href="#tlc"><span lang="en">TLC &amp; Black Car</span><span lang="ar">تأمين TLC</span></a>
-        <a href="#faq"><span lang="en">FAQ</span><span lang="ar">الأسئلة</span></a>
-        <a href="#quote"><span lang="en">Get a Quote</span><span lang="ar">اطلب عرض سعر</span></a>
+        <a href="#coverage"><span>Coverage</span></a>
+        <a href="#tlc"><span>TLC &amp; Black Car</span></a>
+        <a href="#faq"><span>FAQ</span></a>
+        <a href="#quote"><span>Get a Quote</span></a>
       </div>
     </div>
     <p class="f-legal">
-      <span lang="en">Blackridge Brokerage, Inc. (legal name Blackridge Insurance Brokerage Inc.) is an independent insurance brokerage licensed in the State of New York. We are a brokerage, not an insurer: insurance is underwritten and issued by the insurance companies with which coverage is placed. Descriptions of coverage on this page are summaries for general information only and do not amend, extend or alter any policy; all coverage is subject to the terms, conditions, limits and exclusions of the issued policy and to New York State and NYC TLC requirements in effect at the time of binding.</span>
-      <span lang="ar">بلاكريدج للوساطة التأمينية (الاسم القانوني: Blackridge Insurance Brokerage Inc.) وساطة تأمين مستقلة مرخّصة في ولاية نيويورك. نحن وساطة ولسنا شركة تأمين: وثائق التأمين تُكتتب وتُصدر من شركات التأمين التي تُوضع التغطية لديها. أوصاف التغطية في هذه الصفحة ملخصات للمعلومات العامة فقط ولا تعدّل أي وثيقة؛ وتخضع كل تغطية لشروط الوثيقة الصادرة وحدودها واستثناءاتها ولمتطلبات ولاية نيويورك ولجنة TLC السارية وقت الإصدار.</span>
-    </p>
+      <span>Blackridge Brokerage, Inc. (legal name Blackridge Insurance Brokerage Inc.) is an independent insurance brokerage licensed in the State of New York. We are a brokerage, not an insurer: insurance is underwritten and issued by the insurance companies with which coverage is placed. Descriptions of coverage on this page are summaries for general information only and do not amend, extend or alter any policy; all coverage is subject to the terms, conditions, limits and exclusions of the issued policy and to New York State and NYC TLC requirements in effect at the time of binding.</span>
+      </p>
     <div class="f-base">
-      <span class="ltr-iso">© <span id="yr">2026</span> Blackridge Insurance Brokerage Inc. · 9128 4th Ave, Brooklyn, NY 11209</span>
+      <span>© <span id="yr">2026</span> Blackridge Insurance Brokerage Inc. · 9128 4th Ave, Brooklyn, NY 11209</span>
       <span><a href="tel:+17188360500">(718) 836-0500</a> · <a href="mailto:BlackridgeIns@outlook.com">BlackridgeIns@outlook.com</a></span>
     </div>
   </div>
@@ -919,55 +859,6 @@
 <script>
 (function(){
   "use strict";
-
-  /* ---------- language toggle ---------- */
-  var root = document.documentElement;
-  var btnEn = document.getElementById('lang-en');
-  var btnAr = document.getElementById('lang-ar');
-
-  // options for the quote select, per language (rebuilt on toggle)
-  var quoteOptions = {
-    en: [
-      ["TLC / Black Car", "TLC / Black car / Livery"],
-      ["Personal Auto", "Personal auto"],
-      ["Homeowners / Renters", "Home, condo, co-op or renters"],
-      ["Other", "Something else"]
-    ],
-    ar: [
-      ["TLC / Black Car", "تأمين TLC / سيارة سوداء / Livery"],
-      ["Personal Auto", "سيارة شخصية"],
-      ["Homeowners / Renters", "منزل أو شقة أو إيجار"],
-      ["Other", "شيء آخر"]
-    ]
-  };
-
-  function setLang(lang){
-    var ar = lang === 'ar';
-    root.setAttribute('lang', ar ? 'ar' : 'en');
-    root.setAttribute('dir', ar ? 'rtl' : 'ltr');
-    btnEn.setAttribute('aria-pressed', String(!ar));
-    btnAr.setAttribute('aria-pressed', String(ar));
-    // rebuild select options in the active language
-    var sel = document.querySelector('#quote-form select[name=type]');
-    if (sel){
-      var cur = sel.value;
-      sel.innerHTML = '';
-      quoteOptions[ar ? 'ar' : 'en'].forEach(function(o){
-        var opt = document.createElement('option');
-        opt.value = o[0]; opt.textContent = o[1];
-        sel.appendChild(opt);
-      });
-      if (cur) sel.value = cur;
-    }
-    try { localStorage.setItem('br-lang', ar ? 'ar' : 'en'); } catch(e){}
-  }
-  btnEn.addEventListener('click', function(){ setLang('en'); });
-  btnAr.addEventListener('click', function(){ setLang('ar'); });
-
-  var saved = null;
-  try { saved = localStorage.getItem('br-lang'); } catch(e){}
-  var q = new URLSearchParams(location.search).get('lang');
-  setLang(q === 'ar' || (!q && saved === 'ar') ? 'ar' : 'en');
 
   /* ---------- mobile menu ---------- */
   var burger = document.getElementById('burger');
@@ -1006,15 +897,14 @@
   document.getElementById('quote-form').addEventListener('submit', function(e){
     e.preventDefault();
     var f = e.target;
-    var ar = root.getAttribute('lang') === 'ar';
     var name = f.name.value.trim(), phone = f.phone.value.trim(),
         type = f.type.value, msg = f.msg.value.trim();
     if (!name || !phone){
-      f.reportValidity ? f.reportValidity() : alert(ar ? 'يرجى إدخال الاسم ورقم الهاتف' : 'Please enter your name and phone number');
+      f.reportValidity ? f.reportValidity() : alert('Please enter your name and phone number');
       return;
     }
     var subject = 'Quote request — ' + type + ' — ' + name;
-    var body = (ar ? 'طلب عرض سعر من الموقع الإلكتروني' : 'Quote request from the website') + '\n\n' +
+    var body = 'Quote request from the website\n\n' +
       'Name: ' + name + '\n' +
       'Phone: ' + phone + '\n' +
       'Coverage: ' + type + '\n' +

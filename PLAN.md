@@ -42,11 +42,13 @@ Bay Ridge / southwest Brooklyn TLC and black-car drivers (the neighborhood hosts
 1. Make a 12-year-old storefront brokerage look as established online as it is on 4th Avenue.
 2. Convert: click-to-call everywhere, a working quote-request form (mailto → agency inbox), directions.
 3. Own the niche: a genuinely useful TLC/black-car insurance explainer + document checklist.
-4. Serve the neighborhood: full English/Arabic bilingual toggle (RTL-aware).
-5. Rank locally: `InsuranceAgency` JSON-LD, OG/meta, semantic HTML, fast single-file static page.
+4. Rank locally: `InsuranceAgency` JSON-LD, OG/meta, semantic HTML, fast single-file static page.
+
+> An English/Arabic bilingual toggle was built and then removed at the client's
+> request — the site ships English-only.
 
 ## 3. Sitemap (single page, GitHub-Pages-ready)
-1. **Top strip** — phone, address, Mon–Fri, EN/العربية toggle
+1. **Top strip** — phone, address, hours
 2. **Nav (floating pill)** — Coverage · TLC & Black Car · Why Us · FAQ · Contact + "Get a Quote" CTA
 3. **Hero** — positioning: insurance for the people who keep New York moving; trust chips (Since 2013 · Licensed NY brokerage · Bay Ridge · Nextdoor Neighborhood Favorite)
 4. **Coverage bento** — TLC / Black Car & Livery (flagship) · Personal Auto · Homeowners · "…and whatever else you drive or own" card

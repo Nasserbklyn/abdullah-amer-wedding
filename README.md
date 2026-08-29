@@ -17,7 +17,6 @@ The research behind the content and the full build plan are in
 
 | Feature | Where |
 | --- | --- |
-| Fully bilingual **English / العربية** with RTL mirroring | Toggle in the top strip; every copy element has EN/AR twins; `<html lang/dir>` flips; choice persists in `localStorage`; `?lang=ar` deep-links Arabic |
 | Click-to-call conversion | Top strip, hero, coverage cards, contact card, mobile menu, footer |
 | Quote-request form (no backend) | `#quote` — composes a `mailto:` to BlackridgeIns@outlook.com |
 | TLC driver resource | `#tlc` — required coverages (incl. PIP "currently $100,000" per the TLC rule effective 3/1/2026), FH-1 explainer, document checklist, 4-step timeline |
