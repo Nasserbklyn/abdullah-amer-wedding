@@ -391,6 +391,11 @@
   .f-links a{color:var(--muted-inv);text-decoration:none}
   .f-links a:hover{color:var(--gold-soft)}
   .f-legal{max-width:90ch;line-height:1.7;color:rgba(169,174,187,.8)}
+  .f-disc{border:1px solid var(--line-inv);background:rgba(239,236,228,.04);border-radius:.9rem;max-width:90ch}
+  .f-disc[open]{background:rgba(239,236,228,.06)}
+  .f-disc summary{font-size:.82rem;color:var(--text-inv);padding:.75rem 1.1rem}
+  .f-disc summary .pm{border-color:var(--line-inv);color:var(--gold-soft)}
+  .f-disc .a{color:rgba(169,174,187,.85);font-size:.8rem;max-width:none;padding:0 1.1rem 1rem;line-height:1.7}
   .f-base{display:flex;gap:1rem;flex-wrap:wrap;justify-content:space-between;border-top:1px solid var(--line-inv);padding-top:1.3rem}
 
   /* ---------- responsive ---------- */
@@ -849,6 +854,10 @@
     <p class="f-legal">
       <span>Blackridge Brokerage, Inc. (legal name Blackridge Insurance Brokerage Inc.) is an independent insurance brokerage licensed in the State of New York. We are a brokerage, not an insurer: insurance is underwritten and issued by the insurance companies with which coverage is placed. Descriptions of coverage on this page are summaries for general information only and do not amend, extend or alter any policy; all coverage is subject to the terms, conditions, limits and exclusions of the issued policy and to New York State and NYC TLC requirements in effect at the time of binding. Coverage cannot be bound, changed or canceled through this website or by email — please speak with a broker. Quotes are estimates subject to underwriting review. This site sets no cookies and collects no personal data; quote requests are sent from your own email application.</span>
       </p>
+    <details class="f-disc">
+      <summary><span>New York Insurance Regulation 194 — Producer Compensation Disclosure</span><span class="pm" aria-hidden="true">+</span></summary>
+      <p class="a">Blackridge Insurance Brokerage Inc. is an insurance producer licensed by the State of New York. Insurance producers are authorized by their license to confer with insurance purchasers about the benefits, terms and conditions of insurance contracts; to offer advice concerning the substantive benefits of particular insurance contracts; to sell insurance; and to obtain insurance for purchasers. The role of the producer in any particular transaction typically involves one or more of these activities. Compensation will be paid to the producer, based on the insurance contract the producer sells. Depending on the insurer(s) and insurance contract(s) the purchaser selects, compensation will be paid by the insurer(s) selling the insurance contract, or by another third party. Such compensation may vary depending on a number of factors, including the insurance contract(s) and the insurer(s) the purchaser selects. In some cases, other factors — such as the volume of business a producer provides to an insurer or the profitability of insurance contracts a producer provides to an insurer — may also affect compensation. The insurance purchaser may obtain information about the compensation expected to be received by the producer based in whole or in part on the sale, and about the compensation expected to be received based in whole or in part on any alternative quotes presented by the producer, by requesting such information from us.</p>
+    </details>
     <div class="f-base">
       <span>© <span id="yr">2026</span> Blackridge Insurance Brokerage Inc. · 9128 4th Ave, Brooklyn, NY 11209</span>
       <span><a href="tel:+17188360500">(718) 836-0500</a> · <a href="mailto:BlackridgeIns@outlook.com">BlackridgeIns@outlook.com</a></span>
