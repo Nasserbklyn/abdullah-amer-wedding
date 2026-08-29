@@ -83,9 +83,6 @@
     --ease:cubic-bezier(.32,.72,0,1);
     --r-lg:2rem; --r-md:1.25rem;
   }
-    --font-display:"IBM Plex Sans Arabic",system-ui,sans-serif;
-    --font-body:"IBM Plex Sans Arabic",system-ui,sans-serif;
-  }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
@@ -113,12 +110,6 @@
   .strip a:hover{color:var(--gold-soft)}
   .strip .dot{opacity:.35}
   .strip .grow{flex:1}
-    display:inline-flex;align-items:center;gap:.15rem;background:rgba(239,236,228,.08);
-    border:1px solid var(--line-inv);border-radius:99px;padding:.14rem;
-  }
-    font:inherit;font-weight:600;color:var(--muted-inv);background:none;border:0;cursor:pointer;
-    padding:.18rem .7rem;border-radius:99px;transition:all .45s var(--ease);
-  }
 
   /* ---------- floating nav ---------- */
   .navbar{position:sticky;top:0;z-index:40;pointer-events:none}
