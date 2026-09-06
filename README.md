@@ -57,6 +57,43 @@ Search `index.html` for `TODO` and resolve:
 The full sourced research dossier (180 facts, incl. an owner-interview
 checklist of unknowns) is in [`RESEARCH.md`](RESEARCH.md).
 
+## OpenDesign (design tooling for coding agents)
+
+[OpenDesign](https://github.com/nexu-io/open-design) is wired into this repo
+as a project-scoped MCP server via [`.mcp.json`](.mcp.json). When Claude Code
+(or any MCP-aware agent that reads `.mcp.json`) opens this folder, it can call
+OpenDesign's 139 design skills and 150 `DESIGN.md` design systems, read/write
+OpenDesign projects, and drive the live preview.
+
+OpenDesign itself runs as a local daemon (`od`) on your machine; the config in
+this repo only points the agent at it. One-time setup on your computer:
+
+1. Install the desktop app (macOS / Windows) from
+   <https://open-design.ai/> — it bundles the `od` CLI and daemon — **or** run
+   the daemon from source / Docker:
+
+   ```bash
+   git clone https://github.com/nexu-io/open-design.git
+   cd open-design
+   bash deploy/scripts/install.sh        # Docker, listens on http://127.0.0.1:7456
+   # — or, from source (Node 24 + pnpm 10.33 via `corepack enable`) —
+   pnpm install && pnpm tools-dev start web
+   ```
+
+2. Make sure `od` on your `PATH` is OpenDesign's CLI, not the system octal-dump
+   tool (`/usr/bin/od` on macOS / Linux). `od --help` should mention "Start the
+   local daemon". If it doesn't, replace `"command": "od"` in `.mcp.json` with
+   the absolute path shown under **Settings → MCP server** in the app.
+
+3. Open the repo in Claude Code and approve the `open-design` project MCP
+   server when prompted. Alternatively install it user-wide with
+   `od mcp install claude`, or as a plugin with
+   `/plugin marketplace add nexu-io/open-design` then
+   `/plugin install open-design@open-design`.
+
+Then, inside the agent: *"Use open-design to redesign the hero section with
+the Linear design system."*
+
 ## Assets
 
 - `assets/blackridge-mark.svg` — roundel logo (gold ridge line + dashed road
