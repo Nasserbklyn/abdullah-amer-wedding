@@ -14,8 +14,8 @@
     --red:#CE1126; --white:#F4F1EA; --black:#0A0A0C; --ink:#111114; --gold:#D8B368;
   }
   html,body{margin:0;padding:0;background:#000;}
-  body{width:1920px;height:1080px;overflow:hidden;font-family:'Cairo','Amiri',sans-serif;color:var(--white);}
-  #stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--ink);}
+  body{width:var(--W,1920px);height:var(--H,1080px);overflow:hidden;font-family:'Cairo','Amiri',sans-serif;color:var(--white);}
+  #stage{position:relative;width:var(--W,1920px);height:var(--H,1080px);overflow:hidden;background:var(--ink);}
   .abs{position:absolute;inset:0;}
   .hidden{opacity:0;}
   /* Background layers */
@@ -63,14 +63,37 @@
   #particles{z-index:6;}
   #particles i{position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.7);}
   #foot{position:absolute;bottom:34px;left:0;right:0;text-align:center;font-size:24px;letter-spacing:6px;color:rgba(255,255,255,.45);z-index:12;font-weight:400;}
+
+  /* ---------- portrait 9:16 (1080x1920) — !important beats the inline landscape positions ---------- */
+  body.portrait .center{padding:0 60px;}
+  body.portrait #s1title{top:720px!important;font-size:140px!important;}
+  body.portrait #s1year{top:930px!important;font-size:110px!important;}
+  body.portrait #s1sub{top:1090px!important;font-size:40px!important;}
+  body.portrait .bigno{top:520px!important;font-size:700px!important;}
+  body.portrait #s2h{top:470px!important;font-size:100px!important;}
+  body.portrait #s2p{top:650px!important;font-size:42px!important;line-height:1.7!important;}
+  body.portrait .chips{top:1000px!important;flex-wrap:wrap;width:900px;left:50%;right:auto;margin-left:-450px;gap:22px;}
+  body.portrait .chip{font-size:36px;padding:16px 34px;min-width:360px;text-align:center;}
+  body.portrait #s3k{top:400px!important;}
+  body.portrait #s3h{top:470px!important;font-size:94px!important;line-height:1.3!important;}
+  body.portrait #s3p{top:780px!important;font-size:42px!important;}
+  body.portrait .fronts{top:1060px!important;flex-wrap:wrap;width:820px;left:50%;right:auto;margin-left:-410px;gap:40px 30px;}
+  body.portrait .front{width:250px;}
+  body.portrait .stamp{top:760px!important;font-size:220px!important;}
+  body.portrait #s3end{top:1060px!important;font-size:50px!important;}
+  body.portrait #s4h{top:640px!important;font-size:150px!important;}
+  body.portrait #s4p{top:880px!important;font-size:50px!important;}
+  body.portrait #s4f{top:1010px!important;font-size:44px!important;}
+  body.portrait #foot{bottom:70px;font-size:22px;letter-spacing:4px;}
+  body.portrait #badge{top:120px;}
 </style>
 </head>
 <body>
 <div id="stage">
   <div id="rays" class="abs"></div>
   <div id="redglow" class="abs hidden"></div>
-  <svg id="topo" class="abs" width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5"></svg>
-  <svg id="wave" class="abs hidden" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <svg id="topo" class="abs" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5"></svg>
+  <svg id="wave" class="abs hidden">
     <path id="w1" fill="#CE1126"/><path id="w2" fill="#F4F1EA"/><path id="w3" fill="#0A0A0C"/>
   </svg>
   <div id="waveShade" class="abs hidden" style="background:linear-gradient(to bottom, rgba(0,0,0,.45) 0%, rgba(0,0,0,.72) 28%, rgba(0,0,0,.72) 72%, rgba(0,0,0,.5) 100%);z-index:3;"></div>
@@ -128,6 +151,12 @@
 
 <script>
 const DURATION = 20;
+const PORTRAIT = new URLSearchParams(location.search).has('portrait');
+const W = PORTRAIT ? 1080 : 1920, H = PORTRAIT ? 1920 : 1080;
+document.documentElement.style.setProperty('--W', W+'px');
+document.documentElement.style.setProperty('--H', H+'px');
+document.body.classList.toggle('portrait', PORTRAIT);
+for (const id of ['topo','wave']) { const el=document.getElementById(id); el.setAttribute('width',W); el.setAttribute('height',H); el.setAttribute('viewBox',`0 0 ${W} ${H}`); }
 const $ = id => document.getElementById(id);
 const clamp = (x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const lerp = (a,b,t)=>a+(b-a)*t;
@@ -154,7 +183,7 @@ function show(el, t, s, e, {dy=40, fi=.5, fo=.35, scaleFrom=1, blur=0}={}){
 (function buildTopo(){
   const svg = $('topo'); let d='';
   for(let i=0;i<14;i++){
-    const cx=960, cy=560, rx=180+i*120, ry=80+i*58;
+    const cx=W/2, cy=H*0.52, rx=(PORTRAIT?110:180)+i*(PORTRAIT?70:120), ry=(PORTRAIT?150:80)+i*(PORTRAIT?105:58);
     let path='';
     for(let a=0;a<=Math.PI*2+0.01;a+=Math.PI/60){
       const wob = 1+0.06*Math.sin(a*3+i)+0.04*Math.cos(a*5-i*0.7);
@@ -171,14 +200,14 @@ const PARTS=[]; (function(){
   const box=$('particles'); let seed=7;
   const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
   for(let i=0;i<46;i++){const el=document.createElement('i');box.appendChild(el);
-    PARTS.push({el,x:rnd()*1920,y:rnd()*1080,sp:8+rnd()*22,ph:rnd()*6.28,sz:2+rnd()*4,op:.25+rnd()*.5});}
+    PARTS.push({el,x:rnd()*W,y:rnd()*H,sp:8+rnd()*22,ph:rnd()*6.28,sz:2+rnd()*4,op:.25+rnd()*.5});}
 })();
 
 function wavePath(t, top, bottom, amp, phase){
   let d=`M0 ${top+amp*Math.sin(phase)}`;
-  for(let x=0;x<=1920;x+=40){ d+=` L${x} ${(top+amp*Math.sin(x/260+phase+t*2.2)).toFixed(1)}`; }
-  d+=` L1920 ${bottom+amp*Math.sin(1920/260+phase+t*2.2+0.4)}`;
-  for(let x=1920;x>=0;x-=40){ d+=` L${x} ${(bottom+amp*Math.sin(x/260+phase+t*2.2+0.4)).toFixed(1)}`; }
+  for(let x=0;x<=W;x+=40){ d+=` L${x} ${(top+amp*Math.sin(x/260+phase+t*2.2)).toFixed(1)}`; }
+  d+=` L${W} ${bottom+amp*Math.sin(W/260+phase+t*2.2+0.4)}`;
+  for(let x=W;x>=0;x-=40){ d+=` L${x} ${(bottom+amp*Math.sin(x/260+phase+t*2.2+0.4)).toFixed(1)}`; }
   return d+' Z';
 }
 
@@ -186,10 +215,10 @@ function render(t){
   // ---------- global ----------
   $('rays').style.transform = `rotate(${t*4}deg)`;
   $('rays').style.opacity = (t<8.5? 0.9*win(t,0.6,8.6,1.2,.4) : 0.4*win(t,15.4,20,.6,1));
-  $('progress').style.width = (t/DURATION*1920)+'px';
+  $('progress').style.width = (t/DURATION*W)+'px';
   $('foot').style.opacity = win(t,1.8,19.0,.8,.6)*0.9;
   for(const p of PARTS){
-    const y = ((p.y - t*p.sp) % 1080 + 1080) % 1080;
+    const y = ((p.y - t*p.sp) % H + H) % H;
     const x = p.x + Math.sin(t*0.6+p.ph)*30;
     p.el.style.transform = `translate(${x}px,${y}px)`;
     p.el.style.width = p.el.style.height = p.sz+'px';
@@ -206,8 +235,8 @@ function render(t){
   const sh = eio(seg(t,1.05,.75));
   if(t<1.8){
     flag.style.opacity=1;
-    const sx=lerp(1,150/1920,sh), sy=lerp(1,90/1080,sh);
-    const ty=lerp(0, (56+45)-540, sh);
+    const sx=lerp(1,150/W,sh), sy=lerp(1,90/H,sh);
+    const ty=lerp(0, (56+45)-H/2, sh);
     flag.style.transform=`translate(0px,${ty}px) scale(${sx},${sy})`;
     flag.style.borderRadius = sh>0.9? '6px':'0';
     $('badge').style.opacity=0;
@@ -263,9 +292,9 @@ function render(t){
   $('wave').style.opacity=s4; $('waveShade').style.opacity=s4;
   if(s4>0){
     const amp=26, k=eo(seg(t,15.5,1.2));
-    $('w1').setAttribute('d', wavePath(t, -80, 360, amp, 0));
-    $('w2').setAttribute('d', wavePath(t, 360, 720, amp, 0.4));
-    $('w3').setAttribute('d', wavePath(t, 720, 1160, amp, 0.8));
+    $('w1').setAttribute('d', wavePath(t, -80, H/3, amp, 0));
+    $('w2').setAttribute('d', wavePath(t, H/3, 2*H/3, amp, 0.4));
+    $('w3').setAttribute('d', wavePath(t, 2*H/3, H+80, amp, 0.8));
     $('wave').style.transform=`scale(${lerp(1.15,1.03,k)})`;
   }
   show($('s4h'),t,15.85,20.5,{dy:30,fi:.7,scaleFrom:1.15,blur:14});

@@ -4,7 +4,8 @@
 
 | ملف | الوصف |
 | --- | --- |
-| `yemen-september-revolution.mp4` | الفيديو النهائي (H.264 + AAC) |
+| `yemen-september-revolution.mp4` | الفيديو النهائي الأفقي 16:9 (H.264 + AAC) |
+| `yemen-september-revolution-9x16.mp4` | النسخة العمودية 9:16 (1080×1920) للستوري والريلز |
 | `composition.html` | التصميم والحركة (HTML/CSS/JS). افتحه في المتصفح لمعاينة حيّة متكررة |
 | `render.js` | يصوّر كل إطار عبر Playwright ويمرّره إلى ffmpeg |
 | `music.py` | يولّد الموسيقى التصويرية (طبول وإيقاع سينمائي) بـ numpy إلى `music.wav` |
@@ -23,7 +24,8 @@
 
 ```bash
 python3 music.py                       # يحتاج numpy
-FFMPEG=/path/to/ffmpeg node render.js  # ffmpeg يجب أن يدعم libx264؛ Playwright مع Chromium
+FFMPEG=/path/to/ffmpeg node render.js             # النسخة الأفقية 1920×1080
+FFMPEG=/path/to/ffmpeg node render.js --portrait  # النسخة العمودية 1080×1920
 ```
 
-لتغيير النصوص عدّل `composition.html` مباشرة؛ التوقيتات كلها داخل الدالة `render(t)`.
+لتغيير النصوص عدّل `composition.html` مباشرة؛ التوقيتات كلها داخل الدالة `render(t)`. للمعاينة العمودية افتح `composition.html?portrait=1`.

@@ -1,5 +1,5 @@
 // Renders composition.html frame-by-frame with Playwright and pipes PNG frames into ffmpeg.
-// Usage: node render.js [out.mp4]
+// Usage: node render.js [out.mp4] [--portrait]   (--portrait renders 1080x1920 for stories)
 // Env: FFMPEG (path to an ffmpeg with libx264), PLAYWRIGHT_MODULE (path to playwright), MUSIC (wav path)
 const path = require('path');
 const fs = require('fs');
@@ -8,15 +8,17 @@ const { spawn } = require('child_process');
 const pwPath = process.env.PLAYWRIGHT_MODULE || 'playwright';
 const { chromium } = require(pwPath);
 
-const FPS = 30, W = 1920, H = 1080;
-const out = process.argv[2] || path.join(__dirname, 'yemen-september-revolution.mp4');
+const PORTRAIT = process.argv.includes('--portrait');
+const FPS = 30, W = PORTRAIT ? 1080 : 1920, H = PORTRAIT ? 1920 : 1080;
+const outArg = process.argv.slice(2).find(a => !a.startsWith('--'));
+const out = outArg || path.join(__dirname, PORTRAIT ? 'yemen-september-revolution-9x16.mp4' : 'yemen-september-revolution.mp4');
 const music = process.env.MUSIC || path.join(__dirname, 'music.wav');
 const ffmpeg = process.env.FFMPEG || 'ffmpeg';
 
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
-  await page.goto('file://' + path.join(__dirname, 'composition.html'));
+  await page.goto('file://' + path.join(__dirname, 'composition.html') + (PORTRAIT ? '?portrait=1' : ''));
   await page.evaluate(() => document.fonts.ready);
   await page.waitForFunction(() => document.fonts.status === 'loaded');
   const duration = await page.evaluate(() => window.DURATION);
