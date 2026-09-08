@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>سبتمبر شهر اليمنيين المقدّس — ريلز 60 ثانية</title>
+<style>
+  @font-face{font-family:'Cairo';font-weight:200 1000;src:url(fonts/Cairo-ar.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC;}
+  @font-face{font-family:'Cairo';font-weight:200 1000;src:url(fonts/Cairo-latin.woff2) format('woff2');unicode-range:U+0000-00FF;}
+  @font-face{font-family:'Amiri';font-weight:400;src:url(fonts/Amiri-ar-400.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC;}
+  @font-face{font-family:'Amiri';font-weight:700;src:url(fonts/Amiri-ar-700.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC;}
+  @font-face{font-family:'Amiri';font-weight:400;src:url(fonts/Amiri-latin-400.woff2) format('woff2');unicode-range:U+0000-00FF;}
+
+  :root{ --red:#CE1126; --paper:#F4F1EA; --ink:#0B0B0E; --dim:rgba(244,241,234,.74); --gold:#D8B368; }
+  html,body{margin:0;padding:0;background:#000;}
+  body{width:1080px;height:1920px;overflow:hidden;font-family:'Cairo','Amiri',sans-serif;color:var(--paper);-webkit-font-smoothing:antialiased;}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--ink);}
+  .abs{position:absolute;inset:0;}
+  .hid{opacity:0;}
+
+  #glow{background:radial-gradient(ellipse 74% 40% at 50% 44%, rgba(206,17,38,.32) 0%, rgba(206,17,38,0) 70%);z-index:1;}
+  #rays{left:-60%;top:-40%;width:220%;height:180%;transform-origin:50% 50%;z-index:1;
+     background:conic-gradient(from 0deg, transparent 0deg, rgba(255,255,255,.055) 7deg, transparent 15deg,
+       transparent 34deg, rgba(255,255,255,.04) 41deg, transparent 49deg,
+       transparent 68deg, rgba(255,255,255,.05) 75deg, transparent 83deg);}
+  #grain{z-index:6;mix-blend-mode:overlay;opacity:.5;background-image:repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px);}
+  #vig{z-index:7;pointer-events:none;background:radial-gradient(ellipse 82% 66% at 50% 46%, rgba(0,0,0,0) 42%, rgba(0,0,0,.86) 100%);}
+  #particles{z-index:5;}
+  #particles i{position:absolute;border-radius:50%;background:rgba(255,255,255,.75);}
+
+  #flag{z-index:3;overflow:hidden;}
+  #flag div{position:absolute;left:0;width:100%;height:33.34%;transform-origin:right center;}
+  #flag .r{top:0;background:var(--red)} #flag .w{top:33.33%;background:var(--paper)} #flag .b{top:66.66%;background:#08080A}
+
+  #badge{position:absolute;top:172px;left:50%;width:124px;height:76px;margin-left:-62px;border-radius:7px;
+     overflow:hidden;z-index:15;box-shadow:0 12px 44px rgba(0,0,0,.7), 0 0 0 2px rgba(255,255,255,.10);}
+  #badge div{height:33.34%}
+  #badge .r{background:var(--red)} #badge .w{background:var(--paper)} #badge .b{background:#08080A}
+
+  .c{position:absolute;left:66px;right:66px;text-align:center;z-index:13;}
+  .mega{font-family:'Amiri',serif;font-weight:700;font-size:232px;line-height:.95;text-shadow:0 10px 60px rgba(0,0,0,.9);}
+  .head{font-family:'Amiri',serif;font-weight:700;font-size:104px;line-height:1.22;text-shadow:0 8px 44px rgba(0,0,0,.85);}
+  .sub{font-family:'Cairo';font-weight:700;font-size:50px;line-height:1.5;color:var(--dim);}
+  .kick{display:inline-block;background:var(--red);color:#fff;font-family:'Cairo';font-weight:900;
+     font-size:33px;letter-spacing:1px;padding:10px 32px;border-radius:6px;box-shadow:0 10px 34px rgba(206,17,38,.5);}
+  .rule{position:absolute;left:50%;width:160px;height:5px;margin-left:-80px;background:var(--red);z-index:13;border-radius:3px;}
+
+  /* ---------------- map ---------------- */
+  #mapWrap{position:absolute;left:0;top:430px;width:1080px;height:660px;z-index:9;overflow:hidden;
+     -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 72px, #000 calc(100% - 46px), transparent 100%),
+                        linear-gradient(to right, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
+     -webkit-mask-composite:source-in; mask-composite:intersect;}
+  #cam{position:absolute;left:0;top:0;width:1080px;height:660px;transform-origin:0 0;}
+  #map{position:absolute;left:0;top:0;overflow:visible;}
+  #map .land{fill:rgba(255,255,255,.085);stroke:rgba(244,241,234,.60);stroke-linejoin:round;
+     filter:drop-shadow(0 0 26px rgba(206,17,38,.40));}
+  #map .arrow{fill:none;stroke:var(--red);stroke-linecap:round;
+     filter:drop-shadow(0 0 10px rgba(206,17,38,.95));}
+  #map .arrow.dash{stroke:var(--gold);filter:drop-shadow(0 0 10px rgba(216,179,104,.9));}
+  #map .head{stroke:none;}
+  .mk{position:absolute;transform-origin:50% 50%;z-index:10;}
+  .mk .core{position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px 0 0 -11px;
+     border-radius:50%;background:var(--red);box-shadow:0 0 26px 4px rgba(206,17,38,.95);}
+  .mk .ring{position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;border:2.5px solid var(--red);}
+  .mk .cap{position:absolute;left:50%;top:26px;transform:translateX(-50%);white-space:nowrap;
+     font-family:'Cairo';font-weight:900;font-size:34px;color:#fff;text-shadow:0 3px 14px #000,0 0 28px #000,0 0 6px #000;}
+  .mk .cap.up{top:auto;bottom:26px;}
+  #sanaa .star{position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;background:var(--paper);
+     clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+     filter:drop-shadow(0 0 18px rgba(255,255,255,.85));}
+  #sanaa{z-index:11;} #sanaa .cap{font-size:36px;top:50%;left:calc(50% + 28px);transform:translateY(-50%);}
+  #schem{position:absolute;left:70px;bottom:8px;z-index:12;font-family:'Cairo';font-weight:400;
+     font-size:24px;color:rgba(244,241,234,.42);}
+
+  /* ---------------- fact card ---------------- */
+  #card{position:absolute;left:66px;right:66px;top:1096px;z-index:13;
+     background:linear-gradient(180deg, rgba(255,255,255,.115), rgba(255,255,255,.05));
+     border:1px solid rgba(255,255,255,.17);border-right:9px solid var(--red);
+     border-radius:16px;padding:26px 36px 22px;backdrop-filter:blur(8px);box-shadow:0 26px 70px rgba(0,0,0,.7);}
+  #cDate{font-family:'Cairo';font-weight:900;font-size:34px;color:var(--red);margin-bottom:10px;}
+  #cText{font-family:'Cairo';font-weight:700;font-size:48px;line-height:1.38;}
+  #cWhere{font-family:'Cairo';font-weight:400;font-size:32px;color:var(--dim);margin-top:10px;}
+  #cSrc{font-family:'Cairo';font-weight:400;font-size:22px;color:rgba(244,241,234,.46);margin-top:16px;
+     padding-top:13px;border-top:1px solid rgba(255,255,255,.12);line-height:1.35;}
+
+  #wave{z-index:2;}
+  #waveShade{z-index:3;background:linear-gradient(180deg, rgba(0,0,0,.48) 0%, rgba(0,0,0,.62) 32%, rgba(0,0,0,.62) 68%, rgba(0,0,0,.52) 100%);}
+  #wipe{position:absolute;top:-15%;height:130%;width:150%;left:-25%;background:var(--red);z-index:20;transform:skewY(-9deg);}
+  #flash{background:#fff;z-index:22;}
+  #fade{background:#000;z-index:24;}
+  #bar{position:absolute;left:0;top:0;height:7px;background:var(--red);z-index:23;box-shadow:0 0 16px rgba(206,17,38,.9);}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="rays" class="abs"></div>
+  <div id="glow" class="abs hid"></div>
+
+  <svg id="wave" class="abs hid" width="1080" height="1920" viewBox="0 0 1080 1920">
+    <path id="w1" fill="#CE1126"/><path id="w2" fill="#F4F1EA"/><path id="w3" fill="#08080A"/>
+  </svg>
+  <div id="waveShade" class="abs hid"></div>
+
+  <div id="mapWrap" class="hid">
+    <div id="cam"><svg id="map" width="1080" height="660" viewBox="0 0 1080 660"></svg></div>
+    </div>
+
+  <div id="particles" class="abs"></div>
+  <div id="grain" class="abs"></div>
+  <div id="vig" class="abs"></div>
+
+  <div id="flag" class="abs"><div class="r"></div><div class="w"></div><div class="b"></div></div>
+  <div id="badge" class="hid"><div class="r"></div><div class="w"></div><div class="b"></div></div>
+
+  <!-- hook -->
+  <div id="h1" class="c mega hid" style="top:642px">سبتمبر</div>
+  <div id="h2" class="c head hid" style="top:934px;font-size:88px">شهر اليمنيين المقدّس</div>
+  <div id="hRule" class="rule hid" style="top:1096px"></div>
+
+  <!-- 1962 -->
+  <div id="a1" class="c hid" style="top:600px"><span class="kick">26 سبتمبر 1962</span></div>
+  <div id="a2" class="c head hid" style="top:700px">يومَ قامتِ الجمهوريةُ اليمنية</div>
+  <div id="a3" class="c sub hid" style="top:944px">ثورةٌ أنهت حكمَ الإمامة<br>وأعلنت الجمهوريةَ العربيةَ اليمنية</div>
+
+  <!-- background: the truce collapse -->
+  <div id="b0" class="c hid" style="top:604px"><span class="kick">يوليو 2026</span></div>
+  <div id="b1" class="c head hid" style="top:700px;font-size:92px">انهارتِ الهدنة</div>
+  <div id="b2" class="c sub hid" style="top:900px">هدنةُ 2022 سقطت، وشنّت المليشيا<br>أوسعَ هجومٍ لها منذ أربع سنوات<br>باتجاه الساحل الغربي</div>
+
+  <!-- map header -->
+  <div id="m0" class="c hid" style="top:296px"><span class="kick">الميدان · سبتمبر 2026</span></div>
+  <div id="m1" class="c head hid" style="top:360px;font-size:74px">الجيشُ الوطني يستعيدُ المبادرة</div>
+
+  <div id="card" class="hid">
+    <div id="cDate">5 سبتمبر 2026</div>
+    <div id="cText">تحريرُ مديرية حيس بالكامل</div>
+    <div id="cWhere">جنوب محافظة الحديدة</div>
+    <div id="cSrc">خريطة توضيحية · الأسهم تدل على اتجاه التقدّم لا مسافته<br>وفق إعلانات القوات المسلحة اليمنية ووكالات الأنباء — سبتمبر 2026</div>
+  </div>
+
+  <!-- objective -->
+  <div id="o1" class="c hid" style="top:296px"><span class="kick">8 سبتمبر 2026</span></div>
+  <div id="o2" class="c head hid" style="top:360px;font-size:76px">والوجهةُ… صنعاء</div>
+
+  <!-- close -->
+  <div id="z1" class="c mega hid" style="top:664px;font-size:206px">سبتمبر</div>
+  <div id="z2" class="c head hid" style="top:906px;font-size:86px">شهر اليمنيين المقدّس</div>
+  <div id="z3" class="c sub hid" style="top:1092px;font-size:56px;font-weight:900;color:#fff">النصرُ للجمهورية</div>
+
+  <div id="wipe" class="hid"></div>
+  <div id="flash" class="abs hid"></div>
+  <div id="fade" class="abs"></div>
+  <div id="bar"></div>
+</div>
+
+<script>
+const DURATION = 60, W = 1080, H = 1920, DW = 1080, DH = 660;
+const $ = id => document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const eo=t=>1-Math.pow(1-t,3);
+const ei=t=>t*t*t;
+const eio=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const seg=(t,s,d)=>clamp((t-s)/d);
+const win=(t,s,e,fi=.4,fo=.3)=> (t<s||t>e)?0:Math.min(seg(t,s,fi),clamp((e-t)/fo));
+
+function show(el,t,s,e,{dy=44,fi=.45,fo=.3,sc=1,blur=0}={}){
+  const o=win(t,s,e,fi,fo); el.style.opacity=o;
+  if(o===0) return 0;
+  const pi=eo(seg(t,s,fi)), po=ei(1-clamp((e-t)/fo));
+  el.style.transform=`translateY(${lerp(dy,0,pi)-po*26}px) scale(${lerp(sc,1,pi)})`;
+  if(blur) el.style.filter=`blur(${(1-pi)*blur}px)`;
+  return o;
+}
+
+/* Every card is a dated announcement corroborated across outlets — see
+   PUBLISHING.md for the per-item source list. The Kadha front in particular
+   has changed hands more than once, which is why each card is framed as a
+   dated claim rather than a settled outcome. */
+const FACTS=[
+ {id:1,s:17.6,e:22.0,mk:'حيس',cap:'حيس',up:false,arrow:'hais',date:'5 سبتمبر 2026',
+  text:'تحريرُ مديرية حيس بالكامل',where:'جنوب محافظة الحديدة'},
+ {id:2,s:22.1,e:26.5,mk:'الحزم',cap:'الجوف',up:true,arrow:null,date:'6 سبتمبر 2026',
+  text:'طيرانُ الجيش يقصف معسكري اللبنات والخنجر',where:'الجوف — وغاراتٌ على جبهات تعز والحديدة'},
+ {id:3,s:26.6,e:31.0,mk:'اللبنات',cap:'اللبنات · الحزم',up:true,arrow:'jawf',date:'7 سبتمبر 2026',
+  text:'السيطرةُ على معسكر اللبنات والتقدّمُ نحو الحزم',where:'محافظة الجوف — بوابةُ صنعاء'},
+ {id:4,s:31.1,e:35.5,mk:'الكدحة',cap:'الكدحة',up:false,arrow:'taiz',date:'7 سبتمبر 2026',
+  text:'السيطرةُ على نقيل وجبل الكورة بجبهة الكدحة',where:'غربَ مدينة تعز'},
+ {id:5,s:35.6,e:40.0,mk:'البيضاء',cap:'البيضاء',up:false,arrow:'bayda',date:'7 سبتمبر 2026',
+  text:'السيطرةُ على مرتفعات الزاهر والوصولُ إلى مشارف ذي ناعم',where:'محافظة البيضاء'},
+ {id:6,s:40.1,e:44.5,mk:'اليتمة',cap:'اليتمة',up:false,arrow:'yatama',date:'7 سبتمبر 2026',
+  text:'قصفٌ بالراجمات على اليتمة تمهيداً للتقدّم',where:'شمال محافظة الجوف'},
+ {id:7,s:44.6,e:49.4,mk:'مأرب',cap:'مأرب',up:true,arrow:null,date:'8 سبتمبر 2026',
+  text:'القيادة: تقدّمٌ في الجوف والبيضاء وتعز والحديدة',where:'واستعادةُ زمام المبادرة على الجبهات'},
+];
+
+const MAP = {"w": 1000, "h": 589.8, "paths": ["M915.4 209.5 L873.9 224.8 L862.9 231.5 L853.0 239.9 L845.5 250.3 L840.3 268.7 L844.3 285.4 L843.9 294.4 L833.2 300.4 L823.2 304.7 L812.1 311.2 L805.3 312.8 L799.8 318.0 L793.4 321.7 L770.2 331.1 L744.9 338.4 L704.8 347.2 L689.3 356.7 L675.1 363.2 L653.7 365.1 L624.2 374.2 L607.9 381.4 L587.6 393.2 L583.0 396.9 L579.5 405.6 L573.2 413.1 L561.0 425.3 L551.8 431.6 L545.7 432.0 L533.7 435.4 L519.7 436.1 L496.0 431.8 L489.9 434.8 L484.9 439.6 L466.6 448.0 L448.0 464.8 L434.5 469.3 L412.5 474.6 L397.1 481.6 L386.8 484.4 L373.5 485.9 L348.9 485.2 L325.6 487.7 L304.0 492.4 L293.8 501.4 L282.3 515.7 L263.4 521.5 L258.9 526.6 L253.1 537.1 L240.8 539.8 L229.7 541.6 L218.4 537.0 L197.1 549.7 L189.0 551.8 L176.8 552.3 L168.1 554.9 L161.8 554.2 L154.0 549.2 L137.5 543.2 L125.4 547.1 L124.4 535.1 L104.4 498.6 L108.5 466.7 L108.5 462.2 L104.5 448.0 L92.6 435.0 L93.0 418.5 L89.0 406.7 L85.8 394.6 L86.8 391.4 L87.0 388.5 L80.9 369.8 L78.9 366.0 L78.1 362.1 L80.1 359.2 L80.0 355.7 L76.8 350.0 L73.4 339.1 L57.1 330.5 L60.4 322.5 L63.6 325.3 L67.9 327.7 L68.7 322.6 L68.8 318.7 L62.0 294.5 L72.1 262.2 L68.8 233.2 L84.1 221.5 L88.0 217.9 L90.3 214.8 L93.9 208.2 L98.9 206.0 L100.6 199.1 L100.5 195.6 L97.3 192.6 L94.9 184.5 L95.7 174.2 L96.5 169.8 L98.1 162.0 L103.5 159.0 L104.8 156.7 L100.6 151.7 L101.0 148.8 L110.1 140.5 L113.8 138.0 L119.7 135.4 L124.3 135.4 L129.7 136.9 L134.4 139.2 L139.0 143.4 L143.9 148.3 L151.5 150.1 L156.6 149.6 L160.7 151.7 L164.3 150.6 L168.2 148.1 L174.6 148.3 L180.4 145.4 L196.8 144.1 L212.6 144.9 L229.0 142.6 L245.5 142.8 L262.1 143.0 L265.7 143.3 L269.4 144.8 L283.3 152.2 L293.9 153.7 L315.3 155.7 L338.0 157.9 L357.7 159.7 L374.4 158.0 L388.3 156.5 L392.1 156.8 L396.3 161.4 L404.6 172.7 L412.5 183.5 L426.3 184.1 L435.2 180.0 L444.9 174.3 L450.8 169.9 L457.7 152.5 L462.2 141.2 L472.4 128.5 L481.0 117.9 L492.3 103.8 L498.6 96.0 L511.0 80.6 L522.8 74.6 L545.6 63.0 L568.0 51.7 L582.6 44.3 L594.9 40.9 L615.7 38.0 L640.2 34.6 L664.6 31.2 L690.6 27.5 L719.7 23.5 L739.6 20.7 L765.0 17.1 L786.1 14.2 L804.9 11.6 L824.2 8.9 L827.8 17.4 L831.5 26.0 L835.1 34.5 L838.7 43.0 L842.4 51.6 L846.0 60.1 L849.7 68.6 L853.3 77.2 L857.0 85.7 L860.6 94.3 L864.2 102.8 L867.9 111.3 L871.5 119.9 L875.2 128.4 L878.8 136.9 L882.5 145.5 L886.0 153.8 L891.9 156.6 L895.4 164.5 L900.4 175.7 L905.4 187.0 L910.4 198.3 L915.4 209.5 Z", "M51.5 324.5 L48.9 326.4 L48.2 323.1 L49.9 315.6 L52.5 313.5 L54.4 319.0 L53.2 322.0 L51.5 324.5 Z", "M65.2 461.2 L59.7 463.8 L63.5 457.0 L67.3 455.6 L68.3 455.9 L65.2 461.2 Z", "M67.8 438.4 L66.7 440.2 L65.2 439.8 L60.1 435.2 L65.7 430.1 L68.7 434.9 L67.8 438.4 Z", "M971.1 552.4 L976.2 553.5 L983.9 550.5 L1006.0 550.1 L1032.7 559.6 L1027.7 562.1 L1024.7 565.6 L1012.9 568.7 L1001.3 576.0 L967.5 579.6 L957.6 577.6 L949.4 570.5 L934.3 561.3 L940.3 555.4 L941.6 552.7 L943.8 550.1 L952.3 545.7 L960.9 546.4 L971.1 552.4 Z"], "pts": {"صنعاء": [183.3, 318.9], "الحزم": [231.5, 250.9], "اللبنات": [241.6, 251.3], "اليتمة": [217.0, 196.6], "تعز": [169.4, 471.9], "الكدحة": [144.5, 474.4], "الحديدة": [81.5, 367.7], "حيس": [124.8, 437.6], "المخا": [105.8, 494.0], "مأرب": [276.7, 310.3], "البيضاء": [296.5, 437.3], "ذي ناعم": [258.1, 388.9], "عدن": [251.4, 539.7]}, "arrows": {"hais": {"d": "M105.8 494.0 Q120.1 474.5 120.4 450.4", "tip": [120.4, 450.4], "ang": -89.2}, "taiz": {"d": "M105.8 494.0 Q129.6 490.2 146.8 473.2", "tip": [146.8, 473.2], "ang": -44.6}, "jawf": {"d": "M241.6 251.3 Q218.9 243.2 195.6 249.8", "tip": [195.6, 249.8], "ang": 164.2}, "yatama": {"d": "M231.5 250.9 Q232.7 226.8 219.6 206.5", "tip": [219.6, 206.5], "ang": -122.7}, "bayda": {"d": "M296.5 437.3 Q288.0 414.7 267.9 401.3", "tip": [267.9, 401.3], "ang": -146.1}, "sanaa": {"d": "M231.5 250.9 Q202.1 272.9 191.0 308.0", "tip": [191.0, 308.0], "ang": 107.7}}, "cam": {"full": {"x": 44.1, "y": 0.0, "w": 995.9, "h": 589.8}, "theatre": {"x": 52.3, "y": 162.4, "w": 279.8, "h": 367.5}}};
+(function(){
+  const svg=$('map'), cam=$('cam');
+  let s = MAP.paths.map(d=>`<path class="land" d="${d}"/>`).join('');
+  for(const [k,a] of Object.entries(MAP.arrows)){
+    const dash = k==='sanaa' ? ' dash' : '';
+    s += `<path id="ar_${k}" class="arrow${dash}" d="${a.d}"/>`
+       + `<path id="hd_${k}" class="head" fill="${k==='sanaa'?'#D8B368':'#CE1126'}"`
+       + ` d="M0 0 L-15 -7.5 L-11 0 L-15 7.5 Z"`
+       + ` transform="translate(${a.tip[0]},${a.tip[1]}) rotate(${a.ang})"/>`;
+  }
+  svg.innerHTML = s;
+
+  const star=document.createElement('div'); star.className='mk'; star.id='sanaa';
+  star.style.left=MAP.pts['صنعاء'][0]+'px'; star.style.top=MAP.pts['صنعاء'][1]+'px';
+  star.innerHTML='<div class="star"></div><div class="cap">صنعاء</div>';
+  cam.appendChild(star);
+  for(const f of FACTS){
+    const m=document.createElement('div'); m.className='mk'; m.id='mk'+f.id;
+    m.style.left=MAP.pts[f.mk][0]+'px'; m.style.top=MAP.pts[f.mk][1]+'px';
+    m.innerHTML=`<div class="ring"></div><div class="core"></div><div class="cap${f.up?' up':''}">${f.cap}</div>`;
+    m.style.opacity=0; cam.appendChild(m);
+  }
+})();
+
+// camera presets: what map-space point sits at the centre of the display box, and at what zoom
+const CAM={
+  full:    {s:0.92, cx:MAP.cam.full.x+MAP.cam.full.w/2,       cy:MAP.cam.full.y+MAP.cam.full.h/2},
+  theatre: {s:1.55, cx:MAP.cam.theatre.x+MAP.cam.theatre.w/2, cy:MAP.cam.theatre.y+MAP.cam.theatre.h/2},
+};
+let camScale=1;
+function setCam(k){
+  camScale=k.s;
+  $('cam').style.transform=`translate(${DW/2-k.cx*k.s}px, ${DH/2-k.cy*k.s}px) scale(${k.s})`;
+  // counter-scale so pins, labels and stroke weights stay a constant size on screen
+  for(const el of document.querySelectorAll('.mk'))
+    el.style.transform=`translate(-50%,-50%) scale(${1/k.s})`;
+  for(const el of document.querySelectorAll('#map .land')) el.style.strokeWidth=(2.6/k.s)+'px';
+  for(const el of document.querySelectorAll('#map .arrow')) el.style.strokeWidth=(7/k.s)+'px';
+  for(const el of document.querySelectorAll('#map .head')) el.setAttribute('transform',
+    el.getAttribute('transform').replace(/ scale\([^)]*\)/,'')+` scale(${1/k.s})`);
+}
+const mixCam=(a,b,p)=>({s:lerp(a.s,b.s,p), cx:lerp(a.cx,b.cx,p), cy:lerp(a.cy,b.cy,p)});
+
+const PARTS=[];(function(){
+  const box=$('particles');let sd=26;const rnd=()=>{sd=(sd*16807)%2147483647;return sd/2147483647;};
+  for(let i=0;i<40;i++){const el=document.createElement('i');box.appendChild(el);
+    const sz=2+rnd()*4.5;el.style.width=el.style.height=sz+'px';
+    PARTS.push({el,x:rnd()*W,y:rnd()*H,sp:14+rnd()*30,ph:rnd()*6.28,op:.2+rnd()*.45});}
+})();
+// arrow path lengths, for the draw-on animation
+const ALEN={};
+for(const k of Object.keys(MAP.arrows)) ALEN[k]=$('ar_'+k).getTotalLength();
+
+function wavePath(t,top,bot,amp,ph){
+  let d=`M0 ${(top+amp*Math.sin(ph)).toFixed(1)}`;
+  for(let x=0;x<=W;x+=36) d+=` L${x} ${(top+amp*Math.sin(x/190+ph+t*2)).toFixed(1)}`;
+  d+=` L${W} ${(bot+amp*Math.sin(W/190+ph+t*2+.5)).toFixed(1)}`;
+  for(let x=W;x>=0;x-=36) d+=` L${x} ${(bot+amp*Math.sin(x/190+ph+t*2+.5)).toFixed(1)}`;
+  return d+' Z';
+}
+
+function drawArrow(k, p, on){
+  const a=$('ar_'+k), h=$('hd_'+k), L=ALEN[k];
+  a.style.opacity=on; h.style.opacity=on*clamp((p-.82)/.18);
+  a.style.strokeDasharray=L; a.style.strokeDashoffset=L*(1-p);
+}
+
+function render(t){
+  $('rays').style.transform=`rotate(${t*2.4}deg)`;
+  $('rays').style.opacity = t<55 ? .85*win(t,.5,55,1,.8) : .35*win(t,54.5,60,.5,1.2);
+  $('bar').style.width=(t/DURATION*W)+'px';
+  const pOn=win(t,1,59,1,1);
+  for(const p of PARTS){
+    const y=((p.y-t*p.sp)%H+H)%H, x=p.x+Math.sin(t*.5+p.ph)*26;
+    p.el.style.transform=`translate(${x}px,${y}px)`;
+    p.el.style.opacity=p.op*(.55+.45*Math.sin(t*2+p.ph))*pOn;
+  }
+
+  /* ---- 0–4 hook ---- */
+  const fl=$('flag');
+  fl.children[0].style.transform=`scaleX(${eo(seg(t,.03,.42))})`;
+  fl.children[1].style.transform=`scaleX(${eo(seg(t,.14,.42))})`;
+  fl.children[2].style.transform=`scaleX(${eo(seg(t,.25,.42))})`;
+  const shrink=eio(seg(t,.78,.55));
+  if(t<1.36){
+    fl.style.opacity=1;
+    fl.style.transform=`translateY(${lerp(0,(172+38)-H/2,shrink)}px) scale(${lerp(1,124/W,shrink)},${lerp(1,76/H,shrink)})`;
+    $('badge').style.opacity=0;
+  }else{ fl.style.opacity=0; $('badge').style.opacity=win(t,1.36,55.2,.06,.35); }
+  show($('h1'),t,.92,4.0,{dy:0,fi:.46,sc:1.35,blur:16});
+  $('h1').style.letterSpacing=lerp(46,2,eo(seg(t,.92,.85)))+'px';
+  show($('h2'),t,1.42,4.0,{dy:34,fi:.46});
+  $('hRule').style.opacity=win(t,1.34,4.0,.45,.3);
+  $('hRule').style.transform=`scaleX(${eo(seg(t,1.34,.55))})`;
+
+  /* ---- 4.1–9.0  1962 ---- */
+  show($('a1'),t,4.15,9.0,{dy:18,fi:.3,sc:.72});
+  show($('a2'),t,4.35,9.0,{dy:30,fi:.55,blur:9});
+  show($('a3'),t,5.05,9.0,{dy:26,fi:.5});
+
+  /* ---- 9.2–13.6  truce collapse ---- */
+  show($('b0'),t,9.3,13.6,{dy:16,fi:.3,sc:.72});
+  show($('b1'),t,9.5,13.6,{dy:28,fi:.5,blur:9});
+  show($('b2'),t,10.2,13.6,{dy:24,fi:.5});
+
+  /* ---- 13.9–55  map ---- */
+  const mapOn=win(t,13.9,55.0,.6,.5);
+  $('glow').style.opacity=mapOn*(.85+.15*Math.sin(t*2.4));
+  $('mapWrap').style.opacity=mapOn;
+  show($('m0'),t,14.1,49.6,{dy:16,fi:.3,sc:.75});
+  show($('m1'),t,14.3,49.6,{dy:26,fi:.5});
+
+  // camera: hold the whole country, then push into the active theatre, then ease back out
+  let k;
+  if(t<15.6)        k=CAM.full;
+  else if(t<17.6)   k=mixCam(CAM.full, CAM.theatre, eio(seg(t,15.6,2.0)));
+  else if(t<50.4)   k=CAM.theatre;
+  else              k=mixCam(CAM.theatre, CAM.full, eio(seg(t,50.4,2.2))*0.45);
+  setCam(k);
+
+  const sa=$('sanaa'); sa.style.opacity=win(t,14.6,54.6,.5,.5);
+  sa.querySelector('.star').style.transform=`scale(${lerp(.6,1,eo(seg(t,14.6,.5)))}) rotate(${Math.sin(t*1.1)*7}deg)`;
+
+  let active=null;
+  for(const f of FACTS){
+    const on=win(t,f.s,f.e,.34,.26);
+    const m=$('mk'+f.id); m.style.opacity=on;
+    if(on>0){
+      const ph=((t-f.s)*1.15)%1;
+      m.querySelector('.ring').style.transform=`scale(${1+ph*3.6})`;
+      m.querySelector('.ring').style.opacity=(1-ph)*.95;
+      m.querySelector('.core').style.transform=`scale(${lerp(.3,1,eo(seg(t,f.s,.34)))})`;
+      if(on>.5) active=f;
+    }
+  }
+  // advance arrows draw on with their fact
+  for(const k2 of Object.keys(MAP.arrows)){
+    if(k2==='sanaa') continue;
+    const f=FACTS.find(x=>x.arrow===k2);
+    if(!f){ drawArrow(k2,0,0); continue; }
+    drawArrow(k2, eo(seg(t,f.s+.15,1.0)), win(t,f.s,f.e,.34,.26));
+  }
+  // the Sanaa axis, dashed, only in the objective beat
+  drawArrow('sanaa', eo(seg(t,50.4,1.6)), win(t,50.3,54.8,.4,.5));
+
+  const card=$('card');
+  if(active){
+    if(card.dataset.id!==String(active.id)){
+      card.dataset.id=String(active.id);
+      $('cDate').textContent=active.date; $('cText').textContent=active.text; $('cWhere').textContent=active.where;
+    }
+    card.style.opacity=win(t,active.s,active.e,.3,.24);
+    card.style.transform=`translateY(${lerp(46,0,eo(seg(t,active.s,.3)))}px)`;
+  } else card.style.opacity=0;
+
+  /* ---- 50–55 objective ---- */
+  show($('o1'),t,50.2,54.8,{dy:16,fi:.3,sc:.72});
+  show($('o2'),t,50.4,54.8,{dy:26,fi:.5,blur:8});
+
+  /* ---- 55–60 close ---- */
+  const cl=win(t,55.05,60.4,.45,.1);
+  $('wave').style.opacity=cl; $('waveShade').style.opacity=cl;
+  if(cl>0){
+    const amp=30, kk=eo(seg(t,55.05,1.3));
+    $('w1').setAttribute('d',wavePath(t,-90,H/3,amp,0));
+    $('w2').setAttribute('d',wavePath(t,H/3,2*H/3,amp,.45));
+    $('w3').setAttribute('d',wavePath(t,2*H/3,H+90,amp,.9));
+    $('wave').style.transform=`scale(${lerp(1.14,1.03,kk)})`;
+  }
+  show($('z1'),t,55.35,60.4,{dy:0,fi:.6,sc:1.28,blur:16});
+  $('z1').style.letterSpacing=lerp(40,2,eo(seg(t,55.35,1)))+'px';
+  show($('z2'),t,56.0,60.4,{dy:26,fi:.55});
+  show($('z3'),t,56.75,60.4,{dy:20,fi:.55});
+
+  const wp=seg(t,13.5,.8), wipe=$('wipe');
+  if(wp>0&&wp<1){wipe.style.opacity=1;wipe.style.transform=`translateY(${lerp(-2300,2300,eio(wp))}px) skewY(-9deg)`;}
+  else wipe.style.opacity=0;
+
+  $('flash').style.opacity=Math.max(
+    (t>=55.0&&t<55.75)?(1-seg(t,55.0,.75))*.85:0,
+    (t>=14.2&&t<14.6)?(1-seg(t,14.2,.4))*.3:0,
+    (t>=9.15&&t<9.5)?(1-seg(t,9.15,.35))*.22:0,
+    (t>=4.1&&t<4.45)?(1-seg(t,4.1,.35))*.22:0);
+  $('fade').style.opacity=Math.max(1-seg(t,0,.42), seg(t,59.3,.7));
+}
+window.seek=render; window.DURATION=DURATION;
+if(!navigator.webdriver){const t0=performance.now();
+  (function loop(){render(((performance.now()-t0)/1000)%DURATION);requestAnimationFrame(loop);})();}
+else render(0);
+</script>
+</body>
+</html>

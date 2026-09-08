@@ -40,16 +40,18 @@ FFMPEG=/path/to/ffmpeg node render.js --portrait  # النسخة العمودي�
 
 | ملف | الوصف |
 | --- | --- |
-| `yemen-september-reel-30s.mp4` | الريلز النهائي بالأهزوجة (H.264 High@4.0 + AAC) |
+| `yemen-september-reel-60s.mp4` | **ريلز 60 ثانية** بالأهزوجة وخريطة الجبهات المتحركة |
+| `yemen-september-reel-30s.mp4` | ريلز 30 ثانية بالأهزوجة (H.264 High@4.0 + AAC) |
 | `yemen-september-reel-30s-silent.mp4` | نفس الريلز بلا صوت — لإضافة أغنية مرخّصة من مكتبة الموسيقى داخل تطبيق فيسبوك |
-| `reel-30s.html` | تصميم وحركة الريلز — افتحه في المتصفح لمعاينة حيّة |
+| `reel-60s.html` | تصميم وحركة نسخة الستين ثانية (كاميرا الخريطة وأسهم التقدّم) |
+| `reel-30s.html` | تصميم وحركة نسخة الثلاثين ثانية |
 | `render-reel.js` | يصوّر الإطارات عبر Playwright ويمرّرها إلى ffmpeg |
-| `zamil-30s.py` | يولّد الأهزوجة الأصلية `zamil-30s.wav` (إيقاع زامل + تصفيق + هتاف جماعي) |
+| `zamil.py` | يولّد الأهزوجة الأصلية لأي من المدّتين: `python3 zamil.py 60` أو `30` |
 | `music-30s.py` | الموسيقى السينمائية البديلة `music-30s.wav` (غير مستخدمة في النسخة الحالية) |
 | `thumbnail.html` | تصميم الغلاف |
 | `thumbnail-9x16.png` | غلاف الريلز 1080×1920 |
 | `thumbnail-4x5.png` | غلاف منشور الفيد 1080×1350 |
-| `yemen-map.json` | مسارات خريطة اليمن مسقطة إلى بكسلات التركيب |
+| `yemen-map.json` | مسارات الخريطة والمواقع وأسهم التقدّم وأطر الكاميرا |
 | `yemen.geo.json` | حدود اليمن من Natural Earth (ملك عام) |
 | `PUBLISHING.md` | دليل النشر: المواصفات، المصادر، الوصف، معايير Meta |
 
@@ -66,8 +68,10 @@ FFMPEG=/path/to/ffmpeg node render.js --portrait  # النسخة العمودي�
 ### إعادة الإخراج
 
 ```bash
-python3 zamil-30s.py                                              # الأهزوجة
-FFMPEG=/path/to/ffmpeg MUSIC=zamil-30s.wav node render-reel.js    # الريلز 1080×1920
+python3 zamil.py 60                                               # الأهزوجة
+FFMPEG=/path/to/ffmpeg COMP=reel-60s.html MUSIC=zamil-60s.wav \
+  node render-reel.js yemen-september-reel-60s.mp4                # ريلز 60 ثانية
+FFMPEG=/path/to/ffmpeg MUSIC=zamil-30s.wav node render-reel.js    # ريلز 30 ثانية
 ```
 
 لتحديث الوقائع عدّل مصفوفة `FACTS` في `reel-30s.html` فقط — البطاقات والعلامات على
