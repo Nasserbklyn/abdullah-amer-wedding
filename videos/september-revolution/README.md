@@ -40,7 +40,8 @@ FFMPEG=/path/to/ffmpeg node render.js --portrait  # النسخة العمودي�
 
 | ملف | الوصف |
 | --- | --- |
-| `yemen-september-reel-30s.mp4` | الريلز النهائي (H.264 High@4.0 + AAC) |
+| `yemen-september-reel-30s.mp4` | الريلز النهائي بالأهزوجة (H.264 High@4.0 + AAC) |
+| `yemen-september-reel-30s-silent.mp4` | نفس الريلز بلا صوت — لإضافة أغنية مرخّصة من مكتبة الموسيقى داخل تطبيق فيسبوك |
 | `reel-30s.html` | تصميم وحركة الريلز — افتحه في المتصفح لمعاينة حيّة |
 | `render-reel.js` | يصوّر الإطارات عبر Playwright ويمرّرها إلى ffmpeg |
 | `zamil-30s.py` | يولّد الأهزوجة الأصلية `zamil-30s.wav` (إيقاع زامل + تصفيق + هتاف جماعي) |
