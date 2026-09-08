@@ -43,7 +43,8 @@ FFMPEG=/path/to/ffmpeg node render.js --portrait  # النسخة العمودي�
 | `yemen-september-reel-30s.mp4` | الريلز النهائي (H.264 High@4.0 + AAC) |
 | `reel-30s.html` | تصميم وحركة الريلز — افتحه في المتصفح لمعاينة حيّة |
 | `render-reel.js` | يصوّر الإطارات عبر Playwright ويمرّرها إلى ffmpeg |
-| `music-30s.py` | يولّد الموسيقى الأصلية `music-30s.wav` |
+| `zamil-30s.py` | يولّد الأهزوجة الأصلية `zamil-30s.wav` (إيقاع زامل + تصفيق + هتاف جماعي) |
+| `music-30s.py` | الموسيقى السينمائية البديلة `music-30s.wav` (غير مستخدمة في النسخة الحالية) |
 | `thumbnail.html` | تصميم الغلاف |
 | `thumbnail-9x16.png` | غلاف الريلز 1080×1920 |
 | `thumbnail-4x5.png` | غلاف منشور الفيد 1080×1350 |
@@ -64,8 +65,8 @@ FFMPEG=/path/to/ffmpeg node render.js --portrait  # النسخة العمودي�
 ### إعادة الإخراج
 
 ```bash
-python3 music-30s.py                                   # الموسيقى
-FFMPEG=/path/to/ffmpeg node render-reel.js             # الريلز 1080×1920
+python3 zamil-30s.py                                              # الأهزوجة
+FFMPEG=/path/to/ffmpeg MUSIC=zamil-30s.wav node render-reel.js    # الريلز 1080×1920
 ```
 
 لتحديث الوقائع عدّل مصفوفة `FACTS` في `reel-30s.html` فقط — البطاقات والعلامات على
