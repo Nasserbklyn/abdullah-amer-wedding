@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>ثورة 26 سبتمبر — فيديو 20 ثانية</title>
+<style>
+  @font-face{font-family:'Cairo';font-weight:200 1000;src:url(fonts/Cairo-ar.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC;}
+  @font-face{font-family:'Cairo';font-weight:200 1000;src:url(fonts/Cairo-latin.woff2) format('woff2');unicode-range:U+0000-00FF;}
+  @font-face{font-family:'Amiri';font-weight:400;src:url(fonts/Amiri-ar-400.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC;}
+  @font-face{font-family:'Amiri';font-weight:700;src:url(fonts/Amiri-ar-700.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC;}
+  @font-face{font-family:'Amiri';font-weight:400;src:url(fonts/Amiri-latin-400.woff2) format('woff2');unicode-range:U+0000-00FF;}
+
+  :root{
+    --red:#CE1126; --white:#F4F1EA; --black:#0A0A0C; --ink:#111114; --gold:#D8B368;
+  }
+  html,body{margin:0;padding:0;background:#000;}
+  body{width:var(--W,1920px);height:var(--H,1080px);overflow:hidden;font-family:'Cairo','Amiri',sans-serif;color:var(--white);}
+  #stage{position:relative;width:var(--W,1920px);height:var(--H,1080px);overflow:hidden;background:var(--ink);}
+  .abs{position:absolute;inset:0;}
+  .hidden{opacity:0;}
+  /* Background layers */
+  #vignette{background:radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 35%, rgba(0,0,0,.75) 100%);pointer-events:none;z-index:5;}
+  #grain{background-image:repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 3px);mix-blend-mode:overlay;z-index:4;}
+  #rays{left:-50%;top:-50%;width:200%;height:200%;background:conic-gradient(from 0deg, rgba(255,255,255,0) 0deg, rgba(255,255,255,.10) 8deg, rgba(255,255,255,0) 16deg, rgba(255,255,255,0) 30deg, rgba(255,255,255,.08) 38deg, rgba(255,255,255,0) 46deg, rgba(255,255,255,0) 60deg, rgba(255,255,255,.10) 68deg, rgba(255,255,255,0) 76deg, rgba(255,255,255,0) 90deg);background-repeat:repeat;transform-origin:center;z-index:1;}
+  #redglow{background:radial-gradient(ellipse at 50% 120%, rgba(206,17,38,.55) 0%, rgba(206,17,38,0) 60%);z-index:1;}
+  /* Flag intro */
+  #flag{z-index:3;transform-origin:50% 50%;overflow:hidden;}
+  #flag .stripe{position:absolute;left:0;width:100%;height:33.34%;}
+  #flag .s1{top:0;background:var(--red);transform-origin:right center;}
+  #flag .s2{top:33.33%;background:var(--white);transform-origin:left center;}
+  #flag .s3{top:66.66%;background:var(--black);transform-origin:right center;}
+  #flagShade{background:rgba(0,0,0,.0);z-index:3;}
+  /* Badge flag (persistent) */
+  #badge{position:absolute;top:56px;left:50%;width:150px;height:90px;margin-left:-75px;border-radius:6px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.6),0 0 0 2px rgba(255,255,255,.08);z-index:8;}
+  #badge div{height:33.34%;}
+  #badge .r{background:var(--red)} #badge .w{background:var(--white)} #badge .b{background:var(--black)}
+  /* Typography */
+  .center{position:absolute;left:0;right:0;text-align:center;z-index:9;}
+  .title{font-family:'Amiri',serif;font-weight:700;font-size:150px;line-height:1.1;letter-spacing:-1px;text-shadow:0 8px 40px rgba(0,0,0,.6);}
+  .year{font-family:'Cairo';font-weight:900;font-size:120px;line-height:1;color:var(--red);text-shadow:0 0 30px rgba(206,17,38,.5);}
+  .sub{font-family:'Cairo';font-weight:400;font-size:44px;letter-spacing:2px;color:rgba(244,241,234,.85);}
+  .kicker{display:inline-block;background:var(--red);color:#fff;font-weight:700;font-size:32px;padding:6px 26px;border-radius:4px;letter-spacing:1px;}
+  .h2{font-family:'Amiri',serif;font-weight:700;font-size:104px;line-height:1.25;text-shadow:0 8px 40px rgba(0,0,0,.6);}
+  .p{font-family:'Cairo';font-weight:400;font-size:46px;line-height:1.6;color:rgba(244,241,234,.9);}
+  .chips{position:absolute;top:640px;left:0;right:0;display:flex;justify-content:center;gap:28px;z-index:9;}
+  .chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-right:6px solid var(--red);padding:18px 40px;border-radius:10px;font-size:40px;font-weight:700;backdrop-filter:blur(4px);}
+  .bigno{position:absolute;left:0;right:0;top:80px;text-align:center;font-family:'Amiri',serif;font-weight:700;font-size:820px;line-height:1;color:rgba(255,255,255,.04);z-index:2;}
+  /* Fronts */
+  .fronts{position:absolute;top:700px;left:0;right:0;display:flex;justify-content:center;gap:48px;z-index:9;}
+  .front{position:relative;display:flex;flex-direction:column;align-items:center;gap:14px;width:210px;}
+  .front .dot{position:relative;width:22px;height:22px;border-radius:50%;background:var(--red);box-shadow:0 0 18px rgba(206,17,38,.9);}
+  .front .ring{position:absolute;left:50%;top:11px;width:22px;height:22px;margin-left:-11px;margin-top:-11px;border-radius:50%;border:2px solid var(--red);}
+  .front .name{font-size:40px;font-weight:700;}
+  .front .line{width:1px;height:70px;background:linear-gradient(to bottom, rgba(255,255,255,.4), transparent);}
+  .stamp{position:absolute;left:0;right:0;top:330px;text-align:center;font-family:'Amiri',serif;font-weight:700;font-size:250px;line-height:1;color:transparent;-webkit-text-stroke:3px var(--red);z-index:9;text-shadow:none;}
+  /* Topo lines */
+  #topo{z-index:2;opacity:0;}
+  #wipe{position:absolute;top:-20%;height:140%;width:60%;left:0;background:var(--red);transform:skewX(-18deg);z-index:20;}
+  #flash{background:#fff;z-index:30;}
+  #fade{background:#000;z-index:40;}
+  #progress{position:absolute;left:0;bottom:0;height:6px;background:var(--red);z-index:12;}
+  #wave{z-index:2;}
+  #particles{z-index:6;}
+  #particles i{position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.7);}
+  #foot{position:absolute;bottom:34px;left:0;right:0;text-align:center;font-size:24px;letter-spacing:6px;color:rgba(255,255,255,.45);z-index:12;font-weight:400;}
+
+  /* ---------- portrait 9:16 (1080x1920) — !important beats the inline landscape positions ---------- */
+  body.portrait .center{padding:0 60px;}
+  body.portrait #s1title{top:720px!important;font-size:140px!important;}
+  body.portrait #s1year{top:930px!important;font-size:110px!important;}
+  body.portrait #s1sub{top:1090px!important;font-size:40px!important;}
+  body.portrait .bigno{top:520px!important;font-size:700px!important;}
+  body.portrait #s2h{top:470px!important;font-size:100px!important;}
+  body.portrait #s2p{top:650px!important;font-size:42px!important;line-height:1.7!important;}
+  body.portrait .chips{top:1000px!important;flex-wrap:wrap;width:900px;left:50%;right:auto;margin-left:-450px;gap:22px;}
+  body.portrait .chip{font-size:36px;padding:16px 34px;min-width:360px;text-align:center;}
+  body.portrait #s3k{top:400px!important;}
+  body.portrait #s3h{top:470px!important;font-size:94px!important;line-height:1.3!important;}
+  body.portrait #s3p{top:780px!important;font-size:42px!important;}
+  body.portrait .fronts{top:1060px!important;flex-wrap:wrap;width:820px;left:50%;right:auto;margin-left:-410px;gap:40px 30px;}
+  body.portrait .front{width:250px;}
+  body.portrait .stamp{top:760px!important;font-size:220px!important;}
+  body.portrait #s3end{top:1060px!important;font-size:50px!important;}
+  body.portrait #s4h{top:640px!important;font-size:150px!important;}
+  body.portrait #s4p{top:880px!important;font-size:50px!important;}
+  body.portrait #s4f{top:1010px!important;font-size:44px!important;}
+  body.portrait #foot{bottom:70px;font-size:22px;letter-spacing:4px;}
+  body.portrait #badge{top:120px;}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="rays" class="abs"></div>
+  <div id="redglow" class="abs hidden"></div>
+  <svg id="topo" class="abs" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5"></svg>
+  <svg id="wave" class="abs hidden">
+    <path id="w1" fill="#CE1126"/><path id="w2" fill="#F4F1EA"/><path id="w3" fill="#0A0A0C"/>
+  </svg>
+  <div id="waveShade" class="abs hidden" style="background:linear-gradient(to bottom, rgba(0,0,0,.45) 0%, rgba(0,0,0,.72) 28%, rgba(0,0,0,.72) 72%, rgba(0,0,0,.5) 100%);z-index:3;"></div>
+  <div class="bigno hidden" id="bigno">26</div>
+  <div id="grain" class="abs"></div>
+  <div id="vignette" class="abs"></div>
+  <div id="particles" class="abs"></div>
+
+  <div id="flag" class="abs">
+    <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div>
+  </div>
+  <div id="badge" class="hidden"><div class="r"></div><div class="w"></div><div class="b"></div></div>
+
+  <!-- Scene 1 -->
+  <div id="s1title" class="center title hidden" style="top:330px">ثورة 26 سبتمبر</div>
+  <div id="s1year" class="center year hidden" style="top:540px">1962</div>
+  <div id="s1sub" class="center sub hidden" style="top:700px">فجرُ الجمهوريةِ اليمنية</div>
+
+  <!-- Scene 2 -->
+  <div id="s2h" class="center h2 hidden" style="top:250px">ثورةٌ صنعت الجمهورية</div>
+  <div id="s2p" class="center p hidden" style="top:420px">أسقطت حكمَ الإمامة وأعلنت الجمهوريةَ العربيةَ اليمنية<br>وأطلقت أهدافَها الستة</div>
+  <div class="chips">
+    <div class="chip hidden" id="c1">جيشٌ وطنيٌّ قوي</div>
+    <div class="chip hidden" id="c2">مجتمعٌ عادل</div>
+    <div class="chip hidden" id="c3">الحريةُ والكرامة</div>
+    <div class="chip hidden" id="c4">الوحدةُ اليمنية</div>
+  </div>
+
+  <!-- Scene 3 -->
+  <div id="s3k" class="center hidden" style="top:200px"><span class="kicker">اليوم</span></div>
+  <div id="s3h" class="center h2 hidden" style="top:270px">من ثورةِ سبتمبر إلى معاركِ استعادةِ الجمهورية</div>
+  <div id="s3p" class="center p hidden" style="top:470px">الجيشُ الوطني والمقاومةُ يواصلون التقدّمَ على الجبهات<br>في مواجهة مليشيا الحوثي</div>
+  <div class="fronts" id="fronts">
+    <div class="front hidden"><div class="dot"></div><div class="ring"></div><div class="name">مأرب</div></div>
+    <div class="front hidden"><div class="dot"></div><div class="ring"></div><div class="name">الجوف</div></div>
+    <div class="front hidden"><div class="dot"></div><div class="ring"></div><div class="name">تعز</div></div>
+    <div class="front hidden"><div class="dot"></div><div class="ring"></div><div class="name">الضالع</div></div>
+    <div class="front hidden"><div class="dot"></div><div class="ring"></div><div class="name">حجّة</div></div>
+    <div class="front hidden"><div class="dot"></div><div class="ring"></div><div class="name">شبوة</div></div>
+  </div>
+  <div id="stamp" class="stamp hidden">انتصارات</div>
+  <div id="s3end" class="center p hidden" style="top:640px;font-size:54px;font-weight:700">وجهتُنا: استعادةُ الدولة والعاصمة صنعاء</div>
+
+  <!-- Scene 4 -->
+  <div id="s4h" class="center title hidden" style="top:300px;font-size:190px;text-shadow:0 6px 30px rgba(0,0,0,.85),0 0 80px rgba(0,0,0,.6)">النصرُ للجمهورية</div>
+  <div id="s4p" class="center p hidden" style="top:560px;font-size:56px">26 سبتمبر … ثورةٌ لا تموت</div>
+  <div id="s4f" class="center sub hidden" style="top:700px;font-size:48px;letter-spacing:8px">اليمنُ أولاً</div>
+
+  <div id="foot"><span dir="ltr">26 SEPTEMBER 1962</span> — الجمهورية اليمنية</div>
+  <div id="progress"></div>
+  <div id="wipe" class="hidden"></div>
+  <div id="flash" class="abs hidden"></div>
+  <div id="fade" class="abs"></div>
+</div>
+
+<script>
+const DURATION = 20;
+const PORTRAIT = new URLSearchParams(location.search).has('portrait');
+const W = PORTRAIT ? 1080 : 1920, H = PORTRAIT ? 1920 : 1080;
+document.documentElement.style.setProperty('--W', W+'px');
+document.documentElement.style.setProperty('--H', H+'px');
+document.body.classList.toggle('portrait', PORTRAIT);
+for (const id of ['topo','wave']) { const el=document.getElementById(id); el.setAttribute('width',W); el.setAttribute('height',H); el.setAttribute('viewBox',`0 0 ${W} ${H}`); }
+const $ = id => document.getElementById(id);
+const clamp = (x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const lerp = (a,b,t)=>a+(b-a)*t;
+const eo = t=>1-Math.pow(1-t,3);
+const ei = t=>t*t*t;
+const eio = t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const seg = (t,s,d)=>clamp((t-s)/d);
+// window opacity with fade in / fade out
+const win = (t,s,e,fi=.45,fo=.35)=> (t<s||t>e)?0:Math.min(seg(t,s,fi),clamp((e-t)/fo));
+
+function show(el, t, s, e, {dy=40, fi=.5, fo=.35, scaleFrom=1, blur=0}={}){
+  const o = win(t,s,e,fi,fo);
+  el.style.opacity = o;
+  const pIn = eo(seg(t,s,fi));
+  const pOut = ei(1-clamp((e-t)/fo));
+  const y = lerp(dy,0,pIn) - pOut*30;
+  const sc = lerp(scaleFrom,1,pIn);
+  el.style.transform = `translateY(${y}px) scale(${sc})`;
+  if(blur) el.style.filter = `blur(${(1-pIn)*blur}px)`;
+  return o;
+}
+
+// build topo lines once
+(function buildTopo(){
+  const svg = $('topo'); let d='';
+  for(let i=0;i<14;i++){
+    const cx=W/2, cy=H*0.52, rx=(PORTRAIT?110:180)+i*(PORTRAIT?70:120), ry=(PORTRAIT?150:80)+i*(PORTRAIT?105:58);
+    let path='';
+    for(let a=0;a<=Math.PI*2+0.01;a+=Math.PI/60){
+      const wob = 1+0.06*Math.sin(a*3+i)+0.04*Math.cos(a*5-i*0.7);
+      const x=cx+rx*wob*Math.cos(a), y=cy+ry*wob*Math.sin(a);
+      path += (a===0?'M':'L')+x.toFixed(1)+' '+y.toFixed(1)+' ';
+    }
+    d += `<path d="${path}Z"/>`;
+  }
+  svg.innerHTML = d;
+})();
+
+// particles
+const PARTS=[]; (function(){
+  const box=$('particles'); let seed=7;
+  const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
+  for(let i=0;i<46;i++){const el=document.createElement('i');box.appendChild(el);
+    PARTS.push({el,x:rnd()*W,y:rnd()*H,sp:8+rnd()*22,ph:rnd()*6.28,sz:2+rnd()*4,op:.25+rnd()*.5});}
+})();
+
+function wavePath(t, top, bottom, amp, phase){
+  let d=`M0 ${top+amp*Math.sin(phase)}`;
+  for(let x=0;x<=W;x+=40){ d+=` L${x} ${(top+amp*Math.sin(x/260+phase+t*2.2)).toFixed(1)}`; }
+  d+=` L${W} ${bottom+amp*Math.sin(W/260+phase+t*2.2+0.4)}`;
+  for(let x=W;x>=0;x-=40){ d+=` L${x} ${(bottom+amp*Math.sin(x/260+phase+t*2.2+0.4)).toFixed(1)}`; }
+  return d+' Z';
+}
+
+function render(t){
+  // ---------- global ----------
+  $('rays').style.transform = `rotate(${t*4}deg)`;
+  $('rays').style.opacity = (t<8.5? 0.9*win(t,0.6,8.6,1.2,.4) : 0.4*win(t,15.4,20,.6,1));
+  $('progress').style.width = (t/DURATION*W)+'px';
+  $('foot').style.opacity = win(t,1.8,19.0,.8,.6)*0.9;
+  for(const p of PARTS){
+    const y = ((p.y - t*p.sp) % H + H) % H;
+    const x = p.x + Math.sin(t*0.6+p.ph)*30;
+    p.el.style.transform = `translate(${x}px,${y}px)`;
+    p.el.style.width = p.el.style.height = p.sz+'px';
+    p.el.style.opacity = p.op*(0.6+0.4*Math.sin(t*2+p.ph))*win(t,0.8,19.5,1,.8);
+  }
+
+  // ---------- flag intro (0 → 1.8) ----------
+  const flag=$('flag');
+  const s1=seg(t,0.05,.7), s2=seg(t,0.2,.7), s3=seg(t,0.35,.7);
+  flag.querySelector('.s1').style.transform=`scaleX(${eo(s1)})`;
+  flag.querySelector('.s2').style.transform=`scaleX(${eo(s2)})`;
+  flag.querySelector('.s3').style.transform=`scaleX(${eo(s3)})`;
+  // shrink full flag into badge
+  const sh = eio(seg(t,1.05,.75));
+  if(t<1.8){
+    flag.style.opacity=1;
+    const sx=lerp(1,150/W,sh), sy=lerp(1,90/H,sh);
+    const ty=lerp(0, (56+45)-H/2, sh);
+    flag.style.transform=`translate(0px,${ty}px) scale(${sx},${sy})`;
+    flag.style.borderRadius = sh>0.9? '6px':'0';
+    $('badge').style.opacity=0;
+  } else {
+    flag.style.opacity=0;
+    $('badge').style.opacity = win(t,1.8,15.3,.05,.4);
+  }
+
+  // ---------- Scene 1 (1.2 → 4.0) ----------
+  show($('s1title'),t,1.7,4.0,{dy:30,fi:.6,scaleFrom:1.12,blur:12});
+  show($('s1year'),t,2.15,4.0,{dy:20,fi:.5});
+  $('s1year').style.letterSpacing = lerp(40,6,eo(seg(t,2.15,.8)))+'px';
+  show($('s1sub'),t,2.6,4.0,{dy:16,fi:.5});
+
+  // ---------- Scene 2 (4.0 → 8.5) ----------
+  const bn=$('bigno'); bn.style.opacity = win(t,4.0,8.5,.8,.4);
+  bn.style.transform=`scale(${lerp(0.9,1.05,seg(t,4,4.5))})`;
+  show($('s2h'),t,4.15,8.45,{dy:30,fi:.55,blur:8});
+  show($('s2p'),t,4.7,8.45,{dy:24,fi:.5});
+  ['c1','c2','c3','c4'].forEach((id,i)=>{ show($(id),t,5.35+i*0.3,8.4,{dy:40,fi:.45,scaleFrom:.9}); });
+
+  // ---------- Transition wipe (8.2 → 9.0) ----------
+  const wp = seg(t,8.15,.85);
+  const wipe=$('wipe');
+  if(wp>0&&wp<1){ wipe.style.opacity=1; wipe.style.transform=`translateX(${lerp(2400,-1900,eio(wp))}px) skewX(-18deg)`; }
+  else wipe.style.opacity=0;
+
+  // ---------- Scene 3 (8.5 → 15.5) ----------
+  const s3on = win(t,8.5,15.5,.4,.4);
+  $('redglow').style.opacity = s3on*(0.8+0.2*Math.sin(t*3));
+  const topo=$('topo'); topo.style.opacity = s3on;
+  topo.style.transform=`translate(${Math.sin(t*.5)*20}px,${-((t-8.5)*12)}px) scale(${1+ (t-8.5)*0.012})`;
+  show($('s3k'),t,8.7,13.1,{dy:20,fi:.35,scaleFrom:.7});
+  const h=$('s3h'); show(h,t,8.9,13.1,{dy:0,fi:.7});
+  h.style.clipPath = `inset(0 0 0 ${lerp(100,0,eo(seg(t,8.9,.8)))}%)`;
+  show($('s3p'),t,9.7,13.0,{dy:24,fi:.5});
+  const fronts=$('fronts').children;
+  for(let i=0;i<fronts.length;i++){
+    const st=10.5+i*0.32; show(fronts[i],t,st,13.3,{dy:50,fi:.4,scaleFrom:.85});
+    const ring=fronts[i].querySelector('.ring');
+    const ph=((t-st)*1.2)%1; const rp = t>st? ph:0;
+    ring.style.transform=`scale(${1+rp*3.2})`; ring.style.opacity=(1-rp)*0.9;
+  }
+  // stamp + closing line
+  const stp = $('stamp');
+  const so = win(t,13.15,15.45,.25,.3); stp.style.opacity=so;
+  stp.style.transform=`scale(${lerp(1.9,1,eo(seg(t,13.15,.35)))}) rotate(${lerp(-6,-3,eo(seg(t,13.15,.35)))}deg)`;
+  const fill = seg(t,13.5,.5); stp.style.color=`rgba(244,241,234,${fill})`;
+  show($('s3end'),t,13.9,15.45,{dy:24,fi:.5});
+
+  // ---------- Scene 4 (15.5 → 20) ----------
+  const s4 = win(t,15.5,20.5,.4,.1);
+  $('wave').style.opacity=s4; $('waveShade').style.opacity=s4;
+  if(s4>0){
+    const amp=26, k=eo(seg(t,15.5,1.2));
+    $('w1').setAttribute('d', wavePath(t, -80, H/3, amp, 0));
+    $('w2').setAttribute('d', wavePath(t, H/3, 2*H/3, amp, 0.4));
+    $('w3').setAttribute('d', wavePath(t, 2*H/3, H+80, amp, 0.8));
+    $('wave').style.transform=`scale(${lerp(1.15,1.03,k)})`;
+  }
+  show($('s4h'),t,15.85,20.5,{dy:30,fi:.7,scaleFrom:1.15,blur:14});
+  show($('s4p'),t,16.9,20.5,{dy:20,fi:.6});
+  show($('s4f'),t,17.8,20.5,{dy:12,fi:.6});
+  $('s4f').style.letterSpacing = lerp(30,8,eo(seg(t,17.8,.9)))+'px';
+
+  // ---------- flashes + fades ----------
+  const fl = Math.max( (t>=15.5&&t<16.2)? (1-seg(t,15.5,.7))*0.9 : 0, (t>=8.95&&t<9.4)? (1-seg(t,8.95,.45))*0.35:0 );
+  $('flash').style.opacity=fl;
+  const fadeIn = 1-seg(t,0,.5);
+  const fadeOut = seg(t,19.2,.8);
+  $('fade').style.opacity = Math.max(fadeIn, fadeOut);
+}
+
+window.seek = render;
+window.DURATION = DURATION;
+// live preview when opened in a browser
+if (!navigator.webdriver) {
+  const t0=performance.now();
+  (function loop(){ render(((performance.now()-t0)/1000)%DURATION); requestAnimationFrame(loop); })();
+} else { render(0); }
+</script>
+</body>
+</html>

@@ -1,1 +1,6 @@
 .DS_Store
+videos/september-revolution/music-30s.wav
+videos/september-revolution/zamil-*.wav
+# derived footage — regenerate with the ffmpeg steps in videos/september-revolution/README.md
+videos/september-revolution/footage/treated/
+videos/september-revolution/footage/base-60s.mp4
