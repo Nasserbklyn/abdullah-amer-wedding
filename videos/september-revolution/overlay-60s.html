@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>طبقة نصوص الريلز 60 ثانية</title>
+<style>
+  @font-face{font-family:'Cairo';font-weight:200 1000;src:url(fonts/Cairo-ar.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC;}
+  @font-face{font-family:'Cairo';font-weight:200 1000;src:url(fonts/Cairo-latin.woff2) format('woff2');unicode-range:U+0000-00FF;}
+  @font-face{font-family:'Amiri';font-weight:400;src:url(fonts/Amiri-ar-400.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC;}
+  @font-face{font-family:'Amiri';font-weight:700;src:url(fonts/Amiri-ar-700.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC;}
+  @font-face{font-family:'Amiri';font-weight:400;src:url(fonts/Amiri-latin-400.woff2) format('woff2');unicode-range:U+0000-00FF;}
+
+  :root{ --red:#CE1126; --paper:#F6F3EC; --dim:rgba(246,243,236,.80); }
+  html,body{margin:0;padding:0;background:transparent;}
+  body{width:1080px;height:1920px;overflow:hidden;font-family:'Cairo','Amiri',sans-serif;color:var(--paper);
+       -webkit-font-smoothing:antialiased;}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;}
+  .abs{position:absolute;inset:0;}
+
+  /* scrims keep type legible over moving footage */
+  #topScrim{height:760px;top:0;background:linear-gradient(180deg, rgba(0,0,0,.80) 0%, rgba(0,0,0,.55) 42%, rgba(0,0,0,0) 100%);}
+  #botScrim{height:1000px;bottom:0;top:auto;background:linear-gradient(0deg, rgba(0,0,0,.86) 0%, rgba(0,0,0,.60) 40%, rgba(0,0,0,0) 100%);}
+  .scrim{position:absolute;left:0;width:1080px;}
+
+  #badge{position:absolute;top:150px;left:50%;width:120px;height:74px;margin-left:-60px;border-radius:7px;
+     overflow:hidden;z-index:15;box-shadow:0 12px 40px rgba(0,0,0,.8), 0 0 0 2px rgba(255,255,255,.16);}
+  #badge div{height:33.34%}
+  #badge .r{background:var(--red)} #badge .w{background:var(--paper)} #badge .b{background:#08080A}
+
+  .c{position:absolute;left:64px;right:64px;text-align:center;z-index:13;}
+  .mega{font-family:'Amiri',serif;font-weight:700;font-size:224px;line-height:.95;
+     text-shadow:0 8px 44px rgba(0,0,0,.95), 0 2px 10px rgba(0,0,0,.9);}
+  .head{font-family:'Amiri',serif;font-weight:700;font-size:96px;line-height:1.24;
+     text-shadow:0 8px 40px rgba(0,0,0,.95), 0 2px 8px rgba(0,0,0,.9);}
+  .sub{font-family:'Cairo';font-weight:700;font-size:48px;line-height:1.52;color:var(--dim);
+     text-shadow:0 4px 22px rgba(0,0,0,.95);}
+  .kick{display:inline-block;background:var(--red);color:#fff;font-family:'Cairo';font-weight:900;
+     font-size:32px;letter-spacing:1px;padding:10px 30px;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.6);}
+  .rule{position:absolute;left:50%;width:150px;height:5px;margin-left:-75px;background:var(--red);z-index:13;border-radius:3px;
+     box-shadow:0 0 24px rgba(206,17,38,.9);}
+
+  /* fact block — a red rule and type, no boxed card */
+  #fact{position:absolute;right:64px;left:64px;top:1180px;z-index:14;text-align:right;
+     border-right:8px solid var(--red);padding-right:32px;}
+  #fDate{font-family:'Cairo';font-weight:900;font-size:34px;color:#FF5468;margin-bottom:12px;
+     text-shadow:0 3px 16px rgba(0,0,0,.95);}
+  #fText{font-family:'Cairo';font-weight:900;font-size:54px;line-height:1.36;
+     text-shadow:0 5px 26px rgba(0,0,0,.98), 0 2px 8px rgba(0,0,0,.9);}
+  #fWhere{font-family:'Cairo';font-weight:400;font-size:34px;color:var(--dim);margin-top:12px;
+     text-shadow:0 3px 18px rgba(0,0,0,.95);}
+  #src{position:absolute;left:64px;right:64px;top:1408px;z-index:14;text-align:center;
+     font-family:'Cairo';font-weight:400;font-size:24px;color:rgba(246,243,236,.62);
+     text-shadow:0 3px 16px rgba(0,0,0,.95);}
+
+  #bar{position:absolute;left:0;top:0;height:7px;background:var(--red);z-index:20;box-shadow:0 0 16px rgba(206,17,38,.95);}
+  #fade{background:#000;z-index:24;}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="topScrim" class="scrim"></div>
+  <div id="botScrim" class="scrim"></div>
+  <div id="badge"><div class="r"></div><div class="w"></div><div class="b"></div></div>
+
+  <div id="h1" class="c mega" style="top:700px">سبتمبر</div>
+  <div id="h2" class="c head" style="top:990px;font-size:84px">شهر اليمنيين المقدّس</div>
+  <div id="hRule" class="rule" style="top:1140px"></div>
+
+  <div id="a1" class="c" style="top:640px"><span class="kick">26 سبتمبر 1962</span></div>
+  <div id="a2" class="c head" style="top:740px">يومَ قامتِ الجمهوريةُ اليمنية</div>
+
+  <div id="b1" class="c head" style="top:700px;font-size:88px">ثورةٌ أنهت حكمَ الإمامة</div>
+  <div id="b2" class="c sub" style="top:960px">وأعلنت الجمهوريةَ العربيةَ اليمنية</div>
+
+  <div id="c1" class="c head" style="top:720px;font-size:88px">وفي سبتمبر 2026<br>الميدانُ يتكلّم من جديد</div>
+
+  <div id="fact">
+    <div id="fDate">5 سبتمبر 2026</div>
+    <div id="fText">تحريرُ مديرية حيس بالكامل</div>
+    <div id="fWhere">جنوب محافظة الحديدة</div>
+  </div>
+  <div id="src">وفق إعلانات القوات المسلحة اليمنية ووكالات الأنباء — سبتمبر 2026</div>
+
+  <div id="z1" class="c mega" style="top:690px;font-size:200px">سبتمبر</div>
+  <div id="z2" class="c head" style="top:960px;font-size:84px">شهر اليمنيين المقدّس</div>
+  <div id="z3" class="c sub" style="top:1150px;font-size:56px;font-weight:900;color:#fff">النصرُ للجمهورية</div>
+
+  <div id="bar"></div>
+  <div id="fade" class="abs"></div>
+</div>
+
+<script>
+const DURATION=60, W=1080, H=1920;
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const eo=t=>1-Math.pow(1-t,3), ei=t=>t*t*t;
+const seg=(t,s,d)=>clamp((t-s)/d);
+const win=(t,s,e,fi=.4,fo=.35)=>(t<s||t>e)?0:Math.min(seg(t,s,fi),clamp((e-t)/fo));
+
+function show(el,t,s,e,{dy=40,fi=.5,fo=.4,sc=1,blur=0}={}){
+  const o=win(t,s,e,fi,fo); el.style.opacity=o;
+  if(o===0){el.style.transform='';return 0;}
+  const pi=eo(seg(t,s,fi)), po=ei(1-clamp((e-t)/fo));
+  el.style.transform=`translateY(${lerp(dy,0,pi)-po*22}px) scale(${lerp(sc,1,pi)})`;
+  if(blur) el.style.filter=`blur(${(1-pi)*blur}px)`;
+  return o;
+}
+
+/* Dated announcements, corroborated across outlets — see PUBLISHING.md.
+   Timed to sit inside each clip, clear of the 0.8 s dissolves. */
+const FACTS=[
+ {s:21.0,e:25.4,date:'5 سبتمبر 2026',text:'تحريرُ مديرية حيس بالكامل',where:'جنوب محافظة الحديدة'},
+ {s:25.8,e:29.9,date:'6 سبتمبر 2026',text:'طيرانُ الجيش يقصف معسكري اللبنات والخنجر',where:'الجوف — وغاراتٌ على تعز والحديدة'},
+ {s:30.9,e:35.1,date:'7 سبتمبر 2026',text:'السيطرةُ على معسكر اللبنات والتقدّمُ نحو الحزم',where:'محافظة الجوف — بوابةُ صنعاء'},
+ {s:35.5,e:39.8,date:'7 سبتمبر 2026',text:'السيطرةُ على نقيل وجبل الكورة بجبهة الكدحة',where:'غربَ مدينة تعز'},
+ {s:40.7,e:44.9,date:'7 سبتمبر 2026',text:'السيطرةُ على مرتفعات الزاهر ومشارفِ ذي ناعم',where:'محافظة البيضاء'},
+ {s:45.3,e:49.6,date:'7 سبتمبر 2026',text:'قصفٌ بالراجمات على اليتمة تمهيداً للتقدّم',where:'شمال محافظة الجوف'},
+ {s:50.6,e:54.9,date:'8 سبتمبر 2026',text:'القيادة: تقدّمٌ في الجوف والبيضاء وتعز والحديدة',where:'واستعادةُ زمام المبادرة على الجبهات'},
+];
+
+function render(t){
+  $('bar').style.width=(t/DURATION*W)+'px';
+
+  // scrims: heavy while type is on screen, light in the breathing gaps
+  const typeOn = Math.max(
+    win(t,.5,9.6,.6,.6), win(t,10.9,19.6,.6,.6),
+    win(t,20.8,55.0,.6,.6), win(t,55.2,59.7,.6,.6));
+  $('topScrim').style.opacity = .35 + .65*typeOn;
+  $('botScrim').style.opacity = .30 + .70*Math.max(typeOn, win(t,20.8,55.0,.6,.6));
+  $('badge').style.opacity = win(t,1.2,55.0,.5,.6);
+
+  /* clip 1 — Sanaa: hook, then 1962 */
+  show($('h1'),t,.55,4.6,{dy:0,fi:.55,sc:1.3,blur:14});
+  $('h1').style.letterSpacing=lerp(44,2,eo(seg(t,.55,.9)))+'px';
+  show($('h2'),t,1.15,4.6,{dy:30,fi:.5});
+  $('hRule').style.opacity=win(t,1.1,4.6,.45,.4);
+  $('hRule').style.transform=`scaleX(${eo(seg(t,1.1,.55))})`;
+  show($('a1'),t,5.2,9.5,{dy:16,fi:.3,sc:.75});
+  show($('a2'),t,5.45,9.5,{dy:26,fi:.5,blur:8});
+
+  /* clip 2 — alley: the revolution, then the turn to today */
+  show($('b1'),t,11.0,15.0,{dy:26,fi:.5,blur:8});
+  show($('b2'),t,11.6,15.0,{dy:22,fi:.5});
+  show($('c1'),t,15.7,19.5,{dy:28,fi:.5,sc:1.06,blur:9});
+
+  /* clips 3-6 — the dated field record */
+  let act=null;
+  for(const f of FACTS) if(t>=f.s && t<=f.e) act=f;
+  const fact=$('fact');
+  if(act){
+    if(fact.dataset.k!==String(act.s)){
+      fact.dataset.k=String(act.s);
+      $('fDate').textContent=act.date; $('fText').textContent=act.text; $('fWhere').textContent=act.where;
+    }
+    const o=win(t,act.s,act.e,.34,.3);
+    fact.style.opacity=o;
+    fact.style.transform=`translateY(${lerp(40,0,eo(seg(t,act.s,.34)))}px)`;
+  } else fact.style.opacity=0;
+  $('src').style.opacity=win(t,21.0,55.0,.8,.7)*.95;
+
+  /* clip 6 — flag: close */
+  show($('z1'),t,55.4,59.8,{dy:0,fi:.6,sc:1.24,blur:14});
+  $('z1').style.letterSpacing=lerp(38,2,eo(seg(t,55.4,1)))+'px';
+  show($('z2'),t,56.1,59.8,{dy:24,fi:.55});
+  show($('z3'),t,56.9,59.8,{dy:18,fi:.55});
+
+  $('fade').style.opacity=Math.max(1-seg(t,0,.5), seg(t,59.3,.7));
+}
+window.seek=render; window.DURATION=DURATION;
+if(!navigator.webdriver){const t0=performance.now();
+  (function loop(){render(((performance.now()-t0)/1000)%DURATION);requestAnimationFrame(loop);})();}
+else render(0);
+</script>
+</body>
+</html>
