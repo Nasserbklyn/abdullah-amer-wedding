@@ -40,10 +40,15 @@ FFMPEG=/path/to/ffmpeg node render.js --portrait  # النسخة العمودي�
 
 | ملف | الوصف |
 | --- | --- |
-| `yemen-september-reel-60s.mp4` | **ريلز 60 ثانية** بالأهزوجة وخريطة الجبهات المتحركة |
+| `yemen-september-film-60s.mp4` | **الفيلم السينمائي 60 ثانية** — مقاطع Veo حقيقية مع الأهزوجة |
+| `yemen-september-film-60s-compressed.mp4` | نفس الفيلم بحجم 25 م.ب للتحميل والمشاركة |
+| `yemen-september-reel-60s.mp4` | ريلز 60 ثانية بالأهزوجة وخريطة الجبهات المتحركة |
 | `yemen-september-reel-30s.mp4` | ريلز 30 ثانية بالأهزوجة (H.264 High@4.0 + AAC) |
 | `yemen-september-reel-30s-silent.mp4` | نفس الريلز بلا صوت — لإضافة أغنية مرخّصة من مكتبة الموسيقى داخل تطبيق فيسبوك |
-| `reel-60s.html` | تصميم وحركة نسخة الستين ثانية (كاميرا الخريطة وأسهم التقدّم) |
+| `overlay-60s.html` | طبقة النصوص الشفافة فوق مقاطع الفيديو |
+| `render-footage.js` | يركّب طبقة النصوص فوق الأساس المصوَّر ويدمج الأهزوجة |
+| `footage/` | مقاطع Veo الستة الأصلية (المشتقّات مستثناة من git) |
+| `reel-60s.html` | تصميم وحركة نسخة الجرافيكس (كاميرا الخريطة وأسهم التقدّم) |
 | `reel-30s.html` | تصميم وحركة نسخة الثلاثين ثانية |
 | `render-reel.js` | يصوّر الإطارات عبر Playwright ويمرّرها إلى ffmpeg |
 | `zamil.py` | يولّد الأهزوجة الأصلية لأي من المدّتين: `python3 zamil.py 60` أو `30` |
@@ -76,3 +81,26 @@ FFMPEG=/path/to/ffmpeg MUSIC=zamil-30s.wav node render-reel.js    # ريلز 30 
 
 لتحديث الوقائع عدّل مصفوفة `FACTS` في `reel-30s.html` فقط — البطاقات والعلامات على
 الخريطة تُبنى منها تلقائياً. ولإضافة موقع جديد أضِف إحداثياته في `yemen-map.json`.
+
+## إعادة بناء الفيلم المصوَّر
+
+```bash
+# 1) معالجة كل مقطع: شريط حادّ 1080×1440 فوق فراش ضبابي منه، وتدرّج لوني موحّد
+#    (السرعة 93.75% ليعطي 6 مقاطع × 10.667 ث ناقص 5 انتقالات × 0.8 ث = 60.000 ث)
+for f in footage/[1-6]-*.mp4; do n=$(basename "$f" .mp4); ffmpeg -y -i "$f" -filter_complex "\
+[0:v]setpts=1.06667*PTS,fps=30,split=2[bg][fg];\
+[bg]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=42,eq=brightness=-0.20:saturation=0.55[bgo];\
+[fg]crop=810:1080:(iw-810)/2:0,scale=1080:1440:flags=lanczos,eq=contrast=1.06:saturation=1.04:gamma=0.98[fgo];\
+[bgo][fgo]overlay=0:240,format=yuv420p[v]" -map "[v]" -an -t 10.667 -crf 16 "footage/treated/$n.mp4"; done
+
+# 2) الدمج بانتقالات متمازجة (الترتيب: صنعاء ← الزقاق ← المدرجات ← الوادي ← سقطرى ← العلم)
+#    مقاسات الإزاحة: k × (10.667 − 0.8) لِـ k = 1..5
+
+# 3) تركيب طبقة النصوص ودمج الأهزوجة
+python3 zamil.py 60
+FFMPEG=/path/to/ffmpeg node render-footage.js yemen-september-film-60s.mp4
+```
+
+**تنبيه**: مقاطع `footage/` مولَّدة بالذكاء الاصطناعي (Google Flow / Veo 3.1) وتمثّل مشاهد يمنية
+عامة — لا توثيقاً لثورة 1962 ولا للمعارك الجارية. يلزم وسم الفيديو كمولَّد بالذكاء الاصطناعي عند
+النشر على فيسبوك.
